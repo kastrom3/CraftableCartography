@@ -1,0 +1,24 @@
+VS map mod:
+- Map, minimap, compass, coordinates, all disabled by default, requiring the following items
+- Compass
+	- gives access to direction, like what a compass do
+- Temporal Sextant
+	- gives access to coordinates display
+- Map
+	- gives access to map (but not minimap)
+	- player position(s) not displayed on map
+	- require pigment in inventory to mark map?
+	- require pigment to generate map?
+	- disable map shortcut, require player to use map item?
+	- store map markers on map itself; player loses/gains markers depending on map used?
+- JPS (Jonas' Positioning System)
+	- gives access to full suite: map, minimap, compass, coordinates, player position all restored
+	- can be tuned to different channels; players in multiplayer can see eachother on map if any only if they have the same channel set
+	- must be powered with temporal gears?
+
+- map UI improvements probably necessary for this
+	- centre on coordinates
+	- reopen to same location as last closed
+
+- useful bits
+	- some kind of container item, to put map + sextant + compass in one slot
