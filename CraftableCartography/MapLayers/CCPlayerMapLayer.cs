@@ -4,6 +4,7 @@ using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.GameContent;
 using Cairo;
+using static CraftableCartography.Lib.CCConstants;
 
 namespace CraftableCartography.MapLayers
 {
@@ -70,7 +71,7 @@ namespace CraftableCartography.MapLayers
                 Context ctx = new Context(surface);
                 ctx.SetSourceRGBA(0, 0, 0, 0);
                 ctx.Paint();
-                capi.Gui.Icons.DrawMapPlayer(ctx, 0, 0, size, size, new double[] { 0, 0, 0, 1 }, new double[] { 1, 0, 0, 1 });
+                capi.Gui.Icons.DrawMapPlayer(ctx, 0, 0, size, size, new double[] { 0, 0, 0, 1 }, new double[] { 1, 1, 1, 1 });
 
                 ownTexture = new LoadedTexture(capi, capi.Gui.LoadCairoTexture(surface, false), size / 2, size / 2);
                 ctx.Dispose();
@@ -101,12 +102,13 @@ namespace CraftableCartography.MapLayers
                     MapComps.Remove(player);
                 }
 
-
                 if (player.Entity == null)
                 {
                     capi.World.Logger.Warning("Can't add player {0} to world map, missing entity :<", player.PlayerUID);
                     continue;
                 }
+
+                if (!player.Entity.WatchedAttributes.GetBool(ShowOnMapAttr)) continue;
 
                 if (capi.World.Config.GetBool("mapHideOtherPlayers", false) && player.PlayerUID != capi.World.Player.PlayerUID) continue;
 
@@ -168,7 +170,16 @@ namespace CraftableCartography.MapLayers
             otherTexture = null;
         }
 
-
-
+        public void SetPlayerShown(IPlayer player, bool show)
+        {
+            if (player.Entity == null) return;
+            player.Entity.WatchedAttributes.SetBool(ShowOnMapAttr, show);
+            OnMapOpenedClient();
+        }
+        public bool GetPlayerShown(IPlayer player)
+        {
+            if (player.Entity == null) return false;
+            return player.Entity.WatchedAttributes.GetBool(ShowOnMapAttr);
+        }
     }
 }

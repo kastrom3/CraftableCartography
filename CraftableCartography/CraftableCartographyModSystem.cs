@@ -6,6 +6,8 @@ using Vintagestory.API.Common;
 using Vintagestory.Common;
 using Vintagestory.GameContent;
 using HarmonyLib;
+using Vintagestory.API.Server;
+using System;
 
 namespace CraftableCartography
 {
@@ -13,13 +15,45 @@ namespace CraftableCartography
     public class CraftableCartographyModSystem : ModSystem
     {
         public const string patchName = "com.profcupcake.craftablecartography";
+
+        ICoreAPI api;
+        
         Harmony harmony; 
         public override void StartPre(ICoreAPI api)
         {
             base.StartPre(api);
+
+            this.api = api;
             
             harmony = new(patchName);
             harmony.PatchAll();
+        }
+
+        public override void StartClientSide(ICoreClientAPI api)
+        {
+            base.StartClientSide(api);
+
+            api.ChatCommands.Create("togglemapmarker")
+                .WithDescription("Toggles showing of local player's map marker")
+                .RequiresPlayer()
+                .RequiresPrivilege(Privilege.root)
+                .HandleWith(ToggleMarker);
+        }
+
+        private TextCommandResult ToggleMarker(TextCommandCallingArgs args)
+        {
+            IPlayer player = args.Caller.Player;
+            CCPlayerMapLayer mapLayer;
+            mapLayer = api.ModLoader.GetModSystem<WorldMapManager>().MapLayers.OfType<CCPlayerMapLayer>().FirstOrDefault();
+
+            if (mapLayer == null)
+            {
+                return TextCommandResult.Error("Could not find Player map layer!");
+            }
+
+            mapLayer.SetPlayerShown(player, !mapLayer.GetPlayerShown(player));
+
+            return TextCommandResult.Success("Player marker toggled");
         }
 
         public override void Dispose()
@@ -38,5 +72,6 @@ namespace CraftableCartography
             __instance.RegisterMapLayer<WaypointMapLayer>("waypoints", 1.0);
             return false;
         }
+
     }
 }

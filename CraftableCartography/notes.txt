@@ -13,7 +13,7 @@ VS map mod:
 	- store map markers on map itself; player loses/gains markers depending on map used?
 - JPS (Jonas' Positioning System)
 	- gives access to full suite: map, minimap, compass, coordinates, player position all restored
-	- can be tuned to different channels; players in multiplayer can see eachother on map if any only if they have the same channel set
+	- can be tuned to different channels; players in multiplayer can see eachother on map if and only if they have the same channel set
 	- must be powered with temporal gears?
 
 - map UI improvements probably necessary for this
