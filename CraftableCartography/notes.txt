@@ -2,6 +2,9 @@ VS map mod:
 - Map, minimap, compass, coordinates, all disabled by default, requiring the following items
 - Compass
 	- gives access to direction, like what a compass do
+- Sextant
+	- when used, outputs current coordinates
+	- short delay on use
 - Temporal Sextant
 	- gives access to coordinates display
 - Map

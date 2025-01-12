@@ -1,13 +1,11 @@
 ﻿using CraftableCartography.MapLayers;
-using System.Collections.Generic;
+using HarmonyLib;
 using System.Linq;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
-using Vintagestory.Common;
-using Vintagestory.GameContent;
-using HarmonyLib;
+using Vintagestory.API.MathTools;
 using Vintagestory.API.Server;
-using System;
+using Vintagestory.GameContent;
 
 namespace CraftableCartography
 {
@@ -17,14 +15,14 @@ namespace CraftableCartography
         public const string patchName = "com.profcupcake.craftablecartography";
 
         ICoreAPI api;
-        
-        Harmony harmony; 
+
+        Harmony harmony;
         public override void StartPre(ICoreAPI api)
         {
             base.StartPre(api);
 
             this.api = api;
-            
+
             harmony = new(patchName);
             harmony.PatchAll();
         }
@@ -73,5 +71,15 @@ namespace CraftableCartography
             return false;
         }
 
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(GuiDialogWorldMap), nameof(GuiDialogWorldMap.OnGuiOpened))]
+        public static void RecentreMap(GuiDialogWorldMap __instance)
+        {
+            GuiElementMap elemMap = __instance.SingleComposer.GetElement("mapElem") as GuiElementMap;
+
+            ICoreClientAPI capi = Traverse.Create(__instance).Field("capi").GetValue<ICoreClientAPI>();
+
+            elemMap.CenterMapTo(capi.World.DefaultSpawnPosition.AsBlockPos);
+        }
     }
 }

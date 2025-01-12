@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using Cairo;
+using System.Collections.Generic;
 using System.Text;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.GameContent;
-using Cairo;
 using static CraftableCartography.Lib.CCConstants;
 
 namespace CraftableCartography.MapLayers
