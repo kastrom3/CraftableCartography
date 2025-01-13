@@ -7,6 +7,7 @@ using static CraftableCartography.Lib.CCConstants;
 
 namespace CraftableCartography.Patches
 {
+    [HarmonyPatch]
     internal static class MapGuiPatches
     {
         [HarmonyPostfix]

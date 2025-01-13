@@ -11,7 +11,6 @@ using static CraftableCartography.Lib.CCConstants;
 
 namespace CraftableCartography
 {
-    [HarmonyPatch]
     public class CraftableCartographyModSystem : ModSystem
     {
         public const string patchName = "com.profcupcake.craftablecartography";
