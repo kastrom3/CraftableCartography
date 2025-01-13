@@ -59,7 +59,29 @@ namespace CraftableCartography
 
             capi = api;
 
+            api.ChatCommands.Create("recentremap")
+                .WithDescription("Recentres your map on the given coordinates")
+                .RequiresPlayer()
+                .WithArgs(new ICommandArgumentParser[] { api.ChatCommands.Parsers.OptionalInt("x"), api.ChatCommands.Parsers.OptionalInt("y"), api.ChatCommands.Parsers.OptionalInt("z") })
+                .HandleWith(RecentreMapCommand);
+
+            api.Logger.Event(".recentremap registered");
+
             api.World.Player.Entity.WatchedAttributes.RegisterModifiedListener(ShowOnMapAttr, OnMapShowToggle);
+
+            api.Logger.Event("showOnMap listener registered");
+        }
+
+        private TextCommandResult RecentreMapCommand(TextCommandCallingArgs args)
+        {
+            BlockPos pos = new((int)args[0], (int)args[1], (int)args[2]);
+            BlockPos absPos = new BlockPos(pos.X, pos.Y, pos.Z).Add(api.World.DefaultSpawnPosition.AsBlockPos);
+            GuiElementMap mapElem = api.ModLoader.GetModSystem<WorldMapManager>().worldMapDlg.SingleComposer.GetElement("mapElem") as GuiElementMap;
+
+            mapElem.CenterMapTo(absPos);
+            capi.World.Player.Entity.Attributes.SetBlockPos(MapOpenCoordsAttr, absPos);
+
+            return TextCommandResult.Success("Map centred on " + pos.X + " " + pos.Y + " " + pos.Z);
         }
 
         private void OnMapShowToggle() // currently borken :|
