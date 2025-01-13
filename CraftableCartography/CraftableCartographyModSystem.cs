@@ -2,6 +2,7 @@
 using HarmonyLib;
 using System;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Datastructures;
@@ -19,6 +20,8 @@ namespace CraftableCartography
         public const string patchName = "com.profcupcake.craftablecartography";
 
         ICoreAPI api;
+        ICoreClientAPI capi;
+        ICoreServerAPI sapi;
 
         Harmony harmony;
         public override void StartPre(ICoreAPI api)
@@ -31,31 +34,42 @@ namespace CraftableCartography
             harmony.PatchAll();
         }
 
-        public override void StartClientSide(ICoreClientAPI api)
+        public override void StartServerSide(ICoreServerAPI api)
         {
-            base.StartClientSide(api);
+            base.StartServerSide(api);
+
+            sapi = api;
 
             api.ChatCommands.Create("togglemapmarker")
-                .WithDescription("Toggles showing of local player's map marker")
+                .WithDescription("Toggles showing of player's map marker")
                 .RequiresPlayer()
                 .RequiresPrivilege(Privilege.root)
+                .WithArgs(new ICommandArgumentParser[] { api.ChatCommands.Parsers.OnlinePlayer("player") })
                 .HandleWith(ToggleMarker);
         }
 
         private TextCommandResult ToggleMarker(TextCommandCallingArgs args)
         {
-            IPlayer player = args.Caller.Player;
-            CCPlayerMapLayer mapLayer;
-            mapLayer = api.ModLoader.GetModSystem<WorldMapManager>().MapLayers.OfType<CCPlayerMapLayer>().FirstOrDefault();
+            IPlayer player = args[0] as IPlayer;
 
-            if (mapLayer == null)
-            {
-                return TextCommandResult.Error("Could not find Player map layer!");
-            }
-
-            mapLayer.SetPlayerShown(player, !mapLayer.GetPlayerShown(player));
+            player.Entity.WatchedAttributes.SetBool(ShowOnMapAttr, !player.Entity.WatchedAttributes.GetBool(ShowOnMapAttr));
 
             return TextCommandResult.Success("Player marker toggled");
+        }
+
+        public override void StartClientSide(ICoreClientAPI api)
+        {
+            base.StartClientSide(api);
+
+            capi = api;
+
+            api.World.Player.Entity.WatchedAttributes.RegisterModifiedListener(ShowOnMapAttr, OnMapShowToggle);
+        }
+
+        private void OnMapShowToggle() // currently borken :|
+        {
+            CCPlayerMapLayer mapLayer = capi.ModLoader.GetModSystem<WorldMapManager>().MapLayers.OfType<CCPlayerMapLayer>().FirstOrDefault();
+            mapLayer.OnMapOpenedClient();
         }
 
         public override void Dispose()
@@ -78,7 +92,7 @@ namespace CraftableCartography
 
         [HarmonyPostfix]
         [HarmonyPatch(typeof(GuiDialogWorldMap), nameof(GuiDialogWorldMap.OnGuiOpened))]
-        public static void RecentreMap(GuiDialogWorldMap __instance)
+        public static void RecentreMapToStoredLocation(GuiDialogWorldMap __instance)
         {
             GuiElementMap elemMap = __instance.SingleComposer.GetElement("mapElem") as GuiElementMap;
 
@@ -91,24 +105,36 @@ namespace CraftableCartography
 
             elemMap.ZoomLevel = zoom;
             elemMap.CenterMapTo(pos);
+
+            //capi.ShowChatMessage("Loaded centre: " + pos.ToString() + " (" + pos.SubCopy(capi.World.DefaultSpawnPosition.AsBlockPos).ToString() + ")\nZoom level: " + zoom);
         }
 
         [HarmonyPrefix]
-        [HarmonyPatch(typeof(GuiDialogWorldMap), nameof(GuiDialogWorldMap.TryClose))]
-        public static void StoreMapLocation(GuiDialogWorldMap __instance)
+        [HarmonyPatch(typeof(WorldMapManager), nameof(WorldMapManager.ToggleMap))]
+        public static void WorldMapManager_ToggleMap(WorldMapManager __instance)
         {
-            ICoreClientAPI capi = Traverse.Create(__instance).Field("capi").GetValue<ICoreClientAPI>();
-            GuiElementMap elemMap = __instance.SingleComposer.GetElement("mapElem") as GuiElementMap;
-            Cuboidd curBlockViewBounds = elemMap.CurrentBlockViewBounds;
-            BlockPos pos = new(
-                (int)(curBlockViewBounds.X1 + curBlockViewBounds.X2) / 2,
-                (int)(curBlockViewBounds.Y1 + curBlockViewBounds.Y2) / 2,
-                (int)(curBlockViewBounds.Z1 + curBlockViewBounds.Z2) / 2
-                );
-            capi.ShowChatMessage("Map closed, centre was about " + pos.ToString() + " (" + pos.SubCopy(capi.World.DefaultSpawnPosition.AsBlockPos).ToString() + ")\nZoom level: "+elemMap.ZoomLevel);
+            GuiDialogWorldMap mapDlg = __instance.worldMapDlg;
+            if (mapDlg != null && mapDlg.IsOpened())
+            {
+                if (mapDlg.DialogType == EnumDialogType.Dialog)
+                {
+                    ICoreClientAPI capi = Traverse.Create(__instance).Field("capi").GetValue<ICoreClientAPI>();
+                    //capi.ShowChatMessage("big map closing, storing location");
 
-            capi.World.Player.Entity.Attributes.SetFloat(MapOpenZoomAttr, elemMap.ZoomLevel);
-            capi.World.Player.Entity.Attributes.SetBlockPos(MapOpenCoordsAttr, pos);
+                    GuiElementMap elemMap = mapDlg.SingleComposer.GetElement("mapElem") as GuiElementMap;
+                    Cuboidd curBlockViewBounds = elemMap.CurrentBlockViewBounds;
+                    BlockPos pos = new(
+                        (int)(curBlockViewBounds.X1 + curBlockViewBounds.X2) / 2,
+                        (int)(curBlockViewBounds.Y1 + curBlockViewBounds.Y2) / 2,
+                        (int)(curBlockViewBounds.Z1 + curBlockViewBounds.Z2) / 2
+                        );
+
+                    capi.World.Player.Entity.Attributes.SetFloat(MapOpenZoomAttr, elemMap.ZoomLevel);
+                    capi.World.Player.Entity.Attributes.SetBlockPos(MapOpenCoordsAttr, pos);
+
+                    //capi.ShowChatMessage("Stored centre: " + pos.ToString() + " (" + pos.SubCopy(capi.World.DefaultSpawnPosition.AsBlockPos).ToString() + ")\nZoom level: " + elemMap.ZoomLevel);
+                }
+            }
         }
 
         [HarmonyPrefix]
