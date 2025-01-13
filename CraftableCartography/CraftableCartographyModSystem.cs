@@ -7,6 +7,7 @@ using Vintagestory.API.Common;
 using Vintagestory.API.Datastructures;
 using Vintagestory.API.MathTools;
 using Vintagestory.API.Server;
+using Vintagestory.API.Util;
 using Vintagestory.GameContent;
 using static CraftableCartography.Lib.CCConstants;
 
@@ -86,7 +87,9 @@ namespace CraftableCartography
             ICoreClientAPI capi = traverse.Field("capi").GetValue<ICoreClientAPI>();
 
             BlockPos pos = capi.World.Player.Entity.Attributes.GetBlockPos(MapOpenCoordsAttr, capi.World.DefaultSpawnPosition.AsBlockPos);
+            float zoom = capi.World.Player.Entity.Attributes.GetFloat(MapOpenZoomAttr, elemMap.ZoomLevel);
 
+            elemMap.ZoomLevel = zoom;
             elemMap.CenterMapTo(pos);
         }
 
@@ -97,17 +100,14 @@ namespace CraftableCartography
             ICoreClientAPI capi = Traverse.Create(__instance).Field("capi").GetValue<ICoreClientAPI>();
             GuiElementMap elemMap = __instance.SingleComposer.GetElement("mapElem") as GuiElementMap;
             Cuboidd curBlockViewBounds = elemMap.CurrentBlockViewBounds;
-            capi.ShowChatMessage("curBlockViewBounds:-\n" +
-                "X1: " + curBlockViewBounds.X1 + " X2: " + curBlockViewBounds.X2 + "\n" +
-                "Y1: " + curBlockViewBounds.Y1 + " Y2: " + curBlockViewBounds.Y2 + "\n" +
-                "Z1: " + curBlockViewBounds.Z1 + " Z2: " + curBlockViewBounds.Z2);
             BlockPos pos = new(
                 (int)(curBlockViewBounds.X1 + curBlockViewBounds.X2) / 2,
                 (int)(curBlockViewBounds.Y1 + curBlockViewBounds.Y2) / 2,
                 (int)(curBlockViewBounds.Z1 + curBlockViewBounds.Z2) / 2
                 );
-            capi.ShowChatMessage("Map closed, centre was about " + pos.ToString() + " (" + pos.SubCopy(capi.World.DefaultSpawnPosition.AsBlockPos).ToString() + ")");
+            capi.ShowChatMessage("Map closed, centre was about " + pos.ToString() + " (" + pos.SubCopy(capi.World.DefaultSpawnPosition.AsBlockPos).ToString() + ")\nZoom level: "+elemMap.ZoomLevel);
 
+            capi.World.Player.Entity.Attributes.SetFloat(MapOpenZoomAttr, elemMap.ZoomLevel);
             capi.World.Player.Entity.Attributes.SetBlockPos(MapOpenCoordsAttr, pos);
         }
 
