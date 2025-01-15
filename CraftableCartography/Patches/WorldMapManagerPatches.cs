@@ -24,7 +24,7 @@ namespace CraftableCartography.Patches
 
         [HarmonyPrefix]
         [HarmonyPatch(typeof(WorldMapManager), nameof(WorldMapManager.ToggleMap))]
-        public static void ToggleMap(WorldMapManager __instance)
+        public static void StoreMapLocation(WorldMapManager __instance)
         {
             GuiDialogWorldMap mapDlg = __instance.worldMapDlg;
             if (mapDlg != null && mapDlg.IsOpened())
@@ -42,10 +42,10 @@ namespace CraftableCartography.Patches
                         (int)(curBlockViewBounds.Z1 + curBlockViewBounds.Z2) / 2
                         );
 
-                    capi.World.Player.Entity.Attributes.SetFloat(MapOpenZoomAttr, elemMap.ZoomLevel);
-                    capi.World.Player.Entity.Attributes.SetBlockPos(MapOpenCoordsAttr, pos);
+                    capi.ModLoader.GetModSystem<CraftableCartographyModSystem>().StoreMapPos(new(pos, elemMap.ZoomLevel));
+
                     //capi.ShowChatMessage("Stored centre: " + pos.ToString() + " (" + pos.SubCopy(capi.World.DefaultSpawnPosition.AsBlockPos).ToString() + ")\nZoom level: " + elemMap.ZoomLevel);
-                    capi.ModLoader.GetModSystem<CraftableCartographyModSystem>().SavePositionToFile();
+
                 }
             }
         }

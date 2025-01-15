@@ -18,31 +18,11 @@ namespace CraftableCartography
 {
     public partial class CraftableCartographyModSystem : ModSystem
     {
-        private static string dataPath;
-        private static SavedPositions _defaultPosition;
-        public static SavedPositions defaultPosition
-        {
-            get
-            {
-                if (_defaultPosition == null)
-                {
-                    dataPath = Path.Combine(new string[] { GamePaths.DataPath, "ModData", api.World.SavegameIdentifier, "craftablecartography", "map-settings.json" });
-                    if (File.Exists(dataPath))
-                    {
-                        _defaultPosition = JsonConvert.DeserializeObject<SavedPositions>(File.ReadAllText(dataPath));
-                    }
-                    else
-                    {
-                        _defaultPosition = new(api);
-                    }
-                }
-                return _defaultPosition;
-            }
-        }
+        private string dataPath;
         
         public const string patchName = "com.profcupcake.craftablecartography";
 
-        static ICoreAPI api;
+        ICoreAPI api;
         ICoreClientAPI capi;
         ICoreServerAPI sapi;
 
@@ -51,9 +31,9 @@ namespace CraftableCartography
         {
             base.StartPre(api);
 
-            CraftableCartographyModSystem.api = api;
+            this.api = api;
 
-            
+            dataPath = Path.Combine(new string[] { GamePaths.DataPath, "ModData", api.World.SavegameIdentifier, "craftablecartography", "map-settings.json" });
 
             harmony = new(patchName);
             harmony.PatchAll();
@@ -118,7 +98,10 @@ namespace CraftableCartography
             GuiElementMap mapElem = api.ModLoader.GetModSystem<WorldMapManager>().worldMapDlg.SingleComposer.GetElement("mapElem") as GuiElementMap;
 
             mapElem.CenterMapTo(absPos);
-            capi.World.Player.Entity.Attributes.SetBlockPos(MapOpenCoordsAttr, absPos);
+
+            SavedPositions saved = LoadMapPos();
+            saved.pos = absPos;
+            StoreMapPos(saved);
 
             return TextCommandResult.Success("Map centred on " + pos.X + " " + pos.Y + " " + pos.Z);
         }
@@ -135,12 +118,16 @@ namespace CraftableCartography
             harmony.UnpatchAll(patchName);
         }
 
-        internal void SavePositionToFile()
+        public void StoreMapPos(SavedPositions mapPos)
         {
-            defaultPosition.pos = capi.World.Player.Entity.Attributes.GetBlockPos(MapOpenCoordsAttr);
-            defaultPosition.zoomLevel = capi.World.Player.Entity.Attributes.GetFloat(MapOpenZoomAttr);
             if (!Directory.Exists(Directory.GetParent(dataPath).FullName)) Directory.CreateDirectory(Directory.GetParent(dataPath).FullName);
-            File.WriteAllText(dataPath, JsonConvert.SerializeObject(defaultPosition));
+            File.WriteAllText(dataPath, JsonConvert.SerializeObject(mapPos));
+        }
+
+        public SavedPositions LoadMapPos()
+        {
+            if (File.Exists(dataPath)) return JsonConvert.DeserializeObject<SavedPositions>(File.ReadAllText(dataPath));
+            return new SavedPositions(api);
         }
     }
 }
