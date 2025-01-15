@@ -1,5 +1,7 @@
 ﻿using CraftableCartography.MapLayers;
 using HarmonyLib;
+using ProtoBuf;
+using System;
 using System.Linq;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
@@ -30,6 +32,14 @@ namespace CraftableCartography
             harmony.PatchAll();
         }
 
+        public override void Start(ICoreAPI api)
+        {
+            base.Start(api);
+
+            api.Network.RegisterChannel(NetChannel)
+                .RegisterMessageType<MapShowUpdatePacket>();
+        }
+
         public override void StartServerSide(ICoreServerAPI api)
         {
             base.StartServerSide(api);
@@ -44,11 +54,16 @@ namespace CraftableCartography
                 .HandleWith(ToggleMarker);
         }
 
+        [ProtoContract]
+        public class MapShowUpdatePacket { }
+
         private TextCommandResult ToggleMarker(TextCommandCallingArgs args)
         {
             IPlayer player = args[0] as IPlayer;
 
             player.Entity.WatchedAttributes.SetBool(ShowOnMapAttr, !player.Entity.WatchedAttributes.GetBool(ShowOnMapAttr));
+
+            sapi.Network.GetChannel(NetChannel).BroadcastPacket(new MapShowUpdatePacket());
 
             return TextCommandResult.Success("Player marker toggled");
         }
@@ -65,11 +80,8 @@ namespace CraftableCartography
                 .WithArgs(new ICommandArgumentParser[] { api.ChatCommands.Parsers.OptionalInt("x"), api.ChatCommands.Parsers.OptionalInt("y"), api.ChatCommands.Parsers.OptionalInt("z") })
                 .HandleWith(RecentreMapCommand);
 
-            api.Logger.Event(".recentremap registered");
-
-            api.World.Player.Entity.WatchedAttributes.RegisterModifiedListener(ShowOnMapAttr, OnMapShowToggle);
-
-            api.Logger.Event("showOnMap listener registered");
+            api.Network.GetChannel(NetChannel)
+                .SetMessageHandler<MapShowUpdatePacket>(OnMapShowToggle);
         }
 
         private TextCommandResult RecentreMapCommand(TextCommandCallingArgs args)
@@ -84,7 +96,7 @@ namespace CraftableCartography
             return TextCommandResult.Success("Map centred on " + pos.X + " " + pos.Y + " " + pos.Z);
         }
 
-        private void OnMapShowToggle() // currently borken :|
+        private void OnMapShowToggle(MapShowUpdatePacket packet)
         {
             CCPlayerMapLayer mapLayer = capi.ModLoader.GetModSystem<WorldMapManager>().MapLayers.OfType<CCPlayerMapLayer>().FirstOrDefault();
             mapLayer.OnMapOpenedClient();
