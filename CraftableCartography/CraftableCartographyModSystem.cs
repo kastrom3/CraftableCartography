@@ -1,10 +1,13 @@
 ﻿using CraftableCartography.MapLayers;
 using HarmonyLib;
+using Newtonsoft.Json;
 using ProtoBuf;
 using System;
+using System.IO;
 using System.Linq;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
+using Vintagestory.API.Config;
 using Vintagestory.API.Datastructures;
 using Vintagestory.API.MathTools;
 using Vintagestory.API.Server;
@@ -13,11 +16,33 @@ using static CraftableCartography.Lib.CCConstants;
 
 namespace CraftableCartography
 {
-    public class CraftableCartographyModSystem : ModSystem
+    public partial class CraftableCartographyModSystem : ModSystem
     {
+        private static string dataPath;
+        private static SavedPositions _defaultPosition;
+        public static SavedPositions defaultPosition
+        {
+            get
+            {
+                if (_defaultPosition == null)
+                {
+                    dataPath = Path.Combine(new string[] { GamePaths.DataPath, "ModData", api.World.SavegameIdentifier, "craftablecartography", "map-settings.json" });
+                    if (File.Exists(dataPath))
+                    {
+                        _defaultPosition = JsonConvert.DeserializeObject<SavedPositions>(File.ReadAllText(dataPath));
+                    }
+                    else
+                    {
+                        _defaultPosition = new(api);
+                    }
+                }
+                return _defaultPosition;
+            }
+        }
+        
         public const string patchName = "com.profcupcake.craftablecartography";
 
-        ICoreAPI api;
+        static ICoreAPI api;
         ICoreClientAPI capi;
         ICoreServerAPI sapi;
 
@@ -26,7 +51,9 @@ namespace CraftableCartography
         {
             base.StartPre(api);
 
-            this.api = api;
+            CraftableCartographyModSystem.api = api;
+
+            
 
             harmony = new(patchName);
             harmony.PatchAll();
@@ -106,6 +133,14 @@ namespace CraftableCartography
         {
             base.Dispose();
             harmony.UnpatchAll(patchName);
+        }
+
+        internal void SavePositionToFile()
+        {
+            defaultPosition.pos = capi.World.Player.Entity.Attributes.GetBlockPos(MapOpenCoordsAttr);
+            defaultPosition.zoomLevel = capi.World.Player.Entity.Attributes.GetFloat(MapOpenZoomAttr);
+            if (!Directory.Exists(Directory.GetParent(dataPath).FullName)) Directory.CreateDirectory(Directory.GetParent(dataPath).FullName);
+            File.WriteAllText(dataPath, JsonConvert.SerializeObject(defaultPosition));
         }
     }
 }

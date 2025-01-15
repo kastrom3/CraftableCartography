@@ -20,8 +20,8 @@ namespace CraftableCartography.Patches
 
             ICoreClientAPI capi = traverse.Field("capi").GetValue<ICoreClientAPI>();
 
-            BlockPos pos = capi.World.Player.Entity.Attributes.GetBlockPos(MapOpenCoordsAttr, capi.World.DefaultSpawnPosition.AsBlockPos);
-            float zoom = capi.World.Player.Entity.Attributes.GetFloat(MapOpenZoomAttr, elemMap.ZoomLevel);
+            BlockPos pos = capi.World.Player.Entity.Attributes.GetBlockPos(MapOpenCoordsAttr, CraftableCartographyModSystem.defaultPosition.pos);
+            float zoom = capi.World.Player.Entity.Attributes.GetFloat(MapOpenZoomAttr, CraftableCartographyModSystem.defaultPosition.zoomLevel);
 
             elemMap.ZoomLevel = zoom;
             elemMap.CenterMapTo(pos);

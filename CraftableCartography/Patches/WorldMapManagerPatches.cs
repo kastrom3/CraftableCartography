@@ -44,8 +44,8 @@ namespace CraftableCartography.Patches
 
                     capi.World.Player.Entity.Attributes.SetFloat(MapOpenZoomAttr, elemMap.ZoomLevel);
                     capi.World.Player.Entity.Attributes.SetBlockPos(MapOpenCoordsAttr, pos);
-
                     //capi.ShowChatMessage("Stored centre: " + pos.ToString() + " (" + pos.SubCopy(capi.World.DefaultSpawnPosition.AsBlockPos).ToString() + ")\nZoom level: " + elemMap.ZoomLevel);
+                    capi.ModLoader.GetModSystem<CraftableCartographyModSystem>().SavePositionToFile();
                 }
             }
         }
