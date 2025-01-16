@@ -5,6 +5,7 @@ using ProtoBuf;
 using System;
 using System.IO;
 using System.Linq;
+using System.Threading.Channels;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Config;
@@ -42,9 +43,6 @@ namespace CraftableCartography
         public override void Start(ICoreAPI api)
         {
             base.Start(api);
-
-            api.Network.RegisterChannel(NetChannel)
-                .RegisterMessageType<MapShowUpdatePacket>();
         }
 
         public override void StartServerSide(ICoreServerAPI api)
@@ -52,28 +50,10 @@ namespace CraftableCartography
             base.StartServerSide(api);
 
             sapi = api;
-
-            api.ChatCommands.Create("togglemapmarker")
-                .WithDescription("Toggles showing of player's map marker")
-                .RequiresPlayer()
-                .RequiresPrivilege(Privilege.root)
-                .WithArgs(new ICommandArgumentParser[] { api.ChatCommands.Parsers.OnlinePlayer("player") })
-                .HandleWith(ToggleMarker);
         }
 
         [ProtoContract]
         public class MapShowUpdatePacket { }
-
-        private TextCommandResult ToggleMarker(TextCommandCallingArgs args)
-        {
-            IPlayer player = args[0] as IPlayer;
-
-            player.Entity.WatchedAttributes.SetBool(ShowOnMapAttr, !player.Entity.WatchedAttributes.GetBool(ShowOnMapAttr));
-
-            sapi.Network.GetChannel(NetChannel).BroadcastPacket(new MapShowUpdatePacket());
-
-            return TextCommandResult.Success("Player marker toggled");
-        }
 
         public override void StartClientSide(ICoreClientAPI api)
         {
@@ -87,8 +67,20 @@ namespace CraftableCartography
                 .WithArgs(new ICommandArgumentParser[] { api.ChatCommands.Parsers.OptionalInt("x"), api.ChatCommands.Parsers.OptionalInt("y"), api.ChatCommands.Parsers.OptionalInt("z") })
                 .HandleWith(RecentreMapCommand);
 
-            api.Network.GetChannel(NetChannel)
-                .SetMessageHandler<MapShowUpdatePacket>(OnMapShowToggle);
+            api.ChatCommands.Create("setJPSchannel")
+                .WithDescription("Sets your JPS channel (for sharing location with other players)")
+                .RequiresPlayer()
+                .WithArgs(new ICommandArgumentParser[] {api.ChatCommands.Parsers.OptionalWord("channel")})
+                .HandleWith(SetChannelCommand);
+        }
+
+        private TextCommandResult SetChannelCommand(TextCommandCallingArgs args)
+        {
+            string channel;
+            if (args[0] != null) channel = ((string)args[0]).ToLower();
+            else channel = "";
+            args.Caller.Player.Entity.WatchedAttributes.SetString(JPSChannelAttr, (string)args[0]);
+            return TextCommandResult.Success("Channel changed to '"+channel+"'.");
         }
 
         private TextCommandResult RecentreMapCommand(TextCommandCallingArgs args)
@@ -104,12 +96,6 @@ namespace CraftableCartography
             StoreMapPos(saved);
 
             return TextCommandResult.Success("Map centred on " + pos.X + " " + pos.Y + " " + pos.Z);
-        }
-
-        private void OnMapShowToggle(MapShowUpdatePacket packet)
-        {
-            CCPlayerMapLayer mapLayer = capi.ModLoader.GetModSystem<WorldMapManager>().MapLayers.OfType<CCPlayerMapLayer>().FirstOrDefault();
-            mapLayer.OnMapOpenedClient();
         }
 
         public override void Dispose()

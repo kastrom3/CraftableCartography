@@ -5,6 +5,8 @@ using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.GameContent;
 using static CraftableCartography.Lib.CCConstants;
+using static CraftableCartography.ItemChecks;
+using System;
 
 namespace CraftableCartography.MapLayers
 {
@@ -57,9 +59,15 @@ namespace CraftableCartography.MapLayers
                 // Only client side
                 capi.Event.PlayerEntitySpawn += Event_PlayerSpawn;
                 capi.Event.PlayerEntityDespawn += Event_PlayerDespawn;
+
+                capi.Event.RegisterGameTickListener(OnMapOpenedClient, 2000);
             }
         }
 
+        private void OnMapOpenedClient(float _)
+        {
+            OnMapOpenedClient();
+        }
 
         public override void OnMapOpenedClient()
         {
@@ -89,9 +97,7 @@ namespace CraftableCartography.MapLayers
                 ctx.Dispose();
                 surface.Dispose();
             }
-
-
-
+            
             foreach (IPlayer player in capi.World.AllOnlinePlayers)
             {
                 EntityMapComponent cmp;
@@ -102,16 +108,19 @@ namespace CraftableCartography.MapLayers
                     MapComps.Remove(player);
                 }
 
+                if (!HasJPS(capi)) continue;
+
                 if (player.Entity == null)
                 {
                     capi.World.Logger.Warning("Can't add player {0} to world map, missing entity :<", player.PlayerUID);
                     continue;
                 }
 
-                if (!player.Entity.WatchedAttributes.GetBool(ShowOnMapAttr)) continue;
-
                 if (capi.World.Config.GetBool("mapHideOtherPlayers", false) && player.PlayerUID != capi.World.Player.PlayerUID) continue;
 
+                if (player != capi.World.Player && 
+                    player.Entity.WatchedAttributes.GetString(JPSChannelAttr, "") != 
+                    capi.World.Player.Entity.WatchedAttributes.GetString(JPSChannelAttr, "")) continue;
 
                 cmp = new EntityMapComponent(capi, player == capi.World.Player ? ownTexture : otherTexture, player.Entity);
 
@@ -168,18 +177,6 @@ namespace CraftableCartography.MapLayers
             ownTexture = null;
             otherTexture?.Dispose();
             otherTexture = null;
-        }
-
-        public void SetPlayerShown(IPlayer player, bool show)
-        {
-            if (player.Entity == null) return;
-            player.Entity.WatchedAttributes.SetBool(ShowOnMapAttr, show);
-            OnMapOpenedClient();
-        }
-        public bool GetPlayerShown(IPlayer player)
-        {
-            if (player.Entity == null) return false;
-            return player.Entity.WatchedAttributes.GetBool(ShowOnMapAttr);
         }
     }
 }
