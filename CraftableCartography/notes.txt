@@ -8,7 +8,7 @@ VS map mod:
 - Temporal Sextant
 	- gives access to coordinates display
 - Map
-	- gives access to map (but not minimap)
+	- gives access to map (but not minimap?)
 	- player position(s) not displayed on map
 	- require pigment in inventory to mark map?
 	- require pigment to generate map?

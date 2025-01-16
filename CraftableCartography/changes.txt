@@ -1,0 +1,4 @@
+- Cleanup/reorganisation
+- added command to recentre the map to given world position
+- attempted to implement a forced update whenever /togglemapmarker is run - doesn't seem to work so well
+- map position should now save between sessions
