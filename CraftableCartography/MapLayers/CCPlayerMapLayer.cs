@@ -7,6 +7,7 @@ using Vintagestory.GameContent;
 using static CraftableCartography.Lib.CCConstants;
 using static CraftableCartography.ItemChecks;
 using System;
+using System.Threading.Tasks;
 
 namespace CraftableCartography.MapLayers
 {
@@ -30,25 +31,17 @@ namespace CraftableCartography.MapLayers
 
         private void Event_PlayerDespawn(IClientPlayer byPlayer)
         {
-            EntityMapComponent mp;
-            if (MapComps.TryGetValue(byPlayer, out mp))
-            {
-                mp.Dispose();
-                MapComps.Remove(byPlayer);
-            }
+            HidePlayer(byPlayer);
         }
 
         private void Event_PlayerSpawn(IClientPlayer byPlayer)
         {
-            if (capi.World.Config.GetBool("mapHideOtherPlayers", false) && byPlayer.PlayerUID != capi.World.Player.PlayerUID)
+            if (ShouldShowPlayer(byPlayer))
             {
-                return;
-            }
-
-            if (mapSink.IsOpened && !MapComps.ContainsKey(byPlayer))
+                ShowPlayer(byPlayer);
+            } else
             {
-                EntityMapComponent cmp = new EntityMapComponent(capi, otherTexture, byPlayer.Entity);
-                MapComps[byPlayer] = cmp;
+                HidePlayer(byPlayer);
             }
         }
 
@@ -66,11 +59,13 @@ namespace CraftableCartography.MapLayers
 
         private void OnMapOpenedClient(float _)
         {
-            OnMapOpenedClient();
+            OnMapOpenedClient(); // TODO: figure out a better way of updating the player markers (asynchronously?)
         }
 
         public override void OnMapOpenedClient()
         {
+            if (!Active) return;
+
             int size = (int)GuiElement.scaled(32);
 
             if (ownTexture == null)
@@ -100,32 +95,65 @@ namespace CraftableCartography.MapLayers
             
             foreach (IPlayer player in capi.World.AllOnlinePlayers)
             {
-                EntityMapComponent cmp;
-
-                if (MapComps.TryGetValue(player, out cmp))
+                if (ShouldShowPlayer(player))
                 {
-                    cmp?.Dispose();
-                    MapComps.Remove(player);
-                }
-
-                if (!HasJPS(capi)) continue;
-
-                if (player.Entity == null)
+                    ShowPlayer(player);
+                } else
                 {
-                    capi.World.Logger.Warning("Can't add player {0} to world map, missing entity :<", player.PlayerUID);
-                    continue;
+                    HidePlayer(player);
                 }
-
-                if (capi.World.Config.GetBool("mapHideOtherPlayers", false) && player.PlayerUID != capi.World.Player.PlayerUID) continue;
-
-                if (player != capi.World.Player && 
-                    player.Entity.WatchedAttributes.GetString(JPSChannelAttr, "") != 
-                    capi.World.Player.Entity.WatchedAttributes.GetString(JPSChannelAttr, "")) continue;
-
-                cmp = new EntityMapComponent(capi, player == capi.World.Player ? ownTexture : otherTexture, player.Entity);
-
-                MapComps[player] = cmp;
             }
+        }
+
+        public void HidePlayer(IPlayer player)
+        {
+            EntityMapComponent cmp;
+
+            if (MapComps.TryGetValue(player, out cmp))
+            {
+                cmp?.Dispose();
+                MapComps.Remove(player);
+            }
+        }
+
+        public void ShowPlayer(IPlayer player)
+        {
+            EntityMapComponent cmp;
+
+            if (MapComps.TryGetValue(player, out cmp))
+            {
+                cmp?.Dispose();
+                MapComps.Remove(player);
+            }
+
+            cmp = new EntityMapComponent(capi, player == capi.World.Player ? ownTexture : otherTexture, player.Entity);
+
+            MapComps[player] = cmp;
+        }
+
+        public bool ShouldShowPlayer(IPlayer player)
+        {
+            if (!HasJPS(capi)) return false;
+
+            if (player.Entity == null)
+            {
+                capi.World.Logger.Warning("Can't add player {0} to world map, missing entity :<", player.PlayerUID);
+                return false;
+            }
+
+            if (capi.World.Config.GetBool("mapHideOtherPlayers", false) && player.PlayerUID != capi.World.Player.PlayerUID)
+            {
+                return false;
+            }
+
+            if (player != capi.World.Player &&
+                player.Entity.WatchedAttributes.GetString(JPSChannelAttr, "") !=
+                capi.World.Player.Entity.WatchedAttributes.GetString(JPSChannelAttr, ""))
+            {
+                return false;
+            }
+
+            return true;
         }
 
 
