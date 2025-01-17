@@ -5,7 +5,7 @@ using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.GameContent;
 using static CraftableCartography.Lib.CCConstants;
-using static CraftableCartography.ItemChecks;
+using static CraftableCartography.Lib.ItemChecks;
 using System;
 using System.Threading.Tasks;
 

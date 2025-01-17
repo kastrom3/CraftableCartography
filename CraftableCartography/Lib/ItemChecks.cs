@@ -7,7 +7,7 @@ using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Util;
 
-namespace CraftableCartography
+namespace CraftableCartography.Lib
 {
     public static class ItemChecks
     {
@@ -34,7 +34,7 @@ namespace CraftableCartography
                             foreach (string itemCode in itemCodes)
                                 if (slot.Itemstack.Item.Code == itemCode)
                                     return true;
-                            
+
             return false;
         }
         public static bool HasTemporalSextant(ICoreClientAPI capi)

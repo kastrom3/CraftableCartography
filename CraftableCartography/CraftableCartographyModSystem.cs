@@ -104,6 +104,18 @@ namespace CraftableCartography
             harmony.UnpatchAll(patchName);
         }
 
+        public void StoreMapPos(GuiElementMap elemMap)
+        {
+            Cuboidd curBlockViewBounds = elemMap.CurrentBlockViewBounds;
+            BlockPos pos = new(
+                (int)(curBlockViewBounds.X1 + curBlockViewBounds.X2) / 2,
+                (int)(curBlockViewBounds.Y1 + curBlockViewBounds.Y2) / 2,
+                (int)(curBlockViewBounds.Z1 + curBlockViewBounds.Z2) / 2
+                );
+
+            StoreMapPos(new SavedPositions(pos, elemMap.ZoomLevel));
+        }
+        
         public void StoreMapPos(SavedPositions mapPos)
         {
             if (!Directory.Exists(Directory.GetParent(dataPath).FullName)) Directory.CreateDirectory(Directory.GetParent(dataPath).FullName);

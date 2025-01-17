@@ -6,7 +6,7 @@ using Vintagestory.API.Common;
 using Vintagestory.API.Config;
 using Vintagestory.API.MathTools;
 using Vintagestory.Client.NoObf;
-using static CraftableCartography.ItemChecks;
+using static CraftableCartography.Lib.ItemChecks;
 
 namespace CraftableCartography.Patches
 {

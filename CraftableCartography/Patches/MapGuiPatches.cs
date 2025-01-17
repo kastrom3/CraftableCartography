@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using System;
 using Vintagestory.API.Client;
 using Vintagestory.API.Datastructures;
 using Vintagestory.API.MathTools;
@@ -12,13 +13,32 @@ namespace CraftableCartography.Patches
     {
         [HarmonyPostfix]
         [HarmonyPatch(typeof(GuiDialogWorldMap), nameof(GuiDialogWorldMap.OnGuiOpened))]
-        public static void RecentreMapToStoredLocation(GuiDialogWorldMap __instance)
+        public static void OnMapOpened(GuiDialogWorldMap __instance)
         {
-            GuiElementMap elemMap = __instance.SingleComposer.GetElement("mapElem") as GuiElementMap;
-
             Traverse traverse = Traverse.Create(__instance);
 
             ICoreClientAPI capi = traverse.Field("capi").GetValue<ICoreClientAPI>();
+
+            MapChecker mapChecker = capi.ModLoader.GetModSystem<MapChecker>();
+
+            if (mapChecker != null)
+            {
+                if (__instance.DialogType == EnumDialogType.HUD)
+                {
+                    if (!mapChecker.IsMinimapAllowed())
+                    {
+                        __instance.TryClose();
+                    }
+                } else if (__instance.DialogType == EnumDialogType.Dialog)
+                {
+                    if (!mapChecker.IsMapAllowed())
+                    {
+                        __instance.TryClose();
+                    }
+                }
+            }
+            
+            GuiElementMap elemMap = __instance.SingleComposer.GetElement("mapElem") as GuiElementMap;
 
             SavedPositions saved = capi.ModLoader.GetModSystem<CraftableCartographyModSystem>().LoadMapPos();
             
