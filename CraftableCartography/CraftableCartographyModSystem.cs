@@ -1,3 +1,4 @@
+﻿using CraftableCartography.Items.Compass;
 ﻿using CraftableCartography.MapLayers;
 using HarmonyLib;
 using Newtonsoft.Json;
@@ -43,6 +44,7 @@ namespace CraftableCartography
         public override void Start(ICoreAPI api)
         {
             base.Start(api);
+            api.RegisterItemClass("compass", typeof(Compass));
         }
 
         public override void StartServerSide(ICoreServerAPI api)
