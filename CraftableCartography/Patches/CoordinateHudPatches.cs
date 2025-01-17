@@ -38,7 +38,7 @@ namespace CraftableCartography.Patches
                 ", ",
                 pos.Z.ToString(),
                 "\n" });
-            if (HasCompass(capi) || HasJPS(capi))
+            if (HasTemporalCompass(capi) || HasJPS(capi))
             {
                 coords += facing;
 

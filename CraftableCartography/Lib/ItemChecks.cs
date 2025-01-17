@@ -12,7 +12,7 @@ namespace CraftableCartography.Lib
     public static class ItemChecks
     {
         public const string jpsCode = "craftablecartography:jps";
-        public const string compassCode = "craftablecartography:compass";
+        public const string compassCode = "craftablecartography:compasstemporal";
         public const string temporalSextantCode = "craftablecartography:sextanttemporal";
         public const string mapCode = "craftablecartography:map";
 
@@ -42,7 +42,7 @@ namespace CraftableCartography.Lib
             return GenericItemCheck(capi, temporalSextantCode);
         }
 
-        public static bool HasCompass(ICoreClientAPI capi)
+        public static bool HasTemporalCompass(ICoreClientAPI capi)
         {
             return GenericItemCheck(capi, compassCode);
         }
