@@ -1,16 +1,12 @@
 ﻿using CraftableCartography.Items.Compass;
-﻿using CraftableCartography.MapLayers;
+using CraftableCartography.Items.Sextant;
 using HarmonyLib;
 using Newtonsoft.Json;
 using ProtoBuf;
-using System;
 using System.IO;
-using System.Linq;
-using System.Threading.Channels;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Config;
-using Vintagestory.API.Datastructures;
 using Vintagestory.API.MathTools;
 using Vintagestory.API.Server;
 using Vintagestory.GameContent;
@@ -21,7 +17,7 @@ namespace CraftableCartography
     public partial class CraftableCartographyModSystem : ModSystem
     {
         private string dataPath;
-        
+
         public const string patchName = "com.profcupcake.craftablecartography";
 
         ICoreAPI api;
@@ -44,7 +40,9 @@ namespace CraftableCartography
         public override void Start(ICoreAPI api)
         {
             base.Start(api);
+
             api.RegisterItemClass("compass", typeof(Compass));
+            api.RegisterItemClass("sextant", typeof(Sextant));
         }
 
         public override void StartServerSide(ICoreServerAPI api)
@@ -72,7 +70,7 @@ namespace CraftableCartography
             api.ChatCommands.Create("setJPSchannel")
                 .WithDescription("Sets your JPS channel (for sharing location with other players)")
                 .RequiresPlayer()
-                .WithArgs(new ICommandArgumentParser[] {api.ChatCommands.Parsers.OptionalWord("channel")})
+                .WithArgs(new ICommandArgumentParser[] { api.ChatCommands.Parsers.OptionalWord("channel") })
                 .HandleWith(SetChannelCommand);
         }
 
@@ -82,7 +80,7 @@ namespace CraftableCartography
             if (args[0] != null) channel = ((string)args[0]).ToLower();
             else channel = "";
             args.Caller.Player.Entity.WatchedAttributes.SetString(JPSChannelAttr, (string)args[0]);
-            return TextCommandResult.Success("Channel changed to '"+channel+"'.");
+            return TextCommandResult.Success("Channel changed to '" + channel + "'.");
         }
 
         private TextCommandResult RecentreMapCommand(TextCommandCallingArgs args)
@@ -117,7 +115,7 @@ namespace CraftableCartography
 
             StoreMapPos(new SavedPositions(pos, elemMap.ZoomLevel));
         }
-        
+
         public void StoreMapPos(SavedPositions mapPos)
         {
             if (!Directory.Exists(Directory.GetParent(dataPath).FullName)) Directory.CreateDirectory(Directory.GetParent(dataPath).FullName);

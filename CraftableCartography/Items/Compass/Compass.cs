@@ -10,15 +10,15 @@ using Vintagestory.API.MathTools;
 
 namespace CraftableCartography.Items.Compass
 {
-    public class Sextant : Item
+    public class Compass : Item
     {
         HeadingGui gui;
 
         float heading;
         float headingDelta;
 
-        float damping = 0.9f;
-        float accelerationQuot = 30;
+        float damping = 0.95f;
+        float accelerationQuot = 360;
 
         float lastUpdate;
 
@@ -40,7 +40,7 @@ namespace CraftableCartography.Items.Compass
 
             float angleDiff = GameMath.AngleDegDistance(heading, yawDeg);
 
-            headingDelta += angleDiff / accelerationQuot * dt;
+            headingDelta += (angleDiff / accelerationQuot) * dt;
             headingDelta *= damping;
 
             heading += headingDelta * dt;
@@ -48,26 +48,21 @@ namespace CraftableCartography.Items.Compass
             while (heading < 0) heading += 360;
             while (heading > 360) heading -= 360;
 
-            string word;
-            if (heading < 45)
+            string word = "\n";
+            if (heading < 67.5 || heading > 292.5)
             {
-                word = "\nNorth";
+                word += "N";
+            } else if (heading > 112.5 && heading < 247.5)
+            {
+                word += "S";
             }
-            else if (heading < 135)
+
+            if (heading > 22.5 && heading < 157.5)
             {
-                word = "\nEast";
-            }
-            else if (heading < 225)
+                word += "E";
+            } else if (heading > 202.5 && heading < 337.5)
             {
-                word = "\nSouth";
-            }
-            else if (heading < 315)
-            {
-                word = "\nWest";
-            }
-            else
-            {
-                word = "\nNorth";
+                word += "W";
             }
 
             string text = Math.Round(heading).ToString();
