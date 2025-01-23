@@ -1,0 +1,8 @@
+{
+  "code": "sextant",
+  "class": "sextant",
+  "creativeinventory": {
+    "general": [ "*" ],
+    "navigation": [ "*" ]
+  }
+}

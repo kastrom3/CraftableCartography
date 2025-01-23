@@ -35,17 +35,10 @@ namespace CraftableCartography.Patches
                     //capi.ShowChatMessage("big map closing, storing location");
 
                     GuiElementMap elemMap = mapDlg.SingleComposer.GetElement("mapElem") as GuiElementMap;
-                    Cuboidd curBlockViewBounds = elemMap.CurrentBlockViewBounds;
-                    BlockPos pos = new(
-                        (int)(curBlockViewBounds.X1 + curBlockViewBounds.X2) / 2,
-                        (int)(curBlockViewBounds.Y1 + curBlockViewBounds.Y2) / 2,
-                        (int)(curBlockViewBounds.Z1 + curBlockViewBounds.Z2) / 2
-                        );
 
-                    capi.ModLoader.GetModSystem<CraftableCartographyModSystem>().StoreMapPos(new(pos, elemMap.ZoomLevel));
+                    capi.ModLoader.GetModSystem<CraftableCartographyModSystem>().StoreMapPos(elemMap);
 
                     //capi.ShowChatMessage("Stored centre: " + pos.ToString() + " (" + pos.SubCopy(capi.World.DefaultSpawnPosition.AsBlockPos).ToString() + ")\nZoom level: " + elemMap.ZoomLevel);
-
                 }
             }
         }

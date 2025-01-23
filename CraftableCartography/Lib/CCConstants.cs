@@ -4,6 +4,6 @@
     {
         public const string NetChannel = "craftablecartography";
 
-        public const string ShowOnMapAttr = "CC_showOnMap";
+        public const string JPSChannelAttr = "CC_JPSChannel";
     }
 }

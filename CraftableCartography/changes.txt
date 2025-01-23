@@ -1,4 +1,4 @@
-- Cleanup/reorganisation
-- added command to recentre the map to given world position
-- attempted to implement a forced update whenever /togglemapmarker is run - doesn't seem to work so well
-- map position should now save between sessions
+- map marker forced updates now occur every 2 seconds - still needs work
+- added itemtypes, currently placeholders while I get the logic right
+- map, minimap, coordinates, direction, and map markers now all restricted based on presence of items in player's hotbar
+- added manual compass, with placeholder UI
