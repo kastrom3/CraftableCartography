@@ -1,3 +1,7 @@
 - added models (still semi-placeholder):
 	- sextant
 	- compass
+	- temporal sextant
+	- JPS
+
+- Added lang file
