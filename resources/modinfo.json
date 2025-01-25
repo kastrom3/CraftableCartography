@@ -6,7 +6,7 @@
         "Professor Cupcake"
     ],
     "description": "To be added",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "dependencies": {
         "game": "*"
     }

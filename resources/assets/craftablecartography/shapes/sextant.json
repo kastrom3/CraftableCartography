@@ -1,0 +1,226 @@
+{
+	"editor": {
+		"collapsedPaths": "",
+		"allAngles": false,
+		"entityTextureMode": false
+	},
+	"textureWidth": 16,
+	"textureHeight": 16,
+	"textureSizes": {
+	},
+	"textures": {
+		"vintage": "game:block/glass/vintage",
+		"silver": "game:item/tool/material/silver",
+		"tinbronze": "game:item/tool/material/tinbronze"
+	},
+	"elements": [
+		{
+			"name": "Index Arm",
+			"from": [ 8.0, 0.0, 6.0 ],
+			"to": [ 8.75, 12.0, 9.0 ],
+			"rotationOrigin": [ 8.0, 0.0, 6.0 ],
+			"faces": {
+				"north": { "texture": "#tinbronze", "uv": [ 14.75, 1.5, 15.25, 13.5 ], "windMode": [-1,-1,-1,-1] },
+				"east": { "texture": "#tinbronze", "uv": [ 1.75, 2.0, 4.75, 14.0 ], "windMode": [-1,-1,-1,-1] },
+				"south": { "texture": "#tinbronze", "uv": [ 15.0, 3.5, 15.5, 15.5 ], "windMode": [-1,-1,-1,-1] },
+				"west": { "texture": "#tinbronze", "uv": [ 10.75, 3.0, 13.75, 15.0 ], "windMode": [-1,-1,-1,-1] }
+			},
+			"children": [
+				{
+					"name": "Index Mount",
+					"from": [ -0.6, 10.5, 0.0 ],
+					"to": [ 0.9, 13.5, 3.0 ],
+					"rotationOrigin": [ -0.6, 12.0, 1.5 ],
+					"rotationX": 45.0,
+					"faces": {
+						"north": { "texture": "#tinbronze", "uv": [ 4.0, 11.0, 5.5, 14.0 ] },
+						"east": { "texture": "#tinbronze", "uv": [ 0.5, 7.0, 3.5, 10.0 ], "windMode": [-1,-1,-1,-1] },
+						"south": { "texture": "#tinbronze", "uv": [ 14.0, 6.0, 15.5, 9.0 ], "windMode": [-1,-1,-1,-1] },
+						"west": { "texture": "#tinbronze", "uv": [ 10.0, 6.5, 13.0, 9.5 ], "windMode": [-1,-1,-1,-1] },
+						"up": { "texture": "#tinbronze", "uv": [ 5.0, 12.5, 6.5, 15.5 ], "windMode": [-1,-1,-1,-1] },
+						"down": { "texture": "#tinbronze", "uv": [ 5.5, 3.0, 7.0, 6.0 ], "windMode": [-1,-1,-1,-1] }
+					},
+					"children": [
+						{
+							"name": "Arm Frame N",
+							"from": [ 0.87, -9.6, 0.03 ],
+							"to": [ 1.11, 1.8, 0.9 ],
+							"rotationOrigin": [ 0.9, -9.6, 0.0 ],
+							"faces": {
+								"north": { "texture": "#tinbronze", "uv": [ 7.25, 4.0, 8.0, 14.5 ] },
+								"east": { "texture": "#tinbronze", "uv": [ 8.0, 3.5, 8.75, 14.0 ], "windMode": [-1,-1,-1,-1] },
+								"south": { "texture": "#tinbronze", "uv": [ 10.5, 1.0, 11.25, 11.5 ], "windMode": [-1,-1,-1,-1] },
+								"west": { "texture": "#tinbronze", "uv": [ 9.25, 4.0, 10.0, 14.5 ], "windMode": [-1,-1,-1,-1] },
+								"down": { "texture": "#tinbronze", "uv": [ 1.25, 10.5, 2.0, 12.0 ], "windMode": [-1,-1,-1,-1] }
+							},
+							"children": [
+								{
+									"name": "Telescope 1",
+									"from": [ 0.75, 5.1, -1.2 ],
+									"to": [ 1.65, 6.6, -0.3 ],
+									"rotationOrigin": [ 0.6, 5.1, -1.2 ],
+									"rotationX": 45.0,
+									"faces": {
+										"north": { "texture": "#tinbronze", "uv": [ 8.75, 12.5, 9.5, 14.0 ] },
+										"east": { "texture": "#tinbronze", "uv": [ 3.5, 3.0, 4.25, 4.5 ], "windMode": [-1,-1,-1,-1] },
+										"south": { "texture": "#tinbronze", "uv": [ 3.0, 14.0, 3.75, 15.5 ], "windMode": [-1,-1,-1,-1] },
+										"west": { "texture": "#tinbronze", "uv": [ 8.0, 1.5, 8.75, 3.0 ], "windMode": [-1,-1,-1,-1] },
+										"down": { "texture": "#vintage", "uv": [ 0.0, 0.0, 16.0, 16.0 ], "autoUv": false, "windMode": [-1,-1,-1,-1] }
+									},
+									"children": [
+										{
+											"name": "Telescope 2",
+											"from": [ -0.15, 1.5, -0.15 ],
+											"to": [ 1.05, 3.0, 1.05 ],
+											"rotationOrigin": [ -0.3, 1.5, -0.3 ],
+											"faces": {
+												"north": { "texture": "#tinbronze", "uv": [ 10.5, 1.0, 11.25, 2.5 ] },
+												"east": { "texture": "#tinbronze", "uv": [ 5.75, 10.5, 6.5, 12.0 ], "windMode": [-1,-1,-1,-1] },
+												"south": { "texture": "#tinbronze", "uv": [ 6.5, 1.5, 7.25, 3.0 ], "windMode": [-1,-1,-1,-1] },
+												"west": { "texture": "#tinbronze", "uv": [ 14.5, 4.5, 15.25, 6.0 ], "windMode": [-1,-1,-1,-1] },
+												"down": { "texture": "#tinbronze", "uv": [ 3.25, 11.0, 4.75, 12.5 ], "windMode": [-1,-1,-1,-1] }
+											},
+											"children": [
+												{
+													"name": "Telescope 3",
+													"from": [ -0.15, 1.5, -0.15 ],
+													"to": [ 1.35, 2.7, 1.35 ],
+													"rotationOrigin": [ -0.45, 1.5, -0.45 ],
+													"faces": {
+														"north": { "texture": "#tinbronze", "uv": [ 11.5, 12.0, 13.0, 13.0 ] },
+														"east": { "texture": "#tinbronze", "uv": [ 8.75, 7.5, 10.25, 8.5 ], "windMode": [-1,-1,-1,-1] },
+														"south": { "texture": "#tinbronze", "uv": [ 1.25, 1.5, 2.75, 2.5 ], "windMode": [-1,-1,-1,-1] },
+														"west": { "texture": "#tinbronze", "uv": [ 12.5, 12.0, 14.0, 13.0 ], "windMode": [-1,-1,-1,-1] },
+														"up": { "texture": "#vintage", "uv": [ 0.0, 0.0, 16.0, 16.0 ], "autoUv": false, "windMode": [-1,-1,-1,-1] },
+														"down": { "texture": "#tinbronze", "uv": [ 0.5, 12.0, 2.0, 13.5 ], "windMode": [-1,-1,-1,-1] }
+													}
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Arm Frame S",
+							"from": [ 0.93, -10.5, 0.0 ],
+							"to": [ 1.17, 0.9, 0.87 ],
+							"rotationOrigin": [ 0.9, 2.1, 0.0 ],
+							"rotationX": -90.0,
+							"faces": {
+								"north": { "texture": "#tinbronze", "uv": [ 10.0, 4.5, 10.75, 15.0 ] },
+								"east": { "texture": "#tinbronze", "uv": [ 11.0, 0.5, 11.75, 11.0 ], "windMode": [-1,-1,-1,-1] },
+								"south": { "texture": "#tinbronze", "uv": [ 3.5, 0.0, 4.25, 10.5 ], "windMode": [-1,-1,-1,-1] },
+								"west": { "texture": "#tinbronze", "uv": [ 10.25, 4.0, 11.0, 14.5 ], "windMode": [-1,-1,-1,-1] },
+								"down": { "texture": "#tinbronze", "uv": [ 12.0, 2.0, 12.75, 3.5 ], "windMode": [-1,-1,-1,-1] }
+							},
+							"children": [
+								{
+									"name": "Horizon Mirror",
+									"from": [ 0.0, 5.1, 0.0 ],
+									"to": [ 2.4, 5.4, 2.4 ],
+									"rotationOrigin": [ 0.0, 5.1, 0.0 ],
+									"rotationX": -22.5,
+									"faces": {
+										"north": { "texture": "#tinbronze", "uv": [ 7.25, 8.5, 9.5, 9.0 ], "windMode": [-1,-1,-1,-1] },
+										"east": { "texture": "#tinbronze", "uv": [ 5.25, 2.0, 7.5, 2.5 ], "windMode": [-1,-1,-1,-1] },
+										"south": { "texture": "#tinbronze", "uv": [ 9.25, 9.0, 11.5, 9.5 ], "windMode": [-1,-1,-1,-1] },
+										"west": { "texture": "#tinbronze", "uv": [ 5.25, 4.5, 7.5, 5.0 ], "windMode": [-1,-1,-1,-1] },
+										"up": { "texture": "#silver", "uv": [ 8.0, 0.0, 16.0, 16.0 ], "rotation": 90, "autoUv": false, "windMode": [-1,-1,-1,-1] },
+										"down": { "texture": "#silver", "uv": [ 8.0, 0.0, 16.0, 16.0 ], "autoUv": false, "windMode": [-1,-1,-1,-1] }
+									}
+								}
+							]
+						},
+						{
+							"name": "Index Mirror",
+							"from": [ 1.2, 1.5, 0.0 ],
+							"to": [ 3.6, 1.8, 2.4 ],
+							"rotationOrigin": [ 1.2, 1.5, 1.5 ],
+							"rotationX": 22.5,
+							"faces": {
+								"north": { "texture": "#tinbronze", "uv": [ 1.75, 5.5, 4.0, 6.0 ], "windMode": [-1,-1,-1,-1] },
+								"east": { "texture": "#tinbronze", "uv": [ 2.75, 8.5, 5.0, 9.0 ], "windMode": [-1,-1,-1,-1] },
+								"south": { "texture": "#tinbronze", "uv": [ 2.5, 8.5, 4.75, 9.0 ], "windMode": [-1,-1,-1,-1] },
+								"west": { "texture": "#tinbronze", "uv": [ 10.0, 12.5, 12.25, 13.0 ], "windMode": [-1,-1,-1,-1] },
+								"up": { "texture": "#silver", "uv": [ 0.0, 0.0, 8.0, 16.0 ], "autoUv": false, "windMode": [-1,-1,-1,-1] },
+								"down": { "texture": "#silver", "uv": [ 0.0, 0.0, 8.0, 16.0 ], "rotation": 90, "autoUv": false, "windMode": [-1,-1,-1,-1] }
+							}
+						}
+					]
+				},
+				{
+					"name": "Arc S1",
+					"from": [ 0.3, 0.0, 2.1 ],
+					"to": [ 0.6, 4.5, 3.0 ],
+					"rotationOrigin": [ 0.3, 0.0, 3.0 ],
+					"rotationX": 67.5,
+					"faces": {
+						"north": { "texture": "#tinbronze", "uv": [ 2.25, 1.5, 3.0, 6.0 ] },
+						"east": { "texture": "#tinbronze", "uv": [ 13.5, 4.5, 14.25, 9.0 ], "windMode": [-1,-1,-1,-1] },
+						"south": { "texture": "#tinbronze", "uv": [ 2.5, 8.5, 3.25, 13.0 ], "windMode": [-1,-1,-1,-1] },
+						"west": { "texture": "#tinbronze", "uv": [ 14.5, 6.5, 15.25, 11.0 ], "windMode": [-1,-1,-1,-1] }
+					},
+					"children": [
+						{
+							"name": "Arc S2",
+							"from": [ 0.0, 4.5, 0.0 ],
+							"to": [ 0.3, 9.0, 0.9 ],
+							"rotationOrigin": [ 0.0, 4.5, 0.9 ],
+							"rotationX": -22.5,
+							"faces": {
+								"north": { "texture": "#tinbronze", "uv": [ 9.0, 8.5, 9.75, 13.0 ] },
+								"east": { "texture": "#tinbronze", "uv": [ 12.25, 9.5, 13.0, 14.0 ], "windMode": [-1,-1,-1,-1] },
+								"south": { "texture": "#tinbronze", "uv": [ 6.5, 1.5, 7.25, 6.0 ], "windMode": [-1,-1,-1,-1] },
+								"west": { "texture": "#tinbronze", "uv": [ 8.0, 2.5, 8.75, 7.0 ], "windMode": [-1,-1,-1,-1] },
+								"up": { "texture": "#tinbronze", "uv": [ 6.0, 6.0, 6.75, 7.5 ], "windMode": [-1,-1,-1,-1] }
+							}
+						}
+					]
+				},
+				{
+					"name": "Arc N1",
+					"from": [ 0.3, 0.0, 0.0 ],
+					"to": [ 0.6, 4.5, 0.9 ],
+					"rotationOrigin": [ 0.3, 0.0, 0.0 ],
+					"rotationX": -67.5,
+					"faces": {
+						"north": { "texture": "#tinbronze", "uv": [ 11.5, 0.0, 12.25, 4.5 ] },
+						"east": { "texture": "#tinbronze", "uv": [ 9.5, 3.5, 10.25, 8.0 ], "windMode": [-1,-1,-1,-1] },
+						"south": { "texture": "#tinbronze", "uv": [ 1.0, 6.5, 1.75, 11.0 ], "windMode": [-1,-1,-1,-1] },
+						"west": { "texture": "#tinbronze", "uv": [ 6.25, 10.5, 7.0, 15.0 ], "windMode": [-1,-1,-1,-1] }
+					},
+					"children": [
+						{
+							"name": "Arc N2",
+							"from": [ 0.0, 4.5, 0.0 ],
+							"to": [ 0.3, 9.0, 0.9 ],
+							"rotationOrigin": [ 0.0, 4.5, 0.0 ],
+							"rotationX": 22.5,
+							"faces": {
+								"north": { "texture": "#tinbronze", "uv": [ 15.0, 0.0, 15.75, 4.5 ] },
+								"east": { "texture": "#tinbronze", "uv": [ 14.5, 3.0, 15.25, 7.5 ], "windMode": [-1,-1,-1,-1] },
+								"south": { "texture": "#tinbronze", "uv": [ 7.25, 11.0, 8.0, 15.5 ], "windMode": [-1,-1,-1,-1] },
+								"west": { "texture": "#tinbronze", "uv": [ 7.25, 8.5, 8.0, 13.0 ], "windMode": [-1,-1,-1,-1] },
+								"up": { "texture": "#tinbronze", "uv": [ 0.5, 3.0, 2.0, 4.5 ], "windMode": [-1,-1,-1,-1] }
+							}
+						}
+					]
+				},
+				{
+					"name": "Index Arm Controls",
+					"from": [ -0.6, -0.6, -0.3 ],
+					"to": [ 0.9, 1.5, 3.6 ],
+					"rotationOrigin": [ -0.6, -0.6, -0.3 ],
+					"faces": {
+						"north": { "texture": "#tinbronze", "uv": [ 13.75, 8.0, 15.25, 9.5 ] },
+						"east": { "texture": "#tinbronze", "uv": [ 6.25, 0.0, 10.0, 1.5 ], "windMode": [-1,-1,-1,-1] },
+						"south": { "texture": "#tinbronze", "uv": [ 11.5, 7.0, 13.0, 8.5 ], "windMode": [-1,-1,-1,-1] },
+						"west": { "texture": "#tinbronze", "uv": [ 1.0, 1.0, 4.75, 2.5 ], "windMode": [-1,-1,-1,-1] },
+						"up": { "texture": "#tinbronze", "uv": [ 8.25, 12.5, 9.75, 15.5 ], "windMode": [-1,-1,-1,-1] },
+						"down": { "texture": "#tinbronze", "uv": [ 9.0, 6.0, 10.5, 9.0 ], "windMode": [-1,-1,-1,-1] }
+					}
+				}
+			]
+		}
+	]}
