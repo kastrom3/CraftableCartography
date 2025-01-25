@@ -3,5 +3,8 @@
   "creativeinventory": {
     "general": [ "*" ],
     "navigation": [ "*" ]
+  },
+  "shape": {
+    "base": "game:item/lore/map-treasure"
   }
 }

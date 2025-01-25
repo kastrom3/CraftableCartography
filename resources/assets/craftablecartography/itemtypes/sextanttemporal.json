@@ -3,5 +3,52 @@
   "creativeinventory": {
     "general": [ "*" ],
     "navigation": [ "*" ]
+  },
+  "shape": {
+    "base": "craftablecartography:sextanttemporal"
+  },
+  "guiTransform": {
+    "translation": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "rotation": {
+      "x": -25,
+      "y": -44,
+      "z": 160
+    },
+    "origin": {
+      "x": 1,
+      "y": 0.35,
+      "z": 0.05
+    },
+    "scale": 1.64
+  },
+  "tpHandTransform": {
+    "translation": {
+      "x": -1,
+      "y": -0.5,
+      "z": -0.55
+    },
+    "rotation": {
+      "x": 0,
+      "y": 0,
+      "z": -90
+    },
+    "scale": 0.91
+  },
+  "groundTransform": {
+    "translation": {
+      "x": 0,
+      "y": 0.2,
+      "z": 0
+    },
+    "rotation": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "scale": 2.01
   }
 }
