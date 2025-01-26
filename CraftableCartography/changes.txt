@@ -1,4 +1,7 @@
-- map marker forced updates now occur every 2 seconds - still needs work
-- added itemtypes, currently placeholders while I get the logic right
-- map, minimap, coordinates, direction, and map markers now all restricted based on presence of items in player's hotbar
-- added manual compass, with placeholder UI
+- added models (still semi-placeholder):
+	- sextant
+	- compass
+	- temporal sextant
+	- JPS
+
+- Added lang file

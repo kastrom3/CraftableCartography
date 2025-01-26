@@ -1,0 +1,341 @@
+{
+	"editor": {
+		"collapsedPaths": "Root/CentrePole/ReceiverPolesMount/SWRotationHelper",
+		"allAngles": false,
+		"entityTextureMode": false
+	},
+	"textureWidth": 16,
+	"textureHeight": 16,
+	"textureSizes": {
+	},
+	"textures": {
+		"temporalgear": "game:item/resource/temporalgear",
+		"tinbronze": "game:item/tool/material/tinbronze"
+	},
+	"elements": [
+		{
+			"name": "CentrePole",
+			"from": [ 7.5, 0.0, 7.5 ],
+			"to": [ 8.7, 12.0, 8.7 ],
+			"rotationOrigin": [ 7.5, 0.0, 7.5 ],
+			"faces": {
+				"north": { "texture": "#tinbronze", "uv": [ 1.5, 2.0, 2.5, 14.0 ] },
+				"east": { "texture": "#tinbronze", "uv": [ 13.0, 0.0, 14.0, 12.0 ], "windMode": [-1,-1,-1,-1] },
+				"south": { "texture": "#tinbronze", "uv": [ 0.0, 0.0, 1.0, 12.0 ], "windMode": [-1,-1,-1,-1] },
+				"west": { "texture": "#tinbronze", "uv": [ 12.5, 3.5, 13.5, 15.5 ], "windMode": [-1,-1,-1,-1] },
+				"down": { "texture": "#tinbronze", "uv": [ 6.0, 6.5, 7.0, 7.5 ], "windMode": [-1,-1,-1,-1] }
+			},
+			"children": [
+				{
+					"name": "ReceiversMount",
+					"from": [ 0.0, 12.0, 0.0 ],
+					"to": [ 0.0, 12.0, 0.0 ],
+					"shade": false,
+					"renderPass": 6,
+					"rotationOrigin": [ 0.0, 12.0, 0.0 ],
+					"faces": {
+					},
+					"children": [
+						{
+							"name": "PoleN",
+							"from": [ 0.0, 0.0, 0.6 ],
+							"to": [ 1.2, 5.4, 1.8 ],
+							"rotationOrigin": [ 0.0, 0.0, 0.6 ],
+							"rotationX": -135.0,
+							"faces": {
+								"north": { "texture": "#tinbronze", "uv": [ 4.5, 7.0, 5.25, 11.5 ] },
+								"east": { "texture": "#tinbronze", "uv": [ 11.5, 1.5, 12.25, 6.0 ], "windMode": [-1,-1,-1,-1] },
+								"south": { "texture": "#tinbronze", "uv": [ 3.5, 5.5, 4.25, 10.0 ], "windMode": [-1,-1,-1,-1] },
+								"west": { "texture": "#tinbronze", "uv": [ 4.0, 3.5, 4.75, 8.0 ], "windMode": [-1,-1,-1,-1] }
+							},
+							"children": [
+								{
+									"name": "ReceiverN",
+									"from": [ 0.0, 5.4, 0.6 ],
+									"to": [ 1.2, 7.2, 1.8 ],
+									"rotationOrigin": [ 0.0, 5.4, 0.6 ],
+									"rotationX": -135.0,
+									"faces": {
+										"north": { "texture": "#tinbronze", "uv": [ 10.25, 6.0, 11.0, 7.5 ] },
+										"east": { "texture": "#tinbronze", "uv": [ 14.25, 5.0, 15.0, 6.5 ], "windMode": [-1,-1,-1,-1] },
+										"south": { "texture": "#tinbronze", "uv": [ 13.75, 3.0, 14.5, 4.5 ], "windMode": [-1,-1,-1,-1] },
+										"west": { "texture": "#tinbronze", "uv": [ 12.5, 0.5, 13.25, 2.0 ], "windMode": [-1,-1,-1,-1] },
+										"up": { "texture": "#temporalgear", "uv": [ 12.5, 3.0, 14.0, 4.5 ], "windMode": [-1,-1,-1,-1] }
+									},
+									"children": [
+										{
+											"name": "ReceiverNMid",
+											"from": [ -0.3, -1.5, -0.3 ],
+											"to": [ 1.5, 0.0, 1.5 ],
+											"rotationOrigin": [ -0.3, -1.5, -0.3 ],
+											"faces": {
+												"north": { "texture": "#tinbronze", "uv": [ 4.0, 1.0, 5.5, 2.5 ], "windMode": [-1,-1,-1,-1] },
+												"east": { "texture": "#tinbronze", "uv": [ 6.0, 8.5, 7.5, 10.0 ], "windMode": [-1,-1,-1,-1] },
+												"south": { "texture": "#tinbronze", "uv": [ 5.75, 8.5, 7.25, 10.0 ], "windMode": [-1,-1,-1,-1] },
+												"west": { "texture": "#tinbronze", "uv": [ 3.0, 7.5, 4.5, 9.0 ], "windMode": [-1,-1,-1,-1] },
+												"up": { "texture": "#tinbronze", "uv": [ 4.75, 4.5, 6.25, 6.0 ], "windMode": [-1,-1,-1,-1] },
+												"down": { "texture": "#tinbronze", "uv": [ 6.75, 3.5, 8.25, 5.0 ], "windMode": [-1,-1,-1,-1] }
+											},
+											"children": [
+												{
+													"name": "ReceiverNTip",
+													"from": [ 0.45, -1.2, 0.45 ],
+													"to": [ 1.35, 0.0, 1.35 ],
+													"rotationOrigin": [ 0.3, -1.2, 0.3 ],
+													"faces": {
+														"north": { "texture": "#temporalgear", "uv": [ 13.5, 8.5, 15.0, 10.0 ] },
+														"east": { "texture": "#temporalgear", "uv": [ 2.5, 10.0, 4.0, 11.5 ], "windMode": [-1,-1,-1,-1] },
+														"south": { "texture": "#temporalgear", "uv": [ 13.0, 2.0, 14.5, 3.5 ], "windMode": [-1,-1,-1,-1] },
+														"west": { "texture": "#temporalgear", "uv": [ 2.0, 3.0, 3.5, 4.5 ], "windMode": [-1,-1,-1,-1] },
+														"down": { "texture": "#temporalgear", "uv": [ 14.0, 8.5, 15.5, 10.0 ], "windMode": [-1,-1,-1,-1] }
+													}
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "StrutN",
+									"from": [ 0.0, 6.0, 0.0 ],
+									"to": [ 1.2, 10.5, 1.2 ],
+									"rotationOrigin": [ 0.0, 6.0, 0.0 ],
+									"rotationX": -112.5,
+									"faces": {
+										"north": { "texture": "#tinbronze", "uv": [ 2.75, 11.0, 3.5, 15.5 ] },
+										"east": { "texture": "#tinbronze", "uv": [ 6.5, 8.5, 7.25, 13.0 ] },
+										"south": { "texture": "#tinbronze", "uv": [ 9.25, 9.5, 10.0, 14.0 ] },
+										"west": { "texture": "#tinbronze", "uv": [ 3.0, 5.5, 3.75, 10.0 ] },
+										"up": { "texture": "#tinbronze", "uv": [ 8.0, 8.5, 8.75, 10.0 ] },
+										"down": { "texture": "#tinbronze", "uv": [ 1.0, 6.0, 1.75, 7.5 ] }
+									}
+								}
+							]
+						},
+						{
+							"name": "SERotationHelper",
+							"from": [ 0.0, 0.0, 0.0 ],
+							"to": [ 0.0, 0.0, 0.0 ],
+							"shade": false,
+							"renderPass": 6,
+							"rotationOrigin": [ 0.6, 0.0, 0.6 ],
+							"rotationX": -180.0,
+							"rotationY": -60.0,
+							"rotationZ": -180.0,
+							"faces": {
+							},
+							"children": [
+								{
+									"name": "PoleSE",
+									"from": [ 0.0, 0.0, 0.6 ],
+									"to": [ 1.2, 5.4, 1.8 ],
+									"rotationOrigin": [ 0.0, 0.0, 0.6 ],
+									"rotationX": -135.0,
+									"faces": {
+										"north": { "texture": "#tinbronze", "uv": [ 1.0, 3.0, 1.75, 7.5 ] },
+										"east": { "texture": "#tinbronze", "uv": [ 0.25, 8.5, 1.0, 13.0 ], "windMode": [-1,-1,-1,-1] },
+										"south": { "texture": "#tinbronze", "uv": [ 10.75, 0.0, 11.5, 4.5 ], "windMode": [-1,-1,-1,-1] },
+										"west": { "texture": "#tinbronze", "uv": [ 3.75, 2.0, 4.5, 6.5 ], "windMode": [-1,-1,-1,-1] }
+									},
+									"children": [
+										{
+											"name": "ReceiverSE",
+											"from": [ 0.0, 5.4, 0.6 ],
+											"to": [ 1.2, 7.2, 1.8 ],
+											"rotationOrigin": [ 0.0, 5.4, 0.6 ],
+											"rotationX": -135.0,
+											"faces": {
+												"north": { "texture": "#tinbronze", "uv": [ 10.5, 5.0, 11.25, 6.5 ] },
+												"east": { "texture": "#tinbronze", "uv": [ 0.75, 3.0, 1.5, 4.5 ], "windMode": [-1,-1,-1,-1] },
+												"south": { "texture": "#tinbronze", "uv": [ 10.75, 9.0, 11.5, 10.5 ], "windMode": [-1,-1,-1,-1] },
+												"west": { "texture": "#tinbronze", "uv": [ 7.5, 0.5, 8.25, 2.0 ], "windMode": [-1,-1,-1,-1] },
+												"up": { "texture": "#temporalgear", "uv": [ 7.5, 10.0, 9.0, 11.5 ], "windMode": [-1,-1,-1,-1] }
+											},
+											"children": [
+												{
+													"name": "ReceiverSEMid",
+													"from": [ -0.3, -1.5, -0.3 ],
+													"to": [ 1.5, 0.0, 1.5 ],
+													"rotationOrigin": [ -0.3, -1.5, -0.3 ],
+													"faces": {
+														"north": { "texture": "#tinbronze", "uv": [ 4.25, 12.0, 5.75, 13.5 ] },
+														"east": { "texture": "#tinbronze", "uv": [ 13.0, 10.0, 14.5, 11.5 ], "windMode": [-1,-1,-1,-1] },
+														"south": { "texture": "#tinbronze", "uv": [ 12.75, 10.0, 14.25, 11.5 ], "windMode": [-1,-1,-1,-1] },
+														"west": { "texture": "#tinbronze", "uv": [ 0.25, 14.0, 1.75, 15.5 ], "windMode": [-1,-1,-1,-1] },
+														"up": { "texture": "#tinbronze", "uv": [ 8.5, 2.0, 10.0, 3.5 ], "windMode": [-1,-1,-1,-1] },
+														"down": { "texture": "#tinbronze", "uv": [ 8.0, 11.5, 9.5, 13.0 ], "windMode": [-1,-1,-1,-1] }
+													},
+													"children": [
+														{
+															"name": "ReceiverSETip",
+															"from": [ 0.45, -1.2, 0.45 ],
+															"to": [ 1.35, 0.0, 1.35 ],
+															"rotationOrigin": [ 0.3, -1.2, 0.3 ],
+															"faces": {
+																"north": { "texture": "#temporalgear", "uv": [ 12.0, 4.0, 12.75, 5.5 ], "windMode": [-1,-1,-1,-1] },
+																"east": { "texture": "#temporalgear", "uv": [ 5.5, 2.0, 7.0, 3.5 ], "windMode": [-1,-1,-1,-1] },
+																"south": { "texture": "#temporalgear", "uv": [ 13.0, 1.0, 14.5, 2.5 ], "windMode": [-1,-1,-1,-1] },
+																"west": { "texture": "#temporalgear", "uv": [ 0.5, 7.5, 2.0, 9.0 ], "windMode": [-1,-1,-1,-1] },
+																"down": { "texture": "#temporalgear", "uv": [ 3.0, 9.5, 4.5, 11.0 ], "windMode": [-1,-1,-1,-1] }
+															}
+														}
+													]
+												}
+											]
+										},
+										{
+											"name": "StrutSE",
+											"from": [ 0.0, 6.0, 0.0 ],
+											"to": [ 1.2, 10.5, 1.2 ],
+											"rotationOrigin": [ 0.0, 6.0, 0.0 ],
+											"rotationX": -112.5,
+											"faces": {
+												"north": { "texture": "#tinbronze", "uv": [ 0.5, 2.0, 1.25, 6.5 ] },
+												"east": { "texture": "#tinbronze", "uv": [ 9.5, 0.0, 10.25, 4.5 ] },
+												"south": { "texture": "#tinbronze", "uv": [ 10.0, 10.0, 10.75, 14.5 ] },
+												"west": { "texture": "#tinbronze", "uv": [ 5.0, 11.0, 5.75, 15.5 ] },
+												"up": { "texture": "#tinbronze", "uv": [ 14.25, 2.5, 15.0, 4.0 ] },
+												"down": { "texture": "#tinbronze", "uv": [ 11.5, 12.5, 12.25, 14.0 ] }
+											}
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "SWRotationHelper",
+							"from": [ 0.0, 0.0, 0.0 ],
+							"to": [ 0.0, 0.0, 0.0 ],
+							"shade": false,
+							"renderPass": 6,
+							"rotationOrigin": [ 0.6, 0.0, 0.6 ],
+							"rotationX": -180.0,
+							"rotationY": 60.0,
+							"rotationZ": -180.0,
+							"faces": {
+							},
+							"children": [
+								{
+									"name": "PoleSW",
+									"from": [ 0.0, 0.0, 0.6 ],
+									"to": [ 1.2, 5.4, 1.8 ],
+									"rotationOrigin": [ 0.0, 0.0, 0.6 ],
+									"rotationX": -135.0,
+									"faces": {
+										"north": { "texture": "#tinbronze", "uv": [ 1.5, 10.0, 2.25, 14.5 ] },
+										"east": { "texture": "#tinbronze", "uv": [ 11.75, 10.0, 12.5, 14.5 ], "windMode": [-1,-1,-1,-1] },
+										"south": { "texture": "#tinbronze", "uv": [ 8.75, 7.0, 9.5, 11.5 ], "windMode": [-1,-1,-1,-1] },
+										"west": { "texture": "#tinbronze", "uv": [ 5.75, 9.0, 6.5, 13.5 ], "windMode": [-1,-1,-1,-1] }
+									},
+									"children": [
+										{
+											"name": "ReceiverSW",
+											"from": [ 0.0, 5.4, 0.6 ],
+											"to": [ 1.2, 7.2, 1.8 ],
+											"rotationOrigin": [ 0.0, 5.4, 0.6 ],
+											"rotationX": -135.0,
+											"faces": {
+												"north": { "texture": "#tinbronze", "uv": [ 0.25, 2.0, 1.0, 3.5 ] },
+												"east": { "texture": "#tinbronze", "uv": [ 8.0, 4.0, 8.75, 5.5 ], "windMode": [-1,-1,-1,-1] },
+												"south": { "texture": "#tinbronze", "uv": [ 9.75, 8.0, 10.5, 9.5 ], "windMode": [-1,-1,-1,-1] },
+												"west": { "texture": "#tinbronze", "uv": [ 13.0, 0.0, 13.75, 1.5 ], "windMode": [-1,-1,-1,-1] },
+												"up": { "texture": "#temporalgear", "uv": [ 13.0, 12.0, 14.5, 13.5 ], "windMode": [-1,-1,-1,-1] }
+											},
+											"children": [
+												{
+													"name": "ReceiverSWMid",
+													"from": [ -0.3, -1.5, -0.3 ],
+													"to": [ 1.5, 0.0, 1.5 ],
+													"rotationOrigin": [ -0.3, -1.5, -0.3 ],
+													"faces": {
+														"north": { "texture": "#tinbronze", "uv": [ 7.5, 0.5, 9.0, 2.0 ] },
+														"east": { "texture": "#tinbronze", "uv": [ 4.5, 4.0, 6.0, 5.5 ], "windMode": [-1,-1,-1,-1] },
+														"south": { "texture": "#tinbronze", "uv": [ 10.25, 12.0, 11.75, 13.5 ], "windMode": [-1,-1,-1,-1] },
+														"west": { "texture": "#tinbronze", "uv": [ 7.25, 13.5, 8.75, 15.0 ], "windMode": [-1,-1,-1,-1] },
+														"up": { "texture": "#tinbronze", "uv": [ 6.25, 0.0, 7.75, 1.5 ], "windMode": [-1,-1,-1,-1] },
+														"down": { "texture": "#tinbronze", "uv": [ 8.0, 12.5, 9.5, 14.0 ], "windMode": [-1,-1,-1,-1] }
+													},
+													"children": [
+														{
+															"name": "ReceiverSWTip",
+															"from": [ 0.45, -1.2, 0.45 ],
+															"to": [ 1.35, 0.0, 1.35 ],
+															"rotationOrigin": [ 0.3, -1.2, 0.3 ],
+															"faces": {
+																"north": { "texture": "#temporalgear", "uv": [ 1.5, 9.5, 3.0, 11.0 ] },
+																"east": { "texture": "#temporalgear", "uv": [ 0.5, 4.0, 2.0, 5.5 ], "windMode": [-1,-1,-1,-1] },
+																"south": { "texture": "#temporalgear", "uv": [ 10.5, 9.0, 12.0, 10.5 ], "windMode": [-1,-1,-1,-1] },
+																"west": { "texture": "#temporalgear", "uv": [ 8.5, 6.0, 10.0, 7.5 ], "windMode": [-1,-1,-1,-1] },
+																"down": { "texture": "#temporalgear", "uv": [ 14.0, 10.0, 15.5, 11.5 ], "windMode": [-1,-1,-1,-1] }
+															}
+														}
+													]
+												}
+											]
+										},
+										{
+											"name": "StrutSW",
+											"from": [ 0.0, 6.0, 0.0 ],
+											"to": [ 1.2, 10.5, 1.2 ],
+											"rotationOrigin": [ 0.0, 6.0, 0.0 ],
+											"rotationX": -112.5,
+											"faces": {
+												"north": { "texture": "#tinbronze", "uv": [ 10.75, 3.0, 11.5, 7.5 ] },
+												"east": { "texture": "#tinbronze", "uv": [ 8.75, 3.0, 9.5, 7.5 ] },
+												"south": { "texture": "#tinbronze", "uv": [ 4.5, 6.5, 5.25, 11.0 ] },
+												"west": { "texture": "#tinbronze", "uv": [ 2.25, 0.0, 3.0, 4.5 ] },
+												"up": { "texture": "#tinbronze", "uv": [ 9.25, 9.5, 10.0, 11.0 ] },
+												"down": { "texture": "#tinbronze", "uv": [ 13.5, 5.0, 14.25, 6.5 ] }
+											}
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "TopReceiverMid",
+							"from": [ -0.3, 0.0, -0.3 ],
+							"to": [ 1.5, 1.8, 1.5 ],
+							"rotationOrigin": [ -0.6, 0.0, -0.3 ],
+							"faces": {
+								"north": { "texture": "#tinbronze", "uv": [ 8.25, 13.0, 9.75, 14.5 ] },
+								"east": { "texture": "#tinbronze", "uv": [ 6.5, 7.0, 8.0, 8.5 ], "windMode": [-1,-1,-1,-1] },
+								"south": { "texture": "#tinbronze", "uv": [ 10.25, 7.0, 11.75, 8.5 ], "windMode": [-1,-1,-1,-1] },
+								"west": { "texture": "#tinbronze", "uv": [ 14.0, 2.0, 15.5, 3.5 ], "windMode": [-1,-1,-1,-1] },
+								"up": { "texture": "#tinbronze", "uv": [ 3.75, 11.5, 5.25, 13.0 ], "windMode": [-1,-1,-1,-1] },
+								"down": { "texture": "#tinbronze", "uv": [ 4.25, 12.0, 5.75, 13.5 ], "windMode": [-1,-1,-1,-1] }
+							},
+							"children": [
+								{
+									"name": "TopReceiverTip",
+									"from": [ 0.45, 1.8, 0.45 ],
+									"to": [ 1.35, 3.0, 1.35 ],
+									"rotationOrigin": [ 0.3, 1.8, 0.3 ],
+									"faces": {
+										"north": { "texture": "#temporalgear", "uv": [ 1.0, 10.0, 2.5, 11.5 ] },
+										"east": { "texture": "#temporalgear", "uv": [ 5.5, 1.0, 7.0, 2.5 ], "windMode": [-1,-1,-1,-1] },
+										"south": { "texture": "#temporalgear", "uv": [ 0.0, 7.0, 1.5, 8.5 ], "windMode": [-1,-1,-1,-1] },
+										"west": { "texture": "#temporalgear", "uv": [ 9.0, 6.0, 10.5, 7.5 ], "windMode": [-1,-1,-1,-1] },
+										"up": { "texture": "#temporalgear", "uv": [ 10.0, 10.5, 11.5, 12.0 ], "windMode": [-1,-1,-1,-1] }
+									}
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "StrutMount",
+					"from": [ -0.3, 4.2, -0.3 ],
+					"to": [ 1.5, 6.9, 1.5 ],
+					"rotationOrigin": [ -0.3, 4.2, -0.3 ],
+					"faces": {
+						"north": { "texture": "#tinbronze", "uv": [ 5.0, 9.5, 6.5, 11.0 ] },
+						"east": { "texture": "#tinbronze", "uv": [ 12.75, 8.5, 14.25, 10.0 ] },
+						"south": { "texture": "#tinbronze", "uv": [ 2.0, 1.5, 3.5, 3.0 ] },
+						"west": { "texture": "#tinbronze", "uv": [ 8.25, 12.5, 9.75, 14.0 ] },
+						"up": { "texture": "#tinbronze", "uv": [ 2.5, 10.0, 4.0, 11.5 ] },
+						"down": { "texture": "#tinbronze", "uv": [ 1.75, 4.0, 3.25, 5.5 ] }
+					}
+				}
+			]
+		}
+	]}

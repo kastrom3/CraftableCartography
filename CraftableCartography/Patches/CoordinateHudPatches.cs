@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
+using Vintagestory.API.Common.Entities;
 using Vintagestory.API.Config;
 using Vintagestory.API.MathTools;
 using Vintagestory.Client.NoObf;
@@ -40,7 +41,11 @@ namespace CraftableCartography.Patches
                 "\n" });
             if (HasTemporalCompass(capi) || HasJPS(capi))
             {
-                coords += facing;
+                float yawDeg = (float)Math.Round(180 - capi.World.Player.Entity.Pos.Yaw * (180 / GameMath.PI));
+
+                if (yawDeg < 0) yawDeg += 360;
+
+                coords += yawDeg.ToString() + "° / " + facing;
 
                 if (ClientSettings.ExtendedDebugInfo)
                 {

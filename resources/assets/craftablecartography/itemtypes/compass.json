@@ -4,5 +4,51 @@
   "creativeinventory": {
     "general": [ "*" ],
     "navigation": [ "*" ]
+  },
+  "shape": {
+    "base": "craftablecartography:compass"
+  },
+  "guiTransform": {
+    "translation": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "rotation": {
+      "x": 126,
+      "y": 148,
+      "z": 0
+    },
+    "origin": {
+      "x": 0.27,
+      "y": -0.585,
+      "z": 0
+    },
+    "scale": 2.16
+  },
+  "tpHandTransform": {
+    "translation": {
+      "x": -1.5,
+      "y": -1.3,
+      "z": -0.8
+    },
+    "rotation": {
+      "x": 39,
+      "y": -82,
+      "z": 18
+    }
+  },
+  "groundTransform": {
+    "translation": {
+      "x": 0,
+      "y": 0.16,
+      "z": 0
+    },
+    "rotation": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "scale": 1.5
   }
 }
