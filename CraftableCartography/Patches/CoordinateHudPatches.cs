@@ -43,6 +43,8 @@ namespace CraftableCartography.Patches
             {
                 float yawDeg = (float)Math.Round(180 - capi.World.Player.Entity.Pos.Yaw * (180 / GameMath.PI));
 
+                if (yawDeg < 0) yawDeg += 360;
+
                 coords += yawDeg.ToString() + "° / " + facing;
 
                 if (ClientSettings.ExtendedDebugInfo)
