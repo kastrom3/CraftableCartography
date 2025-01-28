@@ -1,0 +1,39 @@
+{
+  "ingredientPattern": "SIC,PGP,KIW",
+  "width": 3,
+  "height": 3,
+  "ingredients": {
+    "S": {
+      "type": "item",
+      "code": "sextanttemporal"
+    },
+    "C": {
+      "type": "item",
+      "code": "compasstemporal"
+    },
+    "P": {
+      "type": "item",
+      "code": "game:metalplate-*"
+    },
+    "I": {
+      "type": "item",
+      "code": "game:metalnailsandstrips-*"
+    },
+    "K": {
+      "type": "item",
+      "code": "game:knife-*"
+    },
+    "W": {
+      "type": "item",
+      "code": "game:wrench-*"
+    },
+    "G": {
+      "type": "item",
+      "code": "game:gear-temporal"
+    }
+  },
+  "output": {
+    "type": "item",
+    "code": "jps"
+  }
+}
