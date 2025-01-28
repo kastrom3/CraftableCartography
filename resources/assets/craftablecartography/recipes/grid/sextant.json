@@ -1,0 +1,24 @@
+{
+  "ingredientPattern": "_W_,QPQ,_Q_",
+  "width": 3,
+  "height": 3,
+  "ingredients": {
+    "W": {
+      "type": "item",
+      "code": "game:wrench-*",
+      "isTool": true
+    },
+    "Q": {
+      "type": "item",
+      "code": "game:clearquartz"
+    },
+    "P": {
+      "type": "item",
+      "code": "sextantparts"
+    }
+  },
+  "output": {
+    "type": "item",
+    "code": "sextant"
+  }
+}

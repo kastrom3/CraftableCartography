@@ -1,0 +1,48 @@
+{
+  "code": "compassframe",
+  "creativeinventory": {
+    "general": [ "*" ],
+    "navigation": [ "*" ]
+  },
+  "shape": {
+    "base": "craftablecartography:compassframe"
+  },
+  "guiTransform": {
+    "translation": {
+      "x": 0,
+      "y": 0,
+      "z": 20
+    },
+    "rotation": {
+      "x": 143,
+      "y": 23,
+      "z": -34
+    },
+    "origin": {
+      "x": 0.2,
+      "y": 0.3,
+      "z": 0
+    },
+    "scale": 2.08
+  },
+  "tpHandTransform": {
+    "translation": {
+      "x": -1.6,
+      "y": -1.1,
+      "z": -1.4
+    }
+  },
+  "groundTransform": {
+    "translation": {
+      "x": 0,
+      "y": 0.2,
+      "z": 0
+    },
+    "rotation": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "scale": 1.5
+  }
+}

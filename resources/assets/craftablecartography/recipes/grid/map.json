@@ -1,0 +1,19 @@
+{
+  "ingredientPattern": "PPP,PCP,PPP",
+  "width": 3,
+  "height": 3,
+  "ingredients": {
+    "P": {
+      "type": "item",
+      "code": "game:paper-parchment"
+    },
+    "C": {
+      "type": "item",
+      "code": "game:charcoal"
+    }
+  },
+  "output": {
+    "type": "item",
+    "code": "map"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "ingredientPattern": "G_,N_,PB",
+  "width": 2,
+  "height": 3,
+  "ingredients": {
+    "G": {
+      "type": "block",
+      "code": "game:glassslab-*"
+    },
+    "N": {
+      "type": "item",
+      "code": "game:nugget-*"
+    },
+    "B": {
+      "type": "block",
+      "code": "game:bowl-fired"
+    },
+    "P": {
+      "type": "item",
+      "code": "compassframe"
+    }
+  },
+  "attributes": {
+    "liquidContainerProps": {
+      "requiresContent": {
+        "type": "item",
+        "code": "waterportion"
+      },
+      "requiresLitres": 1
+    }
+  },
+  "output": {
+    "type": "item",
+    "code": "compass"
+  }
+}
