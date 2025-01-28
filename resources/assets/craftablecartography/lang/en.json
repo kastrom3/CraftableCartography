@@ -17,5 +17,8 @@
   "item-jps": "JPS",
   "itemdesc-jps": "A genius all-in-one navigational device.",
 
+  "item-compassframe": "Compass Frame",
+  "item-sextantparts": "Sextant Parts",
+
   "game:tabname-navigation": "Navigation"
 }
