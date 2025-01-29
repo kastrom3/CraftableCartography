@@ -7,6 +7,15 @@
   "shape": {
     "base": "craftablecartography:sextantparts"
   },
+  "variantgroups": [
+    {
+      "code": "metal",
+      "states": [ "copper", "tinbronze", "blackbronze", "bismuthbronze", "brass", "iron", "meteoriciron", "steel", "silver", "gold" ]
+    }
+  ],
+  "textures": {
+    "tinbronze": {"base": "game:block/metal/ingot/{metal}"}
+  },
   "guiTransform": {
     "translation": {
       "x": 0,

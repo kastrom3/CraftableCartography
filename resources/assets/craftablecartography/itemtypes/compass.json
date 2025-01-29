@@ -1,12 +1,21 @@
 {
-  "code": "compass",
+  "code": "compass-plain",
   "class": "compass",
   "creativeinventory": {
     "general": [ "*" ],
     "navigation": [ "*" ]
   },
+  "variantgroups": [
+    {
+      "code": "frame",
+      "states": [ "copper", "tinbronze", "blackbronze", "bismuthbronze", "brass", "iron", "meteoriciron", "steel", "silver", "gold" ]
+    }
+  ],
   "shape": {
     "base": "craftablecartography:compass"
+  },
+  "textures": {
+    "tinbronze": { "base": "game:block/metal/ingot/{frame}" }
   },
   "guiTransform": {
     "translation": {

@@ -14,11 +14,12 @@
     },
     "P": {
       "type": "item",
-      "code": "sextantparts"
+      "code": "sextantparts-*",
+      "name": "metal"
     }
   },
   "output": {
     "type": "item",
-    "code": "sextant"
+    "code": "sextant-{metal}"
   }
 }

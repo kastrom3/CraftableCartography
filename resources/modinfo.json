@@ -5,8 +5,8 @@
     "authors": [
         "Professor Cupcake"
     ],
-    "description": "To be added",
-    "version": "0.0.4",
+    "description": "A more immersive map & navigation experience",
+    "version": "0.1.0",
     "dependencies": {
         "game": "*"
     }

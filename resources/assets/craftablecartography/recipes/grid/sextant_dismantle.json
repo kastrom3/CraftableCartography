@@ -10,7 +10,8 @@
     },
     "S": {
       "type": "item",
-      "code": "sextant",
+      "code": "sextant-*",
+      "name": "metal",
       "returnedStack": {
         "type": "item",
         "code": "game:clearquartz",
@@ -20,6 +21,6 @@
   },
   "output": {
     "type": "item",
-    "code": "sextantparts"
+    "code": "sextantparts-{metal}"
   }
 }

@@ -1,23 +1,28 @@
 {
-  "ingredientPattern": "SIC,PGP,KIW",
+  "ingredientPattern": "SFC,PGP,KIW",
   "width": 3,
   "height": 3,
   "ingredients": {
     "S": {
       "type": "item",
-      "code": "sextanttemporal"
+      "code": "sextanttemporal-*"
     },
     "C": {
       "type": "item",
-      "code": "compasstemporal"
+      "code": "compasstemporal-*"
     },
     "P": {
       "type": "item",
-      "code": "game:metalplate-*"
+      "code": "game:metalplate-silver"
     },
     "I": {
       "type": "item",
-      "code": "game:metalnailsandstrips-*"
+      "code": "game:metalnailsandstrips-gold"
+    },
+    "F": {
+      "type": "item",
+      "code": "game:metalnailsandstrips-*",
+      "allowedVariants": [ "iron", "meteoriciron", "steel" ]
     },
     "K": {
       "type": "item",

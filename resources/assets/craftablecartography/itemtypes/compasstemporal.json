@@ -7,6 +7,20 @@
   "shape": {
     "base": "craftablecartography:compasstemporal"
   },
+  "variantgroups": [
+    {
+      "code": "frameouter",
+      "states": [ "copper", "tinbronze", "blackbronze", "bismuthbronze", "brass", "iron", "meteoriciron", "steel", "silver", "gold" ]
+    },
+    {
+      "code": "frameinner",
+      "states": [ "copper", "tinbronze", "blackbronze", "bismuthbronze", "brass", "iron", "meteoriciron", "steel", "silver", "gold" ]
+    }
+  ],
+  "textures": {
+    "tinbronze": { "base": "game:block/metal/ingot/{frameouter}"},
+    "blackbronze": { "base": "game:block/metal/ingot/{frameinner}"}
+  },
   "guiTransform": {
     "translation": {
       "x": 0,

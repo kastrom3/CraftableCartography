@@ -5,7 +5,7 @@
   "ingredients": {
     "G": {
       "type": "block",
-      "code": "game:glassslab-*"
+      "code": "game:glassslab-plain-*"
     },
     "N": {
       "type": "item",
@@ -17,7 +17,8 @@
     },
     "P": {
       "type": "item",
-      "code": "compassframe"
+      "code": "compassframe-*",
+      "name": "frame"
     }
   },
   "attributes": {
@@ -31,6 +32,6 @@
   },
   "output": {
     "type": "item",
-    "code": "compass"
+    "code": "compass-plain-{frame}"
   }
 }

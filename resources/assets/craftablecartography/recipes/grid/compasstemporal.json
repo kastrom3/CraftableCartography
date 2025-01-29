@@ -1,28 +1,333 @@
-{
-  "ingredientPattern": "_G_,PNW,_P_",
-  "width": 3,
-  "height": 3,
-  "ingredients": {
-    "P": {
-      "type": "item",
-      "code": "compassframe"
+[
+  {
+    "__comment": "turns out you can't have multiple variants in recipes, making this shit necessary :[",
+    "ingredientPattern": "_G_,PNW,_Q_",
+    "width": 3,
+    "height": 3,
+    "ingredients": {
+      "P": {
+        "type": "item",
+        "code": "compassframe-copper"
+      },
+      "Q": {
+        "type": "item",
+        "code": "compassframe-*",
+        "name": "inner"
+      },
+      "G": {
+        "type": "item",
+        "code": "game:gear-temporal"
+      },
+      "W": {
+        "type": "item",
+        "code": "game:wrench-*",
+        "isTool": true
+      },
+      "N": {
+        "type": "item",
+        "code": "game:nugget-*"
+      }
     },
-    "G": {
+    "output": {
       "type": "item",
-      "code": "game:gear-temporal"
-    },
-    "W": {
-      "type": "item",
-      "code": "game:wrench-*",
-      "isTool": true
-    },
-    "N": {
-      "type": "item",
-      "code": "game:nugget-*"
+      "code": "compasstemporal-copper-{inner}"
     }
   },
-  "output": {
-    "type": "item",
-    "code": "compasstemporal"
+  {
+    "ingredientPattern": "_G_,PNW,_Q_",
+    "width": 3,
+    "height": 3,
+    "ingredients": {
+      "P": {
+        "type": "item",
+        "code": "compassframe-tinbronze"
+      },
+      "Q": {
+        "type": "item",
+        "code": "compassframe-*",
+        "name": "inner"
+      },
+      "G": {
+        "type": "item",
+        "code": "game:gear-temporal"
+      },
+      "W": {
+        "type": "item",
+        "code": "game:wrench-*",
+        "isTool": true
+      },
+      "N": {
+        "type": "item",
+        "code": "game:nugget-*"
+      }
+    },
+    "output": {
+      "type": "item",
+      "code": "compasstemporal-tinbronze-{inner}"
+    }
+  },
+  {
+    "ingredientPattern": "_G_,PNW,_Q_",
+    "width": 3,
+    "height": 3,
+    "ingredients": {
+      "P": {
+        "type": "item",
+        "code": "compassframe-blackbronze"
+      },
+      "Q": {
+        "type": "item",
+        "code": "compassframe-*",
+        "name": "inner"
+      },
+      "G": {
+        "type": "item",
+        "code": "game:gear-temporal"
+      },
+      "W": {
+        "type": "item",
+        "code": "game:wrench-*",
+        "isTool": true
+      },
+      "N": {
+        "type": "item",
+        "code": "game:nugget-*"
+      }
+    },
+    "output": {
+      "type": "item",
+      "code": "compasstemporal-blackbronze-{inner}"
+    }
+  },
+  {
+    "ingredientPattern": "_G_,PNW,_Q_",
+    "width": 3,
+    "height": 3,
+    "ingredients": {
+      "P": {
+        "type": "item",
+        "code": "compassframe-bismuthbronze"
+      },
+      "Q": {
+        "type": "item",
+        "code": "compassframe-*",
+        "name": "inner"
+      },
+      "G": {
+        "type": "item",
+        "code": "game:gear-temporal"
+      },
+      "W": {
+        "type": "item",
+        "code": "game:wrench-*",
+        "isTool": true
+      },
+      "N": {
+        "type": "item",
+        "code": "game:nugget-*"
+      }
+    },
+    "output": {
+      "type": "item",
+      "code": "compasstemporal-bismuthbronze-{inner}"
+    }
+  },
+  {
+    "ingredientPattern": "_G_,PNW,_Q_",
+    "width": 3,
+    "height": 3,
+    "ingredients": {
+      "P": {
+        "type": "item",
+        "code": "compassframe-brass"
+      },
+      "Q": {
+        "type": "item",
+        "code": "compassframe-*",
+        "name": "inner"
+      },
+      "G": {
+        "type": "item",
+        "code": "game:gear-temporal"
+      },
+      "W": {
+        "type": "item",
+        "code": "game:wrench-*",
+        "isTool": true
+      },
+      "N": {
+        "type": "item",
+        "code": "game:nugget-*"
+      }
+    },
+    "output": {
+      "type": "item",
+      "code": "compasstemporal-brass-{inner}"
+    }
+  },
+  {
+    "ingredientPattern": "_G_,PNW,_Q_",
+    "width": 3,
+    "height": 3,
+    "ingredients": {
+      "P": {
+        "type": "item",
+        "code": "compassframe-iron"
+      },
+      "Q": {
+        "type": "item",
+        "code": "compassframe-*",
+        "name": "inner"
+      },
+      "G": {
+        "type": "item",
+        "code": "game:gear-temporal"
+      },
+      "W": {
+        "type": "item",
+        "code": "game:wrench-*",
+        "isTool": true
+      },
+      "N": {
+        "type": "item",
+        "code": "game:nugget-*"
+      }
+    },
+    "output": {
+      "type": "item",
+      "code": "compasstemporal-iron-{inner}"
+    }
+  },
+  {
+    "ingredientPattern": "_G_,PNW,_Q_",
+    "width": 3,
+    "height": 3,
+    "ingredients": {
+      "P": {
+        "type": "item",
+        "code": "compassframe-steel"
+      },
+      "Q": {
+        "type": "item",
+        "code": "compassframe-*",
+        "name": "inner"
+      },
+      "G": {
+        "type": "item",
+        "code": "game:gear-temporal"
+      },
+      "W": {
+        "type": "item",
+        "code": "game:wrench-*",
+        "isTool": true
+      },
+      "N": {
+        "type": "item",
+        "code": "game:nugget-*"
+      }
+    },
+    "output": {
+      "type": "item",
+      "code": "compasstemporal-steel-{inner}"
+    }
+  },
+  {
+    "ingredientPattern": "_G_,PNW,_Q_",
+    "width": 3,
+    "height": 3,
+    "ingredients": {
+      "P": {
+        "type": "item",
+        "code": "compassframe-silver"
+      },
+      "Q": {
+        "type": "item",
+        "code": "compassframe-*",
+        "name": "inner"
+      },
+      "G": {
+        "type": "item",
+        "code": "game:gear-temporal"
+      },
+      "W": {
+        "type": "item",
+        "code": "game:wrench-*",
+        "isTool": true
+      },
+      "N": {
+        "type": "item",
+        "code": "game:nugget-*"
+      }
+    },
+    "output": {
+      "type": "item",
+      "code": "compasstemporal-silver-{inner}"
+    }
+  },
+  {
+    "ingredientPattern": "_G_,PNW,_Q_",
+    "width": 3,
+    "height": 3,
+    "ingredients": {
+      "P": {
+        "type": "item",
+        "code": "compassframe-gold"
+      },
+      "Q": {
+        "type": "item",
+        "code": "compassframe-*",
+        "name": "inner"
+      },
+      "G": {
+        "type": "item",
+        "code": "game:gear-temporal"
+      },
+      "W": {
+        "type": "item",
+        "code": "game:wrench-*",
+        "isTool": true
+      },
+      "N": {
+        "type": "item",
+        "code": "game:nugget-*"
+      }
+    },
+    "output": {
+      "type": "item",
+      "code": "compasstemporal-gold-{inner}"
+    }
+  },
+  {
+    "ingredientPattern": "_G_,PNW,_Q_",
+    "width": 3,
+    "height": 3,
+    "ingredients": {
+      "P": {
+        "type": "item",
+        "code": "compassframe-meteoriciron"
+      },
+      "Q": {
+        "type": "item",
+        "code": "compassframe-*",
+        "name": "inner"
+      },
+      "G": {
+        "type": "item",
+        "code": "game:gear-temporal"
+      },
+      "W": {
+        "type": "item",
+        "code": "game:wrench-*",
+        "isTool": true
+      },
+      "N": {
+        "type": "item",
+        "code": "game:nugget-*"
+      }
+    },
+    "output": {
+      "type": "item",
+      "code": "compasstemporal-meteoriciron-{inner}"
+    }
   }
-}
+]
