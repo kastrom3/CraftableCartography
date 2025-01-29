@@ -23,5 +23,18 @@ VS map mod:
 	- centre on coordinates
 	- reopen to same location as last closed
 
+- other changes probably necessary
+	- alternate way of getting story locations (just coords?)
+
 - useful bits
 	- some kind of container item, to put map + sextant + compass in one slot
+
+- possible additional ideas
+	- beacon + locator
+		- place beacon -> attune locator to beacon -> locator points to beacon
+		- locator attunement can be copied to other locators without needing beacon
+		- problem: how to detect if beacon is still intact
+		- possibly just abandon beacon item entirely, allow locator to attune to arbitrary position?
+			- if so, locator is single-use-only: once attuned, cannot be re-attuned
+	- return locator
+		- just points to your respawn point

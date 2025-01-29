@@ -4,8 +4,17 @@
     "general": [ "*" ],
     "navigation": [ "*" ]
   },
+  "variantgroups": [
+    {
+      "code": "metal",
+      "states": [ "copper", "tinbronze", "blackbronze", "bismuthbronze", "brass", "iron", "steel", "silver", "gold" ]
+    }
+  ],
   "shape": {
     "base": "craftablecartography:compassframe"
+  },
+  "textures": {
+    "tinbronze": { "base": "game:block/metal/ingot/{metal}" }
   },
   "guiTransform": {
     "translation": {

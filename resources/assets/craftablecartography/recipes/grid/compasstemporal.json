@@ -1,11 +1,17 @@
 {
-  "ingredientPattern": "_G_,PNW,_P_",
+  "ingredientPattern": "_G_,PNW,_Q_",
   "width": 3,
   "height": 3,
   "ingredients": {
     "P": {
       "type": "item",
-      "code": "compassframe"
+      "code": "compassframe-*",
+      "name": "frameouter"
+    },
+    "Q": {
+      "type": "item",
+      "code": "compassframe-*",
+      "name": "frameinner"
     },
     "G": {
       "type": "item",
@@ -23,6 +29,6 @@
   },
   "output": {
     "type": "item",
-    "code": "compasstemporal"
+    "code": "compasstemporal-{frameouter}-{frameinner}"
   }
 }

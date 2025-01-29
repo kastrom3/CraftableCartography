@@ -5,7 +5,8 @@
   "ingredients": {
     "P": {
       "type": "item",
-      "code": "sextantparts"
+      "code": "sextantparts-*",
+      "name": "metal"
     },
     "G": {
       "type": "item",
@@ -23,6 +24,6 @@
   },
   "output": {
     "type": "item",
-    "code": "sextanttemporal"
+    "code": "sextanttemporal-{metal}"
   }
 }

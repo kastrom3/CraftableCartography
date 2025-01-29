@@ -5,15 +5,15 @@
   "ingredients": {
     "S": {
       "type": "item",
-      "code": "sextanttemporal"
+      "code": "sextanttemporal-*"
     },
     "C": {
       "type": "item",
-      "code": "compasstemporal"
+      "code": "compasstemporal-*"
     },
     "P": {
       "type": "item",
-      "code": "game:metalplate-*"
+      "code": "game:metalplate-silver"
     },
     "I": {
       "type": "item",

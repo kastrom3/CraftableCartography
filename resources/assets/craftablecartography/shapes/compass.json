@@ -10,7 +10,7 @@
 	},
 	"textures": {
 		"smoky": "game:block/glass/smoky",
-		"iron": "game:item/tool/material/iron",
+		"iron": "game:item/resource/nugget/magnetite",
 		"tinbronze": "game:item/tool/material/tinbronze"
 	},
 	"elements": [

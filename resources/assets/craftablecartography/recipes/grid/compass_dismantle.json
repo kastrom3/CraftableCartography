@@ -5,7 +5,8 @@
   "ingredients": {
     "C": {
       "type": "item",
-      "code": "compass",
+      "code": "compass-plain-*",
+      "name": "metal",
       "returnedStack": {
         "type": "block",
         "code": "game:glassslab-plain-down-free"
@@ -19,6 +20,6 @@
   },
   "output": {
     "type": "item",
-    "code": "compassframe"
+    "code": "compassframe-{metal}"
   }
 }
