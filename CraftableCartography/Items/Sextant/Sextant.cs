@@ -22,53 +22,60 @@ namespace CraftableCartography.Items.Sextant
 
         public override void OnHeldInteractStart(ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, bool firstEvent, ref EnumHandHandling handling)
         {
-            gui ??= new((ICoreClientAPI)byEntity.Api);
-            gui.TryOpen();
+            if (byEntity.Api.Side == EnumAppSide.Client)
+            {
+                gui ??= new((ICoreClientAPI)byEntity.Api);
+                gui.TryOpen();
 
-            moveVar = 0;
+                moveVar = 0;
 
-            lastPos = byEntity.Pos.Copy();
+                lastPos = byEntity.Pos.Copy();
 
-            Vec3d pos = byEntity.Pos.AsBlockPos.ToVec3d();
-            pos.X -= api.World.DefaultSpawnPosition.AsBlockPos.X;
-            pos.Z -= api.World.DefaultSpawnPosition.AsBlockPos.Z;
+                Vec3d pos = byEntity.Pos.AsBlockPos.ToVec3d();
+                pos.X -= api.World.DefaultSpawnPosition.AsBlockPos.X;
+                pos.Z -= api.World.DefaultSpawnPosition.AsBlockPos.Z;
 
-            randomX = NatFloat.createGauss((float)pos.X, maxVar);
-            randomY = NatFloat.createGauss((float)pos.Y, maxVar);
-            randomZ = NatFloat.createGauss((float)pos.Z, maxVar);
+                randomX = NatFloat.createGauss((float)pos.X, maxVar);
+                randomY = NatFloat.createGauss((float)pos.Y, maxVar);
+                randomZ = NatFloat.createGauss((float)pos.Z, maxVar);
+            }
 
             handling = EnumHandHandling.PreventDefault;
         }
 
         public override bool OnHeldInteractStep(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel)
         {
-            moveVar += lastPos.DistanceTo(byEntity.Pos) * 2;
+            if (byEntity.Api.Side == EnumAppSide.Client)
+            {
+                moveVar += lastPos.DistanceTo(byEntity.Pos) * 2;
 
-            double varThisStep = (float)Math.Min(maxVar / Math.Pow(secondsUsed - moveVar, 5), maxVar);
+                double varThisStep = (float)Math.Min(maxVar / Math.Pow(secondsUsed - moveVar, 5), maxVar);
 
-            randomX.avg = (float)(byEntity.Pos.X - api.World.DefaultSpawnPosition.X);
-            randomY.avg = (float)byEntity.Pos.Y;
-            randomZ.avg = (float)(byEntity.Pos.Z - api.World.DefaultSpawnPosition.Z);
+                randomX.avg = (float)(byEntity.Pos.X - api.World.DefaultSpawnPosition.X);
+                randomY.avg = (float)byEntity.Pos.Y;
+                randomZ.avg = (float)(byEntity.Pos.Z - api.World.DefaultSpawnPosition.Z);
 
-            randomX.var = (float)varThisStep;
-            randomY.var = (float)varThisStep;
-            randomZ.var = (float)varThisStep;
+                randomX.var = (float)varThisStep;
+                randomY.var = (float)varThisStep;
+                randomZ.var = (float)varThisStep;
 
-            string text =
-                Math.Round(randomX.nextFloat()).ToString() + ", " +
-                Math.Round(randomY.nextFloat()).ToString() + ", " +
-                Math.Round(randomZ.nextFloat());
+                string text =
+                    Math.Round(randomX.nextFloat()).ToString() + ", " +
+                    Math.Round(randomY.nextFloat()).ToString() + ", " +
+                    Math.Round(randomZ.nextFloat());
 
-            gui.SetText(text);
+                gui.SetText(text);
 
-            lastPos = byEntity.Pos.Copy();
+                lastPos = byEntity.Pos.Copy();
+            }
 
             return true;
         }
 
         public override void OnHeldInteractStop(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel)
         {
-            gui.TryClose();
+            if (byEntity.Api.Side == EnumAppSide.Client)
+                gui.TryClose();
         }
     }
 }
