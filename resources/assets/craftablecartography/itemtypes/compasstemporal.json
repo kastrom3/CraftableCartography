@@ -10,11 +10,11 @@
   "variantgroups": [
     {
       "code": "frameouter",
-      "states": [ "copper", "tinbronze", "blackbronze", "bismuthbronze", "brass", "iron", "steel", "silver", "gold" ]
+      "states": [ "copper", "tinbronze", "blackbronze", "bismuthbronze", "brass", "iron", "meteoriciron", "steel", "silver", "gold" ]
     },
     {
       "code": "frameinner",
-      "states": [ "copper", "tinbronze", "blackbronze", "bismuthbronze", "brass", "iron", "steel", "silver", "gold" ]
+      "states": [ "copper", "tinbronze", "blackbronze", "bismuthbronze", "brass", "iron", "meteoriciron", "steel", "silver", "gold" ]
     }
   ],
   "textures": {

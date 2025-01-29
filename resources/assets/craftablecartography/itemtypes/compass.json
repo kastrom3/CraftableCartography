@@ -8,7 +8,7 @@
   "variantgroups": [
     {
       "code": "frame",
-      "states": [ "copper", "tinbronze", "blackbronze", "bismuthbronze", "brass", "iron", "steel", "silver", "gold" ]
+      "states": [ "copper", "tinbronze", "blackbronze", "bismuthbronze", "brass", "iron", "meteoriciron", "steel", "silver", "gold" ]
     }
   ],
   "shape": {

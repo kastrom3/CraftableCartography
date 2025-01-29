@@ -1,5 +1,5 @@
 {
-  "ingredientPattern": "SIC,PGP,KIW",
+  "ingredientPattern": "SFC,PGP,KIW",
   "width": 3,
   "height": 3,
   "ingredients": {
@@ -17,7 +17,12 @@
     },
     "I": {
       "type": "item",
-      "code": "game:metalnailsandstrips-*"
+      "code": "game:metalnailsandstrips-gold"
+    },
+    "F": {
+      "type": "item",
+      "code": "game:metalnailsandstrips-*",
+      "allowedVariants": [ "iron", "meteoriciron", "steel" ]
     },
     "K": {
       "type": "item",
