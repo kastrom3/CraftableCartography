@@ -17,7 +17,7 @@ namespace CraftableCartography.Items.Compass
         float heading;
         float headingDelta;
 
-        float damping = 0.95f;
+        float damping = 0.9f;
         float accelerationQuot = 360;
 
         float lastUpdate;
@@ -72,7 +72,7 @@ namespace CraftableCartography.Items.Compass
                     word += "W";
                 }
 
-                string text = Math.Round(heading).ToString();
+                string text = Math.Round(heading).ToString() + "°";
                 text += word;
 
                 gui.SetText(text);
