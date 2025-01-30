@@ -1,2 +1,3 @@
-- Added crafting:
-	- Compass
+- Fix: JPS & channel requirement to see other players on map should work now
+- Increased compass damping slightly
+- Added degrees symbol to compass display

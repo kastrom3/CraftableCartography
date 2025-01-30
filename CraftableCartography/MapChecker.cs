@@ -47,12 +47,12 @@ namespace CraftableCartography
 
         public bool IsMinimapAllowed()
         {
-            return HasJPS(capi);
+            return HasJPS(capi.World.Player);
         }
 
         public bool IsMapAllowed()
         {
-            return (HasMap(capi) || HasJPS(capi));
+            return (HasMap(capi.World.Player) || HasJPS(capi.World.Player));
         }
     }
 }

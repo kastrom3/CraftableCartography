@@ -1,28 +1,29 @@
 ﻿using Vintagestory.API.Client;
 using Vintagestory.API.Common;
+using static CraftableCartography.Lib.CCConstants;
 
 namespace CraftableCartography.Lib
 {
     public static class ItemChecks
     {
         public const string jpsCode = "jps";
-        public const string compassCode = "compasstemporal";
+        public const string temporalCompassCode = "compasstemporal";
         public const string temporalSextantCode = "sextanttemporal";
         public const string mapCode = "map";
         public const string modDomain = "craftablecartography";
 
-        public static bool GenericItemCheck(ICoreClientAPI capi, string itemCode, string domain)
+        public static bool GenericItemCheck(IPlayer player, string itemCode, string domain)
         {
-            foreach (ItemSlot slot in capi.World.Player.InventoryManager.GetHotbarInventory())
+            foreach (ItemSlot slot in player.InventoryManager.GetHotbarInventory())
                 if (slot.Itemstack != null)
                     if (slot.Itemstack.Item != null)
                         if (slot.Itemstack.Item.Code.FirstCodePart() == itemCode && slot.Itemstack.Item.Code.Domain == domain)
                             return true;
             return false;
         }
-        public static bool GenericItemsCheck(ICoreClientAPI capi, string[] itemCodes, string domain)
+        public static bool GenericItemsCheck(IPlayer player, string[] itemCodes, string domain)
         {
-            foreach (ItemSlot slot in capi.World.Player.InventoryManager.GetHotbarInventory())
+            foreach (ItemSlot slot in player.InventoryManager.GetHotbarInventory())
                 if (slot.Itemstack != null)
                     if (slot.Itemstack.Item != null)
                         if (slot.Itemstack.Item.Code != null)
@@ -32,23 +33,45 @@ namespace CraftableCartography.Lib
 
             return false;
         }
-        public static bool HasTemporalSextant(ICoreClientAPI capi)
+        public static bool HasTemporalSextant(IPlayer player)
         {
-            return GenericItemCheck(capi, temporalSextantCode, modDomain);
+            if (player.Entity.Api.Side == EnumAppSide.Client)
+                if (((ICoreClientAPI)player.Entity.Api).World.Player == player)
+                    return GenericItemCheck(player, temporalSextantCode, modDomain);
+            return false;
         }
 
-        public static bool HasTemporalCompass(ICoreClientAPI capi)
+        public static bool HasTemporalCompass(IPlayer player)
         {
-            return GenericItemCheck(capi, compassCode, modDomain);
+            if (player.Entity.Api.Side == EnumAppSide.Client)
+                if (((ICoreClientAPI)player.Entity.Api).World.Player == player)
+                    return GenericItemCheck(player, temporalCompassCode, modDomain);
+            return false;
         }
 
-        public static bool HasMap(ICoreClientAPI capi)
+        public static bool HasMap(IPlayer player)
         {
-            return GenericItemCheck(capi, mapCode, modDomain);
+            if (player.Entity.Api.Side == EnumAppSide.Client)
+                if (((ICoreClientAPI)player.Entity.Api).World.Player == player)
+                    return GenericItemCheck(player, mapCode, modDomain);
+            return false;
         }
-        public static bool HasJPS(ICoreClientAPI capi)
+        public static bool HasJPS(IPlayer player)
         {
-            return GenericItemCheck(capi, jpsCode, modDomain);
+            if (player.Entity.Api.Side == EnumAppSide.Client)
+            {
+                if (((ICoreClientAPI)player.Entity.Api).World.Player == player)
+                {
+                    return GenericItemCheck(player, jpsCode, modDomain);
+                } else
+                {
+                    return player.Entity.WatchedAttributes.GetBool(hasJPSAttr);
+                }
+            } else if (player.Entity.Api.Side == EnumAppSide.Server)
+            {
+                return GenericItemCheck(player, jpsCode, modDomain);
+            }
+            return false;
         }
     }
 }
