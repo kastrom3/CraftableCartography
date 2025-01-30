@@ -5,5 +5,6 @@
         public const string NetChannel = "craftablecartography";
 
         public const string JPSChannelAttr = "CC_JPSChannel";
+        public const string hasJPSAttr = "CC_hasJPS";
     }
 }

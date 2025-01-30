@@ -14,7 +14,7 @@ namespace CraftableCartography.MapLayers
 
     public class CCPlayerMapLayer : MarkerMapLayer
     {
-        Dictionary<IPlayer, EntityMapComponent> MapComps = new Dictionary<IPlayer, EntityMapComponent>();
+        Dictionary<IPlayer, EntityMapComponent> MapComps = new();
         ICoreClientAPI capi;
         LoadedTexture ownTexture;
         LoadedTexture otherTexture;
@@ -70,8 +70,8 @@ namespace CraftableCartography.MapLayers
 
             if (ownTexture == null)
             {
-                ImageSurface surface = new ImageSurface(Format.Argb32, size, size);
-                Context ctx = new Context(surface);
+                ImageSurface surface = new(Format.Argb32, size, size);
+                Context ctx = new(surface);
                 ctx.SetSourceRGBA(0, 0, 0, 0);
                 ctx.Paint();
                 capi.Gui.Icons.DrawMapPlayer(ctx, 0, 0, size, size, new double[] { 0, 0, 0, 1 }, new double[] { 1, 1, 1, 1 });
@@ -83,8 +83,8 @@ namespace CraftableCartography.MapLayers
 
             if (otherTexture == null)
             {
-                ImageSurface surface = new ImageSurface(Format.Argb32, size, size);
-                Context ctx = new Context(surface);
+                ImageSurface surface = new(Format.Argb32, size, size);
+                Context ctx = new(surface);
                 ctx.SetSourceRGBA(0, 0, 0, 0);
                 ctx.Paint();
                 capi.Gui.Icons.DrawMapPlayer(ctx, 0, 0, size, size, new double[] { 0.3, 0.3, 0.3, 1 }, new double[] { 0.7, 0.7, 0.7, 1 });
@@ -107,9 +107,7 @@ namespace CraftableCartography.MapLayers
 
         public void HidePlayer(IPlayer player)
         {
-            EntityMapComponent cmp;
-
-            if (MapComps.TryGetValue(player, out cmp))
+            if (MapComps.TryGetValue(player, out EntityMapComponent cmp))
             {
                 cmp?.Dispose();
                 MapComps.Remove(player);
@@ -118,9 +116,7 @@ namespace CraftableCartography.MapLayers
 
         public void ShowPlayer(IPlayer player)
         {
-            EntityMapComponent cmp;
-
-            if (MapComps.TryGetValue(player, out cmp))
+            if (MapComps.TryGetValue(player, out EntityMapComponent cmp))
             {
                 cmp?.Dispose();
                 MapComps.Remove(player);
@@ -133,7 +129,7 @@ namespace CraftableCartography.MapLayers
 
         public bool ShouldShowPlayer(IPlayer player)
         {
-            if (!HasJPS(capi)) return false;
+            if (!HasJPS(player)) return false;
 
             if (player.Entity == null)
             {

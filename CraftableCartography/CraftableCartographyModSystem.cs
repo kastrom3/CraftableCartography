@@ -1,9 +1,12 @@
 ﻿using CraftableCartography.Items.Compass;
 using CraftableCartography.Items.Sextant;
+using CraftableCartography.Lib;
 using HarmonyLib;
 using Newtonsoft.Json;
 using ProtoBuf;
+using System;
 using System.IO;
+using System.Linq;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Config;
@@ -11,6 +14,7 @@ using Vintagestory.API.MathTools;
 using Vintagestory.API.Server;
 using Vintagestory.GameContent;
 using static CraftableCartography.Lib.CCConstants;
+using static CraftableCartography.Lib.ItemChecks;
 
 namespace CraftableCartography
 {
@@ -43,6 +47,9 @@ namespace CraftableCartography
 
             api.RegisterItemClass("compass", typeof(Compass));
             api.RegisterItemClass("sextant", typeof(Sextant));
+
+            api.Network.RegisterChannel(NetChannel)
+                .RegisterMessageType<SetChannelPacket>();
         }
 
         public override void StartServerSide(ICoreServerAPI api)
@@ -50,10 +57,22 @@ namespace CraftableCartography
             base.StartServerSide(api);
 
             sapi = api;
+
+            sapi.Network.GetChannel(NetChannel)
+                .SetMessageHandler<SetChannelPacket>(SetChannelCommandServer);
+
+            sapi.Event.RegisterGameTickListener(ServerJPSCheck, 5000);
         }
 
-        [ProtoContract]
-        public class MapShowUpdatePacket { }
+        private void ServerJPSCheck(float dt)
+        {
+            foreach (IServerPlayer player in sapi.World.AllPlayers.Cast<IServerPlayer>())
+            {
+                if (player.ConnectionState != EnumClientState.Playing || player.Entity == null) continue;
+
+                player.Entity.WatchedAttributes.SetBool(hasJPSAttr, HasJPS(player));
+            }    
+        }
 
         public override void StartClientSide(ICoreClientAPI api)
         {
@@ -74,13 +93,27 @@ namespace CraftableCartography
                 .HandleWith(SetChannelCommand);
         }
 
+        [ProtoContract(ImplicitFields=ImplicitFields.AllFields)]
+        public class SetChannelPacket
+        {
+            public string channel;
+        }
+
         private TextCommandResult SetChannelCommand(TextCommandCallingArgs args)
         {
-            string channel;
-            if (args[0] != null) channel = ((string)args[0]).ToLower();
-            else channel = "";
-            args.Caller.Player.Entity.WatchedAttributes.SetString(JPSChannelAttr, (string)args[0]);
-            return TextCommandResult.Success("Channel changed to '" + channel + "'.");
+            string setchannel;
+            if (args[0] != null) setchannel = ((string)args[0]).ToLower();
+            else setchannel = "";
+            
+            capi.Network.GetChannel(NetChannel).SendPacket<SetChannelPacket>(new() { channel = setchannel });
+
+            return TextCommandResult.Success();
+        }
+
+        private void SetChannelCommandServer(IServerPlayer fromPlayer, SetChannelPacket packet)
+        {
+            fromPlayer.Entity.WatchedAttributes.SetString(JPSChannelAttr, packet.channel);
+            fromPlayer.SendMessage(GlobalConstants.GeneralChatGroup, "JPS channel changed to '" + packet.channel + "'", EnumChatType.CommandSuccess);
         }
 
         private TextCommandResult RecentreMapCommand(TextCommandCallingArgs args)
