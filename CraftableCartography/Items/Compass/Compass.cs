@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CraftableCartography.Items.Shared;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Common.Entities;
@@ -12,7 +13,7 @@ namespace CraftableCartography.Items.Compass
 {
     public class Compass : Item
     {
-        HeadingGui gui;
+        HudElementNavReading gui;
 
         float heading;
         float headingDelta;
