@@ -2,11 +2,12 @@
   "ingredient": {
     "type": "item",
     "code": "game:ingot-*",
-    "allowedVariants": [ "copper", "tinbronze", "blackbronze", "bismuthbronze", "brass", "iron", "meteoriciron", "steel", "silver", "gold" ]
+    "allowedVariants": [ "copper", "tinbronze", "blackbronze", "bismuthbronze", "brass", "iron", "meteoriciron", "steel", "silver", "gold" ],
+    "name": "metal"
   },
   "output": {
     "type": "item",
-    "code": "sextantparts"
+    "code": "sextantparts-{metal}"
   },
   "pattern": [
     [
