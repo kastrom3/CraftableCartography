@@ -129,8 +129,6 @@ namespace CraftableCartography.MapLayers
 
         public bool ShouldShowPlayer(IPlayer player)
         {
-            if (!HasJPS(player)) return false;
-
             if (player.Entity == null)
             {
                 capi.World.Logger.Warning("Can't add player {0} to world map, missing entity :<", player.PlayerUID);
@@ -141,6 +139,8 @@ namespace CraftableCartography.MapLayers
             {
                 return false;
             }
+
+            if (!HasJPS(player)) return false;
 
             if (player != capi.World.Player &&
                 player.Entity.WatchedAttributes.GetString(JPSChannelAttr, "") !=
