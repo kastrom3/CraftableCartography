@@ -1,69 +1,53 @@
 {
-  "code": "sextant",
-  "class": "sextant",
-  "creativeinventory": {
-    "general": [ "*" ],
-    "navigation": [ "*" ]
-  },
-  "shape": {
-    "base": "craftablecartography:sextant"
-  },
-  "variantgroups": [
-    {
-      "code": "metal",
-      "states": [ "copper", "tinbronze", "blackbronze", "bismuthbronze", "brass", "iron", "meteoriciron", "steel", "silver", "gold" ]
-    }
-  ],
-  "textures": {
-    "tinbronze": { "base": "game:block/metal/ingot/{metal}" }
-  },
-  "guiTransform": {
-    "translation": {
-      "x": 0,
-      "y": 0,
-      "z": 0
+    "code": "sextant",
+    "class": "sextant",
+    "creativeinventory": {
+        "general": [ "*" ],
+        "navigation": [ "*" ]
     },
-    "rotation": {
-      "x": -26,
-      "y": -45,
-      "z": -180
+    "shape": {
+        "base": "craftablecartography:sextant"
     },
-    "origin": {
-      "x": 1,
-      "y": 0.1,
-      "z": 0
+    "variantgroups": [
+        {
+            "code": "metal",
+            "states": [ "copper", "tinbronze", "blackbronze", "bismuthbronze", "brass", "iron", "meteoriciron", "steel", "silver", "gold" ]
+        }
+    ],
+    "textures": {
+        "tinbronze": { "base": "game:block/metal/ingot/{metal}" }
     },
-    "scale": 1.48
-  },
-  "tpHandTransform": {
-    "translation": {
-      "x": -1,
-      "y": -0.65,
-      "z": -0.6
+	"behaviors": [
+		{ "name": "GroundStorable", "ctrlKey": true, "properties": { "layout": "SingleCenter" } }
+	],
+	"storageFlags": 257,
+	"heldTpIdleAnimation": "holdinglanternrighthand",
+	"heldLeftTpIdleAnimation": "holdinglanternlefthand",
+	"maxstacksize": 1,
+	"attributes": {
+		"groundStorageTransform": {
+            "translation": { "x": -0.1, "y": -0.45, "z": 0},
+			"rotation": { "x": 0, "y": -9, "z": 90 },
+		}
+	},
+	"guiTransform": {
+		"rotation": { "x": -26, "y": -45, "z": -180 },
+		"origin": { "x": 1, "y": 0.1, "z": 0 },
+        "scale": 1.48
     },
-    "rotation": {
-      "x": -90,
-      "y": 0,
-      "z": -90
+    "groundTransform": {
+        "rotation": {"x": 1, "y": 0, "z": 90},
+        "origin": {"x": 0.5, "y": 0.5, "z": 0.5299},
+        "scale": 2.01
     },
-    "scale": 0.71
-  },
-  "groundTransform": {
-    "translation": {
-      "x": 0,
-      "y": 0,
-      "z": 0
+    "tpHandTransform": {
+        "translation": { "x": -1, "y": -0.65, "z": -0.6},
+        "rotation": { "x": -90, "y": 0, "z": -90},
+        "scale": 0.71
     },
-    "rotation": {
-      "x": 1,
-      "y": 0,
-      "z": 90
-    },
-    "origin": {
-      "x": 0.5,
-      "y": 0.5,
-      "z": 0.5299
-    },
-    "scale": 2.01
-  }
+	"tpOffHandTransform": {
+        "translation": { "x": -1, "y": -0.65, "z": -0.85},
+        "rotation": { "x": -90, "y": 0, "z": -90},
+		"scale": 0.71
+	}
 }

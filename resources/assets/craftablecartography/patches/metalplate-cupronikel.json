@@ -1,0 +1,14 @@
+[
+	{
+		"file": "game:itemtypes/resource/metalplate",
+		"op": "replace",
+		"path": "/skipVariants",
+		"value": [ "*-nickel" ]
+	},
+	{
+		"file": "game:recipes/smithing/plate",
+		"op": "add",
+		"path": "/ingredient/allowedVariants/-",
+		"value": "cupronickel"
+	}
+]

@@ -51,4 +51,10 @@
     </Content>
 </ItemGroup>
 
+<ItemGroup>
+  <Content Remove="..\resources\assets\craftablecartography\itemtypes\sextanttemporal.json" />
+  <Content Remove="..\resources\assets\craftablecartography\recipes\grid\sextanttemporal.json" />
+  <Content Remove="..\resources\assets\craftablecartography\shapes\sextanttemporal.json" />
+</ItemGroup>
+
 </Project>

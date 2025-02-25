@@ -1,5 +1,4 @@
-﻿using CraftableCartography.Items.Compass;
-using CraftableCartography.Items.Sextant;
+﻿using CraftableCartography.Items.Sextant;
 using CraftableCartography.Lib;
 using HarmonyLib;
 using Newtonsoft.Json;
@@ -45,7 +44,6 @@ namespace CraftableCartography
         {
             base.Start(api);
 
-            api.RegisterItemClass("compass", typeof(Compass));
             api.RegisterItemClass("sextant", typeof(Sextant));
 
             api.Network.RegisterChannel(NetChannel)

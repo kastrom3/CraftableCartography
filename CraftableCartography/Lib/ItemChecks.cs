@@ -1,5 +1,6 @@
 ﻿using Vintagestory.API.Client;
 using Vintagestory.API.Common;
+using Vintagestory.API.Config;
 using static CraftableCartography.Lib.CCConstants;
 
 namespace CraftableCartography.Lib
@@ -7,8 +8,9 @@ namespace CraftableCartography.Lib
     public static class ItemChecks
     {
         public const string jpsCode = "jps";
+        public const string primitiveCompassCode = "primitivecompass";
+        public const string CompassCode = "compass";
         public const string temporalCompassCode = "compasstemporal";
-        public const string temporalSextantCode = "sextanttemporal";
         public const string mapCode = "map";
         public const string modDomain = "craftablecartography";
 
@@ -33,11 +35,55 @@ namespace CraftableCartography.Lib
 
             return false;
         }
-        public static bool HasTemporalSextant(IPlayer player)
+
+        // Измененный метод для проверки предмета в руке
+        private static bool ItemCheckInHand(IPlayer player, string itemCode, string domain)
+        {
+            // Проверяем правую руку
+            var activeSlot = player.InventoryManager.ActiveHotbarSlot;
+            if (IsItemMatch(activeSlot?.Itemstack, itemCode, domain))
+            {
+                return true;
+            }
+
+            // Проверяем левую руку
+            var leftHandSlot = player.Entity.LeftHandItemSlot;
+            if (IsItemMatch(leftHandSlot?.Itemstack, itemCode, domain))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        // Универсальный метод для проверки соответствия предмета
+        private static bool IsItemMatch(ItemStack itemstack, string itemCode, string domain)
+        {
+            if (itemstack?.Item == null) return false;
+
+            return itemstack.Item.Code.FirstCodePart() == itemCode && itemstack.Item.Code.Domain == domain;
+        }
+
+        // Метод для проверки наличия предмета в слоте шлема
+        private static bool ItemCheckInHelmetSlot(IPlayer player, string itemCode, string domain)
+        {
+            var helmetSlot = player.InventoryManager.GetOwnInventory(GlobalConstants.characterInvClassName)[12]; // Слот шлема
+            return IsItemMatch(helmetSlot?.Itemstack, itemCode, domain);
+        }
+
+        public static bool HasPrimitiveCompass(IPlayer player)
         {
             if (player.Entity.Api.Side == EnumAppSide.Client)
                 if (((ICoreClientAPI)player.Entity.Api).World.Player == player)
-                    return GenericItemCheck(player, temporalSextantCode, modDomain);
+                    return ItemCheckInHand(player, primitiveCompassCode, modDomain);
+            return false;
+        }
+
+        public static bool HasCompass(IPlayer player)
+        {
+            if (player.Entity.Api.Side == EnumAppSide.Client)
+                if (((ICoreClientAPI)player.Entity.Api).World.Player == player)
+                    return ItemCheckInHand(player, CompassCode, modDomain);
             return false;
         }
 
@@ -45,7 +91,7 @@ namespace CraftableCartography.Lib
         {
             if (player.Entity.Api.Side == EnumAppSide.Client)
                 if (((ICoreClientAPI)player.Entity.Api).World.Player == player)
-                    return GenericItemCheck(player, temporalCompassCode, modDomain);
+                    return ItemCheckInHand(player, temporalCompassCode, modDomain);
             return false;
         }
 
@@ -62,14 +108,14 @@ namespace CraftableCartography.Lib
             {
                 if (((ICoreClientAPI)player.Entity.Api).World.Player == player)
                 {
-                    return GenericItemCheck(player, jpsCode, modDomain);
+                    return ItemCheckInHelmetSlot(player, jpsCode, modDomain);
                 } else
                 {
                     return player.Entity.WatchedAttributes.GetBool(hasJPSAttr);
                 }
             } else if (player.Entity.Api.Side == EnumAppSide.Server)
             {
-                return GenericItemCheck(player, jpsCode, modDomain);
+                return ItemCheckInHelmetSlot(player, jpsCode, modDomain);
             }
             return false;
         }

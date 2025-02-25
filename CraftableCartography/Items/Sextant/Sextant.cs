@@ -48,26 +48,66 @@ namespace CraftableCartography.Items.Sextant
         {
             if (byEntity.Api.Side == EnumAppSide.Client)
             {
-                moveVar += lastPos.DistanceTo(byEntity.Pos) * 2;
+                // Получаем позицию игрока
+                BlockPos playerPos = byEntity.Pos.AsBlockPos;
 
-                double varThisStep = (float)Math.Min(maxVar / Math.Pow(secondsUsed - moveVar, 5), maxVar);
+                // Получаем уровень солнечного света
+                int sunLightLevel = api.World.BlockAccessor.GetLightLevel(playerPos, EnumLightLevelType.OnlySunLight);
 
-                randomX.avg = (float)(byEntity.Pos.X - api.World.DefaultSpawnPosition.X);
-                randomY.avg = (float)byEntity.Pos.Y;
-                randomZ.avg = (float)(byEntity.Pos.Z - api.World.DefaultSpawnPosition.Z);
+                // Проверяем, находится ли игрок в тени
+                bool isInShadow = sunLightLevel < 22; // Порог тени (можно настроить)
 
-                randomX.var = (float)varThisStep;
-                randomY.var = (float)varThisStep;
-                randomZ.var = (float)varThisStep;
+                float timeOfDay = api.World.Calendar.HourOfDay;
+                bool isDayTime = timeOfDay >= 6 && timeOfDay < 19; // День с 6 утра до 6 вечера
 
-                string text =
-                    Math.Round(randomX.nextFloat()).ToString() + ", " +
-                    Math.Round(randomY.nextFloat()).ToString() + ", " +
-                    Math.Round(randomZ.nextFloat());
+                // Проверка на дождь
+                bool isRaining = api.World.BlockAccessor.GetClimateAt(playerPos, EnumGetClimateMode.NowValues).Rainfall > 0.1f; // Предполагаем, что дождь идет, если Rainfall больше 0.1
 
-                gui.SetText(text);
+                if (isInShadow || !isDayTime || isRaining)
+                {
+                    gui.SetText("???, ???, ???");
+                }
+                else
+                {
+                    // Проверяем движение игрока
+                    double distanceMoved = lastPos.DistanceTo(byEntity.Pos);
+                    bool isMoving = distanceMoved > 0.1; // Порог движения (можно настроить)
 
-                lastPos = byEntity.Pos.Copy();
+                    // Увеличиваем moveVar при движении (замедляет определение координат)
+                    if (isMoving)
+                    {
+                        moveVar += distanceMoved * 2; // Увеличиваем moveVar пропорционально движению
+                    }
+
+                    // Уменьшаем moveVar со временем, если игрок неподвижен
+                    if (!isMoving)
+                    {
+                        moveVar = Math.Max(0, moveVar - 0.1); // Постепенно уменьшаем moveVar
+                    }
+
+                    // Учитываем moveVar при расчете погрешности
+                    double varThisStep = (float)Math.Min(maxVar / Math.Pow(secondsUsed - moveVar, 5), maxVar);
+
+                    // Убедимся, что varThisStep не становится отрицательным
+                    if (varThisStep < 0) varThisStep = maxVar;
+
+                    randomX.avg = (float)(byEntity.Pos.X - api.World.DefaultSpawnPosition.X);
+                    randomY.avg = (float)byEntity.Pos.Y;
+                    randomZ.avg = (float)(byEntity.Pos.Z - api.World.DefaultSpawnPosition.Z);
+
+                    randomX.var = (float)varThisStep;
+                    randomY.var = (float)varThisStep;
+                    randomZ.var = (float)varThisStep;
+
+                    string text =
+                        Math.Round(randomX.nextFloat()).ToString() + ", " +
+                        Math.Round(randomY.nextFloat()).ToString() + ", " +
+                        Math.Round(randomZ.nextFloat());
+
+                    gui.SetText(text);
+
+                    lastPos = byEntity.Pos.Copy();
+                }
             }
 
             return true;

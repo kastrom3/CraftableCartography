@@ -4,21 +4,22 @@
   "height": 3,
   "ingredients": {
     "G": {
-      "type": "block",
-      "code": "game:glassslab-plain-*"
+        "type": "block",
+        "code": "game:glassslab-plain-*"
     },
     "N": {
-      "type": "item",
-      "code": "game:nugget-*"
+        "type": "item",
+        "code": "game:nugget-*",
+        "allowedVariants": [ "hematite", "limonite", "magnetite" ]
     },
     "B": {
       "type": "block",
       "code": "game:bowl-fired"
     },
     "P": {
-      "type": "item",
-      "code": "compassframe-*",
-      "name": "frame"
+        "type": "item",
+        "code": "compassframe-*",
+        "name": "frame"
     }
   },
   "attributes": {

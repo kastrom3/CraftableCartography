@@ -1,59 +1,70 @@
 {
-  "code": "map",
-  "creativeinventory": {
-    "general": [ "*" ],
-    "navigation": [ "*" ]
-  },
-  "shape": {
-    "base": "game:item/lore/map-treasure"
-  },
-  "guiTransform": {
-    "translation": {
-      "x": 0,
-      "y": 0,
-      "z": 0
+    "code": "map",
+	"class": "ItemBook",
+    "creativeinventory": {
+        "general": [ "*" ],
+        "items": [ "*" ],
+        "navigation": [ "*" ]
     },
-    "rotation": {
-      "x": 59,
-      "y": 24,
-      "z": 37
+    "shape": {
+        "base": "game:item/lore/map-treasure"
     },
-    "origin": {
-      "x": 0.1,
-      "y": -0.2,
-      "z": 0
+    "textures": {
+        "map-treasures": { "base": "game:item/lore/map1" }
     },
-    "scale": 1.31
-  },
-  "tpHandTransform": {
-    "translation": {
-      "x": -1.2,
-      "y": -1.5,
-      "z": -0.7
+    "behaviors": [
+        {
+            "name": "GroundStorable",
+            "properties": {
+                "layout": "Quadrants",
+                "collisionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 0.125, "z2": 1 }
+            }
+        }
+    ],
+	"storageFlags": 257,
+	"heldTpIdleAnimation": "holdinglanternrighthand",
+	"heldLeftTpIdleAnimation": "holdinglanternlefthand",
+	"maxstacksize": 1,
+    "attributes": {
+        "rolledShape": "craftablecartography:scroll",
+        "displaycaseable": true,
+        "scrollrackable": true,
+        "shelvable": true,
+        "editable": false,
+        "readable": false,
+        "maxPageCount": 0,
+        "groundStorageTransform": {
+            "rotation": { "x": 0, "y": 35, "z": 0 }
+        },
+        "onscrollrackTransform": {
+            "translation": { "x": -0.5, "y": -0.18, "z": 0.48 },
+            "rotation": { "x": -45, "y": 0, "z": 0 },
+            "origin": { "x": 0.5, "y": 0.1, "z": 0.5 }
+        },
+        "onshelfTransform": {
+            "translation": { "x": 0, "y": 0, "z": -0.1 },
+            "rotation": { "x": 0, "y": 15, "z": 0 } }
     },
-    "rotation": {
-      "x": -23,
-      "y": 180,
-      "z": 98
+    "guiTransform": {
+        "translation": { "x": 0, "y": 0, "z": 0 },
+        "rotation": { "x": 59, "y": 24, "z": 37 },
+        "origin": { "x": 0.1, "y": -0.2, "z": 0 },
+        "scale": 1.31
     },
-    "scale": 0.42
-  },
-  "groundTransform": {
-    "translation": {
-      "x": 0,
-      "y": 0.1,
-      "z": -0
+    "tpHandTransform": {
+        "translation": { "x": -1.2, "y": -1.5, "z": -0.7 },
+        "rotation": { "x": -23, "y": 180, "z": 98 },
+        "scale": 0.42
     },
-    "rotation": {
-      "x": -69,
-      "y": 0,
-      "z": 0
-    },
-    "origin": {
-      "x": 0.5,
-      "y": 0.5,
-      "z": 0.5299
-    },
-    "scale": 2.11
-  }
+	"tpOffHandTransform": {
+		"translation": { "x": -1.2, "y": -1.5, "z": -1.6 },
+		"rotation": { "x": 18, "y": 0, "z": -95 },
+		"scale": 0.42
+	},
+    "groundTransform": {
+        "translation": { "x": 0, "y": 0.1, "z": -0 },
+        "rotation": { "x": -69, "y": 0, "z": 0 },
+        "origin": { "x": 0.5, "y": 0.5, "z": 0.32 },
+        "scale": 2.3
+    }
 }

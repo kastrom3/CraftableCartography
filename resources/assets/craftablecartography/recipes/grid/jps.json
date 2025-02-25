@@ -1,44 +1,45 @@
 {
-  "ingredientPattern": "SFC,PGP,KIW",
-  "width": 3,
-  "height": 3,
-  "ingredients": {
-    "S": {
-      "type": "item",
-      "code": "sextanttemporal-*"
+    "ingredientPattern": "LPM,NGC,J_W",
+    "width": 3,
+    "height": 3,
+    "ingredients": {
+        "L": {
+            "type": "item",
+            "code": "game:leather-normal-plain",
+            "quantity": 3
+        },
+        "P": {
+            "type": "item",
+            "code": "game:metalplate-cupronickel"
+        },
+        "M": {
+            "type": "block",
+            "code": "game:metal-parts"
+        },
+        "N": {
+            "type": "item",
+            "code": "game:nightvisionupgrades-nightvisionlens2"
+        },
+        "G": {
+            "type": "item",
+            "code": "game:gear-temporal"
+        },
+        "C": {
+            "type": "item",
+            "code": "compasstemporal-*"
+        },
+        "J": {
+            "type": "item",
+            "code": "game:jonasparts-cylinder02"
+        },
+        "W": {
+            "type": "item",
+            "code": "game:wrench-*",
+            "isTool": true
+        }
     },
-    "C": {
-      "type": "item",
-      "code": "compasstemporal-*"
-    },
-    "P": {
-      "type": "item",
-      "code": "game:metalplate-silver"
-    },
-    "I": {
-      "type": "item",
-      "code": "game:metalnailsandstrips-gold"
-    },
-    "F": {
-      "type": "item",
-      "code": "game:metalnailsandstrips-*",
-      "allowedVariants": [ "iron", "meteoriciron", "steel" ]
-    },
-    "K": {
-      "type": "item",
-      "code": "game:knife-*"
-    },
-    "W": {
-      "type": "item",
-      "code": "game:wrench-*"
-    },
-    "G": {
-      "type": "item",
-      "code": "game:gear-temporal"
+    "output": {
+        "type": "item",
+        "code": "jps"
     }
-  },
-  "output": {
-    "type": "item",
-    "code": "jps"
-  }
 }

@@ -1,3 +1,4 @@
-- Fix: JPS & channel requirement to see other players on map should work now
-- Increased compass damping slightly
-- Added degrees symbol to compass display
+- Sextant
+	- Now can't determine coordinates in the shadows, rains and from 7 pm to 6 am
+	- When moving, the speed of determining coordinates does not increase, but slows down.
+- Приметивный компасс отображает только направление света

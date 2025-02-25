@@ -31,7 +31,7 @@ namespace CraftableCartography.Patches
 
             string coords = "";
 
-            if (HasTemporalSextant(capi.World.Player) || HasJPS(capi.World.Player)) coords += string.Concat(new string[]
+            if (HasTemporalCompass(capi.World.Player) || HasJPS(capi.World.Player)) coords += string.Concat(new string[]
             {
                 pos.X.ToString(),
                 ", ",
@@ -39,7 +39,13 @@ namespace CraftableCartography.Patches
                 ", ",
                 pos.Z.ToString(),
                 "\n" });
-            if (HasTemporalCompass(capi.World.Player) || HasJPS(capi.World.Player))
+            bool hasAdvancedCompass = HasCompass(capi.World.Player) || HasJPS(capi.World.Player) || HasTemporalCompass(capi.World.Player);
+
+            if (!hasAdvancedCompass && HasPrimitiveCompass(capi.World.Player))
+            {
+                coords += facing; // Только направление, без градусов, если нет продвинутого компаса
+            }
+            else if (hasAdvancedCompass)
             {
                 float yawDeg = (float)Math.Round(180 - capi.World.Player.Entity.Pos.Yaw * (180 / GameMath.PI));
 

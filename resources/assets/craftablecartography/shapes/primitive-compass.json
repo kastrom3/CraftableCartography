@@ -1,0 +1,175 @@
+{
+	"editor": {
+		"collapsedPaths": "",
+		"allAngles": false,
+		"entityTextureMode": false
+	},
+	"textureWidth": 16,
+	"textureHeight": 16,
+	"textureSizes": {
+	},
+	"textures": {
+		"ore": "game:item/resource/nugget/uranium",
+		"ceramic": "game:block/clay/ceramic",
+		"quartz": "game:block/glass/quartz",
+		"content": "game:block/liquid/waterportion"
+	},
+	"elements": [
+		{
+			"name": "origin",
+			"from": [ 6.8, 6.0, 6.3 ],
+			"to": [ 6.8, 6.0, 6.3 ],
+			"rotationOrigin": [ 8.0, 0.0, 8.0 ],
+			"faces": {
+			},
+			"children": [
+				{
+					"name": "native2",
+					"from": [ 0.5, -5.5, 1.0 ],
+					"to": [ 2.0, -4.5, 2.5 ],
+					"rotationOrigin": [ 2.0, -5.0, 2.0 ],
+					"faces": {
+						"north": { "texture": "#ore", "uv": [ 8.0, 11.5, 9.5, 12.5 ] },
+						"east": { "texture": "#ore", "uv": [ 14.0, 7.0, 15.0, 8.5 ], "rotation": 90 },
+						"south": { "texture": "#ore", "uv": [ 10.5, 2.5, 12.0, 3.5 ] },
+						"west": { "texture": "#ore", "uv": [ 6.5, 2.0, 8.0, 3.0 ] },
+						"up": { "texture": "#ore", "uv": [ 0.0, 0.0, 1.5, 1.5 ] },
+						"down": { "texture": "#ore", "uv": [ 3.0, 11.0, 4.5, 12.5 ], "rotation": 90 }
+					}
+				},
+				{
+					"name": "native5",
+					"from": [ 1.0, -5.5, 0.5 ],
+					"to": [ 2.0, -4.5, 1.0 ],
+					"rotationOrigin": [ 2.0, -5.0, 2.0 ],
+					"faces": {
+						"north": { "texture": "#ore", "uv": [ 4.0, 5.5, 5.0, 6.5 ] },
+						"east": { "texture": "#ore", "uv": [ 5.5, 1.5, 6.0, 2.5 ] },
+						"west": { "texture": "#ore", "uv": [ 13.5, 11.5, 14.0, 12.5 ] },
+						"up": { "texture": "#ore", "uv": [ 5.0, 5.5, 6.0, 6.0 ] },
+						"down": { "texture": "#ore", "uv": [ 3.0, 14.5, 4.0, 15.0 ] }
+					}
+				},
+				{
+					"name": "native8",
+					"from": [ 1.0, -4.5, 1.0 ],
+					"to": [ 1.5, -4.0, 1.5 ],
+					"rotationOrigin": [ 3.0, -4.0, 0.0 ],
+					"faces": {
+						"north": { "texture": "#ore", "uv": [ 15.0, 15.0, 15.5, 15.5 ] },
+						"east": { "texture": "#ore", "uv": [ 9.0, 8.0, 9.5, 8.5 ] },
+						"west": { "texture": "#ore", "uv": [ 4.0, 15.0, 4.5, 15.5 ] },
+						"up": { "texture": "#ore", "uv": [ 11.5, 11.5, 12.0, 12.0 ] }
+					}
+				},
+				{
+					"name": "native3",
+					"from": [ 1.0, -4.5, 1.5 ],
+					"to": [ 2.0, -4.0, 2.5 ],
+					"rotationOrigin": [ 2.0, -5.0, 2.0 ],
+					"faces": {
+						"north": { "texture": "#ore", "uv": [ 14.0, 2.5, 15.0, 3.0 ] },
+						"east": { "texture": "#ore", "uv": [ 12.5, 11.5, 13.5, 12.0 ] },
+						"south": { "texture": "#ore", "uv": [ 10.0, 8.5, 11.0, 9.0 ] },
+						"west": { "texture": "#ore", "uv": [ 5.0, 3.0, 6.0, 3.5 ] },
+						"up": { "texture": "#ore", "uv": [ 14.0, 14.0, 15.0, 15.0 ] }
+					}
+				},
+				{
+					"name": "native6",
+					"from": [ 0.5, -5.5, 2.5 ],
+					"to": [ 1.5, -4.5, 3.0 ],
+					"rotationOrigin": [ 2.0, -5.0, 2.0 ],
+					"faces": {
+						"east": { "texture": "#ore", "uv": [ 7.5, 4.0, 8.0, 5.0 ] },
+						"south": { "texture": "#ore", "uv": [ 3.5, 2.0, 4.5, 3.0 ] },
+						"west": { "texture": "#ore", "uv": [ 5.0, 3.0, 5.5, 4.0 ] },
+						"up": { "texture": "#ore", "uv": [ 10.0, 8.0, 11.0, 8.5 ] },
+						"down": { "texture": "#ore", "uv": [ 10.0, 10.0, 11.0, 10.5 ] }
+					}
+				}
+			]
+		},
+		{
+			"name": "Bowl 1 floor",
+			"from": [ 6.5, 0.0, 6.5 ],
+			"to": [ 9.5, 1.0, 9.5 ],
+			"faces": {
+				"up": { "texture": "#ceramic", "uv": [ 2.0, 9.0, 5.0, 12.0 ] },
+				"down": { "texture": "#ceramic", "uv": [ 5.5, 2.0, 8.5, 5.0 ] }
+			},
+			"children": [
+				{
+					"name": "N 1",
+					"from": [ -1.0, 0.0, -1.0 ],
+					"to": [ 4.0, 2.0, 0.0 ],
+					"faces": {
+						"north": { "texture": "#ceramic", "uv": [ 9.5, 6.0, 14.5, 8.0 ] },
+						"east": { "texture": "#ceramic", "uv": [ 3.5, 7.5, 4.5, 9.5 ] },
+						"south": { "texture": "#ceramic", "uv": [ 3.0, 8.5, 8.0, 10.5 ] },
+						"west": { "texture": "#ceramic", "uv": [ 1.0, 10.5, 2.0, 12.5 ] },
+						"up": { "texture": "#ceramic", "uv": [ 9.0, 2.5, 14.0, 3.5 ] },
+						"down": { "texture": "#ceramic", "uv": [ 4.0, 7.5, 9.0, 8.5 ] }
+					}
+				},
+				{
+					"name": "S 1",
+					"from": [ -1.0, 0.0, 3.0 ],
+					"to": [ 4.0, 2.0, 4.0 ],
+					"faces": {
+						"north": { "texture": "#ceramic", "uv": [ 6.5, 1.0, 11.5, 3.0 ] },
+						"east": { "texture": "#ceramic", "uv": [ 12.0, 11.5, 13.0, 13.5 ] },
+						"south": { "texture": "#ceramic", "uv": [ 2.5, 6.0, 7.5, 8.0 ] },
+						"west": { "texture": "#ceramic", "uv": [ 13.0, 8.5, 14.0, 10.5 ] },
+						"up": { "texture": "#ceramic", "uv": [ 6.5, 14.5, 11.5, 15.5 ] },
+						"down": { "texture": "#ceramic", "uv": [ 7.5, 0.5, 12.5, 1.5 ] }
+					}
+				},
+				{
+					"name": "W 1",
+					"from": [ -1.0, 0.0, 0.0 ],
+					"to": [ 0.0, 2.0, 3.0 ],
+					"faces": {
+						"east": { "texture": "#ceramic", "uv": [ 0.5, 3.0, 3.5, 5.0 ] },
+						"west": { "texture": "#ceramic", "uv": [ 5.5, 10.0, 8.5, 12.0 ] },
+						"up": { "texture": "#ceramic", "uv": [ 4.5, 5.5, 5.5, 8.5 ] },
+						"down": { "texture": "#ceramic", "uv": [ 8.0, 8.5, 9.0, 11.5 ] }
+					}
+				},
+				{
+					"name": "E 1",
+					"from": [ 3.0, 0.0, 0.0 ],
+					"to": [ 4.0, 2.0, 3.0 ],
+					"faces": {
+						"east": { "texture": "#ceramic", "uv": [ 5.0, 9.5, 8.0, 11.5 ] },
+						"west": { "texture": "#ceramic", "uv": [ 1.5, 6.0, 4.5, 8.0 ] },
+						"up": { "texture": "#ceramic", "uv": [ 12.5, 2.5, 13.5, 5.5 ] },
+						"down": { "texture": "#ceramic", "uv": [ 8.0, 1.5, 9.0, 4.5 ] }
+					}
+				}
+			]
+		},
+		{
+			"name": "Content",
+			"from": [ 6.5, 0.0, 6.5 ],
+			"to": [ 9.5, 1.9, 9.5 ],
+			"renderPass": 4,
+			"rotationOrigin": [ 8.0, 0.0, 8.0 ],
+			"faces": {
+				"up": { "texture": "#content", "uv": [ 0.5, 1.0, 3.5, 4.0 ] }
+			}
+		},
+		{
+			"name": "glass",
+			"from": [ 5.5, 2.0, 5.5 ],
+			"to": [ 10.5, 2.5, 10.5 ],
+			"rotationOrigin": [ 5.0, 2.0, 5.0 ],
+			"faces": {
+				"north": { "texture": "#quartz", "uv": [ 7.0, 7.5, 12.0, 8.0 ] },
+				"east": { "texture": "#quartz", "uv": [ 6.0, 7.5, 11.0, 8.0 ] },
+				"south": { "texture": "#quartz", "uv": [ 7.0, 6.0, 12.0, 6.5 ] },
+				"west": { "texture": "#quartz", "uv": [ 2.5, 6.0, 7.5, 6.5 ] },
+				"up": { "texture": "#quartz", "uv": [ 7.0, 11.0, 12.0, 16.0 ] }
+			}
+		}
+	]}

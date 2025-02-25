@@ -1,333 +1,503 @@
 [
-  {
-    "__comment": "turns out you can't have multiple variants in recipes, making this shit necessary :[",
-    "ingredientPattern": "_G_,PNW,_Q_",
-    "width": 3,
-    "height": 3,
-    "ingredients": {
-      "P": {
-        "type": "item",
-        "code": "compassframe-copper"
-      },
-      "Q": {
-        "type": "item",
-        "code": "compassframe-*",
-        "name": "inner"
-      },
-      "G": {
-        "type": "item",
-        "code": "game:gear-temporal"
-      },
-      "W": {
-        "type": "item",
-        "code": "game:wrench-*",
-        "isTool": true
-      },
-      "N": {
-        "type": "item",
-        "code": "game:nugget-*"
-      }
+    {
+        "__comment": "turns out you can't have multiple variants in recipes, making this shit necessary :[",
+        "ingredientPattern": "TSJ,RCG,MWL",
+        "width": 3,
+        "height": 3,
+        "ingredients": {
+            "T": {
+                "type": "item",
+                "code": "game:jonasparts-tank02"
+            },
+            "S": {
+                "type": "item",
+                "code": "sextantparts-copper"
+            },
+            "J": {
+                "type": "item",
+                "code": "game:jonasparts-cylinder02"
+            },
+            "R": {
+                "type": "item",
+                "code": "game:gear-rusty",
+                "quantity": 3
+            },
+            "C": {
+                "type": "item",
+                "code": "compassframe-*",
+                "name": "inner"
+            },
+            "G": {
+                "type": "item",
+                "code": "game:gear-temporal"
+            },
+            "M": {
+                "type": "block",
+                "code": "game:metal-parts"
+            },
+            "W": {
+                "type": "item",
+                "code": "game:wrench-*",
+                "isTool": true
+            },
+            "L": {
+                "type": "block",
+                "code": "game:glassslab-plain-*"
+            }
+        },
+        "output": {
+            "type": "item",
+            "code": "compasstemporal-copper-{inner}"
+        }
     },
-    "output": {
-      "type": "item",
-      "code": "compasstemporal-copper-{inner}"
-    }
-  },
-  {
-    "ingredientPattern": "_G_,PNW,_Q_",
-    "width": 3,
-    "height": 3,
-    "ingredients": {
-      "P": {
-        "type": "item",
-        "code": "compassframe-tinbronze"
-      },
-      "Q": {
-        "type": "item",
-        "code": "compassframe-*",
-        "name": "inner"
-      },
-      "G": {
-        "type": "item",
-        "code": "game:gear-temporal"
-      },
-      "W": {
-        "type": "item",
-        "code": "game:wrench-*",
-        "isTool": true
-      },
-      "N": {
-        "type": "item",
-        "code": "game:nugget-*"
-      }
+    {
+        "ingredientPattern": "TSJ,RCG,MWL",
+        "width": 3,
+        "height": 3,
+        "ingredients": {
+            "T": {
+                "type": "item",
+                "code": "game:jonasparts-tank02"
+            },
+            "S": {
+                "type": "item",
+                "code": "sextantparts-tinbronze"
+            },
+            "J": {
+                "type": "item",
+                "code": "game:jonasparts-cylinder02"
+            },
+            "R": {
+                "type": "item",
+                "code": "game:gear-rusty",
+                "quantity": 3
+            },
+            "C": {
+                "type": "item",
+                "code": "compassframe-*",
+                "name": "inner"
+            },
+            "G": {
+                "type": "item",
+                "code": "game:gear-temporal"
+            },
+            "M": {
+                "type": "block",
+                "code": "game:metal-parts"
+            },
+            "W": {
+                "type": "item",
+                "code": "game:wrench-*",
+                "isTool": true
+            },
+            "L": {
+                "type": "block",
+                "code": "game:glassslab-plain-*"
+            }
+        },
+        "output": {
+            "type": "item",
+            "code": "compasstemporal-tinbronze-{inner}"
+        }
     },
-    "output": {
-      "type": "item",
-      "code": "compasstemporal-tinbronze-{inner}"
-    }
-  },
-  {
-    "ingredientPattern": "_G_,PNW,_Q_",
-    "width": 3,
-    "height": 3,
-    "ingredients": {
-      "P": {
-        "type": "item",
-        "code": "compassframe-blackbronze"
-      },
-      "Q": {
-        "type": "item",
-        "code": "compassframe-*",
-        "name": "inner"
-      },
-      "G": {
-        "type": "item",
-        "code": "game:gear-temporal"
-      },
-      "W": {
-        "type": "item",
-        "code": "game:wrench-*",
-        "isTool": true
-      },
-      "N": {
-        "type": "item",
-        "code": "game:nugget-*"
-      }
+    {
+        "ingredientPattern": "TSJ,RCG,MWL",
+        "width": 3,
+        "height": 3,
+        "ingredients": {
+            "T": {
+                "type": "item",
+                "code": "game:jonasparts-tank02"
+            },
+            "S": {
+                "type": "item",
+                "code": "sextantparts-blackbronze"
+            },
+            "J": {
+                "type": "item",
+                "code": "game:jonasparts-cylinder02"
+            },
+            "R": {
+                "type": "item",
+                "code": "game:gear-rusty",
+                "quantity": 3
+            },
+            "C": {
+                "type": "item",
+                "code": "compassframe-*",
+                "name": "inner"
+            },
+            "G": {
+                "type": "item",
+                "code": "game:gear-temporal"
+            },
+            "M": {
+                "type": "block",
+                "code": "game:metal-parts"
+            },
+            "W": {
+                "type": "item",
+                "code": "game:wrench-*",
+                "isTool": true
+            },
+            "L": {
+                "type": "block",
+                "code": "game:glassslab-plain-*"
+            }
+        },
+        "output": {
+            "type": "item",
+            "code": "compasstemporal-blackbronze-{inner}"
+        }
     },
-    "output": {
-      "type": "item",
-      "code": "compasstemporal-blackbronze-{inner}"
-    }
-  },
-  {
-    "ingredientPattern": "_G_,PNW,_Q_",
-    "width": 3,
-    "height": 3,
-    "ingredients": {
-      "P": {
-        "type": "item",
-        "code": "compassframe-bismuthbronze"
-      },
-      "Q": {
-        "type": "item",
-        "code": "compassframe-*",
-        "name": "inner"
-      },
-      "G": {
-        "type": "item",
-        "code": "game:gear-temporal"
-      },
-      "W": {
-        "type": "item",
-        "code": "game:wrench-*",
-        "isTool": true
-      },
-      "N": {
-        "type": "item",
-        "code": "game:nugget-*"
-      }
+    {
+        "ingredientPattern": "TSJ,RCG,MWL",
+        "width": 3,
+        "height": 3,
+        "ingredients": {
+            "T": {
+                "type": "item",
+                "code": "game:jonasparts-tank02"
+            },
+            "S": {
+                "type": "item",
+                "code": "sextantparts-bismuthbronze"
+            },
+            "J": {
+                "type": "item",
+                "code": "game:jonasparts-cylinder02"
+            },
+            "R": {
+                "type": "item",
+                "code": "game:gear-rusty",
+                "quantity": 3
+            },
+            "C": {
+                "type": "item",
+                "code": "compassframe-*",
+                "name": "inner"
+            },
+            "G": {
+                "type": "item",
+                "code": "game:gear-temporal"
+            },
+            "M": {
+                "type": "block",
+                "code": "game:metal-parts"
+            },
+            "W": {
+                "type": "item",
+                "code": "game:wrench-*",
+                "isTool": true
+            },
+            "L": {
+                "type": "block",
+                "code": "game:glassslab-plain-*"
+            }
+        },
+        "output": {
+            "type": "item",
+            "code": "compasstemporal-bismuthbronze-{inner}"
+        }
     },
-    "output": {
-      "type": "item",
-      "code": "compasstemporal-bismuthbronze-{inner}"
-    }
-  },
-  {
-    "ingredientPattern": "_G_,PNW,_Q_",
-    "width": 3,
-    "height": 3,
-    "ingredients": {
-      "P": {
-        "type": "item",
-        "code": "compassframe-brass"
-      },
-      "Q": {
-        "type": "item",
-        "code": "compassframe-*",
-        "name": "inner"
-      },
-      "G": {
-        "type": "item",
-        "code": "game:gear-temporal"
-      },
-      "W": {
-        "type": "item",
-        "code": "game:wrench-*",
-        "isTool": true
-      },
-      "N": {
-        "type": "item",
-        "code": "game:nugget-*"
-      }
+    {
+        "ingredientPattern": "TSJ,RCG,MWL",
+        "width": 3,
+        "height": 3,
+        "ingredients": {
+            "T": {
+                "type": "item",
+                "code": "game:jonasparts-tank02"
+            },
+            "S": {
+                "type": "item",
+                "code": "sextantparts-brass"
+            },
+            "J": {
+                "type": "item",
+                "code": "game:jonasparts-cylinder02"
+            },
+            "R": {
+                "type": "item",
+                "code": "game:gear-rusty",
+                "quantity": 3
+            },
+            "C": {
+                "type": "item",
+                "code": "compassframe-*",
+                "name": "inner"
+            },
+            "G": {
+                "type": "item",
+                "code": "game:gear-temporal"
+            },
+            "M": {
+                "type": "block",
+                "code": "game:metal-parts"
+            },
+            "W": {
+                "type": "item",
+                "code": "game:wrench-*",
+                "isTool": true
+            },
+            "L": {
+                "type": "block",
+                "code": "game:glassslab-plain-*"
+            }
+        },
+        "output": {
+            "type": "item",
+            "code": "compasstemporal-brass-{inner}"
+        }
     },
-    "output": {
-      "type": "item",
-      "code": "compasstemporal-brass-{inner}"
-    }
-  },
-  {
-    "ingredientPattern": "_G_,PNW,_Q_",
-    "width": 3,
-    "height": 3,
-    "ingredients": {
-      "P": {
-        "type": "item",
-        "code": "compassframe-iron"
-      },
-      "Q": {
-        "type": "item",
-        "code": "compassframe-*",
-        "name": "inner"
-      },
-      "G": {
-        "type": "item",
-        "code": "game:gear-temporal"
-      },
-      "W": {
-        "type": "item",
-        "code": "game:wrench-*",
-        "isTool": true
-      },
-      "N": {
-        "type": "item",
-        "code": "game:nugget-*"
-      }
+    {
+        "ingredientPattern": "TSJ,RCG,MWL",
+        "width": 3,
+        "height": 3,
+        "ingredients": {
+            "T": {
+                "type": "item",
+                "code": "game:jonasparts-tank02"
+            },
+            "S": {
+                "type": "item",
+                "code": "sextantparts-iron"
+            },
+            "J": {
+                "type": "item",
+                "code": "game:jonasparts-cylinder02"
+            },
+            "R": {
+                "type": "item",
+                "code": "game:gear-rusty",
+                "quantity": 3
+            },
+            "C": {
+                "type": "item",
+                "code": "compassframe-*",
+                "name": "inner"
+            },
+            "G": {
+                "type": "item",
+                "code": "game:gear-temporal"
+            },
+            "M": {
+                "type": "block",
+                "code": "game:metal-parts"
+            },
+            "W": {
+                "type": "item",
+                "code": "game:wrench-*",
+                "isTool": true
+            },
+            "L": {
+                "type": "block",
+                "code": "game:glassslab-plain-*"
+            }
+        },
+        "output": {
+            "type": "item",
+            "code": "compasstemporal-iron-{inner}"
+        }
     },
-    "output": {
-      "type": "item",
-      "code": "compasstemporal-iron-{inner}"
-    }
-  },
-  {
-    "ingredientPattern": "_G_,PNW,_Q_",
-    "width": 3,
-    "height": 3,
-    "ingredients": {
-      "P": {
-        "type": "item",
-        "code": "compassframe-steel"
-      },
-      "Q": {
-        "type": "item",
-        "code": "compassframe-*",
-        "name": "inner"
-      },
-      "G": {
-        "type": "item",
-        "code": "game:gear-temporal"
-      },
-      "W": {
-        "type": "item",
-        "code": "game:wrench-*",
-        "isTool": true
-      },
-      "N": {
-        "type": "item",
-        "code": "game:nugget-*"
-      }
+    {
+        "ingredientPattern": "TSJ,RCG,MWL",
+        "width": 3,
+        "height": 3,
+        "ingredients": {
+            "T": {
+                "type": "item",
+                "code": "game:jonasparts-tank02"
+            },
+            "S": {
+                "type": "item",
+                "code": "sextantparts-steel"
+            },
+            "J": {
+                "type": "item",
+                "code": "game:jonasparts-cylinder02"
+            },
+            "R": {
+                "type": "item",
+                "code": "game:gear-rusty",
+                "quantity": 3
+            },
+            "C": {
+                "type": "item",
+                "code": "compassframe-*",
+                "name": "inner"
+            },
+            "G": {
+                "type": "item",
+                "code": "game:gear-temporal"
+            },
+            "M": {
+                "type": "block",
+                "code": "game:metal-parts"
+            },
+            "W": {
+                "type": "item",
+                "code": "game:wrench-*",
+                "isTool": true
+            },
+            "L": {
+                "type": "block",
+                "code": "game:glassslab-plain-*"
+            }
+        },
+        "output": {
+            "type": "item",
+            "code": "compasstemporal-steel-{inner}"
+        }
     },
-    "output": {
-      "type": "item",
-      "code": "compasstemporal-steel-{inner}"
-    }
-  },
-  {
-    "ingredientPattern": "_G_,PNW,_Q_",
-    "width": 3,
-    "height": 3,
-    "ingredients": {
-      "P": {
-        "type": "item",
-        "code": "compassframe-silver"
-      },
-      "Q": {
-        "type": "item",
-        "code": "compassframe-*",
-        "name": "inner"
-      },
-      "G": {
-        "type": "item",
-        "code": "game:gear-temporal"
-      },
-      "W": {
-        "type": "item",
-        "code": "game:wrench-*",
-        "isTool": true
-      },
-      "N": {
-        "type": "item",
-        "code": "game:nugget-*"
-      }
+    {
+        "ingredientPattern": "TSJ,RCG,MWL",
+        "width": 3,
+        "height": 3,
+        "ingredients": {
+            "T": {
+                "type": "item",
+                "code": "game:jonasparts-tank02"
+            },
+            "S": {
+                "type": "item",
+                "code": "sextantparts-silver"
+            },
+            "J": {
+                "type": "item",
+                "code": "game:jonasparts-cylinder02"
+            },
+            "R": {
+                "type": "item",
+                "code": "game:gear-rusty",
+                "quantity": 3
+            },
+            "C": {
+                "type": "item",
+                "code": "compassframe-*",
+                "name": "inner"
+            },
+            "G": {
+                "type": "item",
+                "code": "game:gear-temporal"
+            },
+            "M": {
+                "type": "block",
+                "code": "game:metal-parts"
+            },
+            "W": {
+                "type": "item",
+                "code": "game:wrench-*",
+                "isTool": true
+            },
+            "L": {
+                "type": "block",
+                "code": "game:glassslab-plain-*"
+            }
+        },
+        "output": {
+            "type": "item",
+            "code": "compasstemporal-silver-{inner}"
+        }
     },
-    "output": {
-      "type": "item",
-      "code": "compasstemporal-silver-{inner}"
-    }
-  },
-  {
-    "ingredientPattern": "_G_,PNW,_Q_",
-    "width": 3,
-    "height": 3,
-    "ingredients": {
-      "P": {
-        "type": "item",
-        "code": "compassframe-gold"
-      },
-      "Q": {
-        "type": "item",
-        "code": "compassframe-*",
-        "name": "inner"
-      },
-      "G": {
-        "type": "item",
-        "code": "game:gear-temporal"
-      },
-      "W": {
-        "type": "item",
-        "code": "game:wrench-*",
-        "isTool": true
-      },
-      "N": {
-        "type": "item",
-        "code": "game:nugget-*"
-      }
+    {
+        "ingredientPattern": "TSJ,RCG,MWL",
+        "width": 3,
+        "height": 3,
+        "ingredients": {
+            "T": {
+                "type": "item",
+                "code": "game:jonasparts-tank02"
+            },
+            "S": {
+                "type": "item",
+                "code": "sextantparts-gold"
+            },
+            "J": {
+                "type": "item",
+                "code": "game:jonasparts-cylinder02"
+            },
+            "R": {
+                "type": "item",
+                "code": "game:gear-rusty",
+                "quantity": 3
+            },
+            "C": {
+                "type": "item",
+                "code": "compassframe-*",
+                "name": "inner"
+            },
+            "G": {
+                "type": "item",
+                "code": "game:gear-temporal"
+            },
+            "M": {
+                "type": "block",
+                "code": "game:metal-parts"
+            },
+            "W": {
+                "type": "item",
+                "code": "game:wrench-*",
+                "isTool": true
+            },
+            "L": {
+                "type": "block",
+                "code": "game:glassslab-plain-*"
+            }
+        },
+        "output": {
+            "type": "item",
+            "code": "compasstemporal-gold-{inner}"
+        }
     },
-    "output": {
-      "type": "item",
-      "code": "compasstemporal-gold-{inner}"
+    {
+        "ingredientPattern": "TSJ,RCG,MWL",
+        "width": 3,
+        "height": 3,
+        "ingredients": {
+            "T": {
+                "type": "item",
+                "code": "game:jonasparts-tank02"
+            },
+            "S": {
+                "type": "item",
+                "code": "sextantparts-meteoriciron"
+            },
+            "J": {
+                "type": "item",
+                "code": "game:jonasparts-cylinder02"
+            },
+            "R": {
+                "type": "item",
+                "code": "game:gear-rusty",
+                "quantity": 3
+            },
+            "C": {
+                "type": "item",
+                "code": "compassframe-*",
+                "name": "inner"
+            },
+            "G": {
+                "type": "item",
+                "code": "game:gear-temporal"
+            },
+            "M": {
+                "type": "block",
+                "code": "game:metal-parts"
+            },
+            "W": {
+                "type": "item",
+                "code": "game:wrench-*",
+                "isTool": true
+            },
+            "L": {
+                "type": "block",
+                "code": "game:glassslab-plain-*"
+            }
+        },
+        "output": {
+            "type": "item",
+            "code": "compasstemporal-meteoriciron-{inner}"
+        }
     }
-  },
-  {
-    "ingredientPattern": "_G_,PNW,_Q_",
-    "width": 3,
-    "height": 3,
-    "ingredients": {
-      "P": {
-        "type": "item",
-        "code": "compassframe-meteoriciron"
-      },
-      "Q": {
-        "type": "item",
-        "code": "compassframe-*",
-        "name": "inner"
-      },
-      "G": {
-        "type": "item",
-        "code": "game:gear-temporal"
-      },
-      "W": {
-        "type": "item",
-        "code": "game:wrench-*",
-        "isTool": true
-      },
-      "N": {
-        "type": "item",
-        "code": "game:nugget-*"
-      }
-    },
-    "output": {
-      "type": "item",
-      "code": "compasstemporal-meteoriciron-{inner}"
-    }
-  }
 ]

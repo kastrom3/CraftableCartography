@@ -1,73 +1,59 @@
 {
-  "code": "compasstemporal",
-  "creativeinventory": {
-    "general": [ "*" ],
-    "navigation": [ "*" ]
-  },
-  "shape": {
-    "base": "craftablecartography:compasstemporal"
-  },
-  "variantgroups": [
-    {
-      "code": "frameouter",
-      "states": [ "copper", "tinbronze", "blackbronze", "bismuthbronze", "brass", "iron", "meteoriciron", "steel", "silver", "gold" ]
+    "code": "compasstemporal",
+    "creativeinventory": {
+        "general": [ "*" ],
+        "navigation": [ "*" ]
     },
-    {
-      "code": "frameinner",
-      "states": [ "copper", "tinbronze", "blackbronze", "bismuthbronze", "brass", "iron", "meteoriciron", "steel", "silver", "gold" ]
-    }
-  ],
-  "textures": {
-    "tinbronze": { "base": "game:block/metal/ingot/{frameouter}"},
-    "blackbronze": { "base": "game:block/metal/ingot/{frameinner}"}
-  },
-  "guiTransform": {
-    "translation": {
-      "x": 0,
-      "y": 0,
-      "z": 0
+    "shape": {
+        "base": "craftablecartography:compasstemporal"
     },
-    "rotation": {
-      "x": -6,
-      "y": 22,
-      "z": 173
+    "variantgroups": [
+        {
+            "code": "frameouter",
+            "states": [ "copper", "tinbronze", "blackbronze", "bismuthbronze", "brass", "iron", "meteoriciron", "steel", "silver", "gold" ]
+        },
+        {
+            "code": "frameinner",
+            "states": [ "copper", "tinbronze", "blackbronze", "bismuthbronze", "brass", "iron", "meteoriciron", "steel", "silver", "gold" ]
+        }
+    ],
+    "textures": {
+        "tinbronze": { "base": "game:block/metal/ingot/{frameouter}" },
+        "blackbronze": { "base": "game:block/metal/ingot/{frameinner}" }
     },
-    "origin": {
-      "x": 0.3,
-      "y": 0.38,
-      "z": 0
+	"behaviors": [
+		{ "name": "GroundStorable", "ctrlKey": true, "properties": { "layout": "SingleCenter" } }
+	],
+	"storageFlags": 257,
+	"heldTpIdleAnimation": "holdinglanternrighthand",
+	"heldLeftTpIdleAnimation": "holdinglanternlefthand",
+	"maxstacksize": 1,
+	"attributes": {
+		"groundStorageTransform": {
+            "translation": { "x": -0.12, "y": 0, "z": -0.05 },
+			"rotation": { "x": 0, "y": 172, "z": 0 }
+		}
+	},
+	"guiTransform": {
+        "translation": { "x": 6, "y": -16, "z": 0 },
+		"rotation": { "x": -35, "y": 120, "z": -180 },
+        "origin": {"x": 0.5, "y": 0.5, "z": 0.5 },
+        "scale": 2
     },
-    "scale": 1.42
-  },
-  "tpHandTransform": {
-    "translation": {
-      "x": -1.5,
-      "y": -1.8,
-      "z": -1.4
+    "groundTransform": {
+		"rotation": { "x": 0, "y": 0, "z": 0 },
+        "origin": {"x": 0.5, "y": -0.1, "z": 0.5 },
+        "scale": 2.01
     },
-    "rotation": {
-      "x": 0,
-      "y": -43,
-      "z": 18
+    "tpHandTransform": {
+        "translation": { "x": -0.8, "y": -0.6, "z": -0.1 },
+        "rotation": { "x": -90, "y": 0, "z": -180 },
+        "scale": 0.71
     },
-    "scale": 0.36
-  },
-  "groundTransform": {
-    "translation": {
-      "x": 0,
-      "y": 0,
-      "z": 0
-    },
-    "rotation": {
-      "x": -90,
-      "y": 0,
-      "z": 0
-    },
-    "origin": {
-      "x": 0.5,
-      "y": 0.5,
-      "z": 0.5299
-    },
-    "scale": 1.5
-  }
+	"tpOffHandTransform": {
+		"translation": { "x": -0.94, "y": -0.14, "z": -0.75 },
+		"rotation": { "x": -100, "y": 22, "z": -80 },
+		"origin": { "x": 0.5, "y": 0.1, "z": 0.5 },
+		"scale": 0.71
+	}
 }

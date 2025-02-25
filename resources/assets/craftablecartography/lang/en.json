@@ -1,24 +1,24 @@
 {
-  "item-compass-*": "Compass",
-  "itemdesc-compass-*": "Use to see your heading. Takes a second or two for the needle to spin to position.",
+    "item-primitivecompass-*": "Primitive Compass",
+    "itemdesc-primitivecompass-*": "Easy to manufacture, allows you to find out the cardinal directions.",
 
-  "item-sextant-*": "Sextant",
-  "itemdesc-sextant-*": "Use to see your coordinates. Takes a few seconds to home in.",
+    "item-compass-*": "Compass",
+    "itemdesc-compass-*": "Allows you to see your direction.",
 
-  "item-map": "Map",
-  "itemdesc-map": "Allows you to use the map.",
+    "item-sextant-*": "Sextant",
+    "itemdesc-sextant-*": "Use to see your coordinates. Takes a few seconds to home in.",
 
-  "item-compasstemporal-*": "Temporal Compass",
-  "itemdesc-compasstemporal-*": "Allows you to see your direction in real-time, no use required!",
+    "item-map": "Map",
+    "itemdesc-map": "Allows you to use the map.",
 
-  "item-sextanttemporal-*": "Temporal Sextant",
-  "itemdesc-sextanttemporal-*": "Allows you to see your coordinates in real-time, no use required!",
+    "item-compasstemporal-*": "Temporal Compass",
+    "itemdesc-compasstemporal-*": "Allows you to see your direction and coordinates in real-time, no use required!",
 
-  "item-jps": "JPS",
-  "itemdesc-jps": "A genius all-in-one navigational device.",
+    "item-jps": "JPS",
+    "itemdesc-jps": "A genius all-in-one navigational device.",
 
-  "item-compassframe-*": "Compass Frame",
-  "item-sextantparts-*": "Sextant Parts",
+    "item-compassframe-*": "Compass Frame",
+    "item-sextantparts-*": "Sextant Parts",
 
-  "game:tabname-navigation": "Navigation"
+    "game:tabname-navigation": "Navigation"
 }

@@ -1,0 +1,24 @@
+[
+	{
+		"ingredientPattern": "Q,I,C",
+		"ingredients": {
+			"Q": {
+				"type": "item",
+				"code": "game:ore-quartz"
+			},
+			"I": {
+				"type": "item",
+				"code": "game:nugget-*",
+				"allowedVariants": [ "hematite", "limonite", "magnetite" ],
+				"name": "type"
+			},
+			"C": {
+				"type": "block",
+				"code": "game:bowl-fired"
+			}
+		},
+		"width": 1,
+		"height": 3,
+		"output": { "type": "item", "code": "craftablecartography:primitivecompass-{type}", "quantity": 1 }
+	}
+]

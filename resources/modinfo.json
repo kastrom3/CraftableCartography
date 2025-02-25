@@ -3,10 +3,10 @@
     "modid": "CraftableCartography",
     "name": "CraftableCartography",
     "authors": [
-        "Professor Cupcake"
+        "Professor Cupcake, fork kastrom3"
     ],
     "description": "A more immersive map & navigation experience",
-    "version": "0.1.5",
+    "version": "0.1.5.1",
     "dependencies": {
         "game": "*"
     }
