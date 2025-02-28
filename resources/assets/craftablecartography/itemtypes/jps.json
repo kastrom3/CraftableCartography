@@ -5,7 +5,29 @@
         "items": [ "*" ],
         "navigation": [ "*" ]
     },
-	"storageFlags": 128,
+    "behaviors": [
+        {
+            "name": "CombatOverhaul:Armor",
+            "properties": {
+                "Layers": [ "Outer", "Middle" ],
+                "Zones": [ "Head", "Face" ],
+                "Resists": {
+                    "PiercingAttack": 1,
+                    "SlashingAttack": 2,
+                    "BluntAttack": 2
+                },
+                "FlatReduction": {},
+                "PlayerStats": {
+                    "walkspeed": 0,
+                    "manipulationSpeed": 0,
+                    "steadyAim": 0.06,
+                    "healingeffectivness": -0.03,
+                    "hungerrate": 0.03
+                }
+            }
+        }
+    ],
+    "storageFlags": 128,
     "attributes": {
         "wearableAttachment": true,
         "clothescategory": "armorhead",

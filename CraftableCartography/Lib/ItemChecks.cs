@@ -1,6 +1,7 @@
 ﻿using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Config;
+using Vintagestory.Client.NoObf;
 using static CraftableCartography.Lib.CCConstants;
 
 namespace CraftableCartography.Lib
@@ -67,8 +68,22 @@ namespace CraftableCartography.Lib
         // Метод для проверки наличия предмета в слоте шлема
         private static bool ItemCheckInHelmetSlot(IPlayer player, string itemCode, string domain)
         {
-            var helmetSlot = player.InventoryManager.GetOwnInventory(GlobalConstants.characterInvClassName)[12]; // Слот шлема
-            return IsItemMatch(helmetSlot?.Itemstack, itemCode, domain);
+            var inventory = player.InventoryManager.GetOwnInventory(GlobalConstants.characterInvClassName);
+            if (inventory == null) return false;
+            int[] slotIndexes = { 12, 23, 24, 31, 32 };
+            // Слоты: Снаружи, Средний, Внутренний
+            // Шлем     31        23        ?
+            // Маска    32        24        ?
+            // Шея      33        25        ?
+            foreach (int slotIndex in slotIndexes)
+            {
+                var slot = inventory[slotIndex];
+                if (IsItemMatch(slot?.Itemstack, itemCode, domain))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         public static bool HasPrimitiveCompass(IPlayer player)
@@ -116,6 +131,41 @@ namespace CraftableCartography.Lib
             } else if (player.Entity.Api.Side == EnumAppSide.Server)
             {
                 return ItemCheckInHelmetSlot(player, jpsCode, modDomain);
+            }
+            return false;
+        }
+
+        // Метод для Combat Overhaul
+        private static bool ItemCheckInHelmetSlot_CO(IPlayer player, string itemCode, string domain)
+        {
+            var inventory = player.InventoryManager.GetOwnInventory(GlobalConstants.characterInvClassName); // Слот шлема
+            if (inventory == null) return false;
+            for (int slotIndex = 24; slotIndex <= 26; slotIndex++)
+            {
+                var slot = inventory[slotIndex];
+                if (IsItemMatch(slot?.Itemstack, itemCode, domain))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        public static bool HasJPS_CO(IPlayer player)
+        {
+            if (player.Entity.Api.Side == EnumAppSide.Client)
+            {
+                if (((ICoreClientAPI)player.Entity.Api).World.Player == player)
+                {
+                    return ItemCheckInHelmetSlot_CO(player, jpsCode, modDomain);
+                }
+                else
+                {
+                    return player.Entity.WatchedAttributes.GetBool(hasJPSAttr);
+                }
+            }
+            else if (player.Entity.Api.Side == EnumAppSide.Server)
+            {
+                return ItemCheckInHelmetSlot_CO(player, jpsCode, modDomain);
             }
             return false;
         }
