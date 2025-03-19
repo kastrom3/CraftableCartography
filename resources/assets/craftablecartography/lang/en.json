@@ -16,6 +16,9 @@
 
     "item-jps": "JPS",
     "itemdesc-jps": "A genius all-in-one navigational device.",
+    "ingameerror-jps-full": "JPS is already at maximum fuel capacity",
+
+    "Has fuel for {0} days and {1:0.#} hours": "Has fuel for {0} days and {1:0.#} hours",
 
     "item-compassframe-*": "Compass Frame",
     "item-sextantparts-*": "Sextant Parts",

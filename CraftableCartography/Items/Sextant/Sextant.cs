@@ -4,6 +4,7 @@ using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Common.Entities;
 using Vintagestory.API.MathTools;
+using Vintagestory.API.Datastructures;
 
 namespace CraftableCartography.Items.Sextant
 {
@@ -21,31 +22,47 @@ namespace CraftableCartography.Items.Sextant
 
         EntityPos lastPos;
 
+        // Флаг, указывающий, началось ли взаимодействие
+        private bool isInteractionStarted = false;
+
         public override void OnHeldInteractStart(ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, bool firstEvent, ref EnumHandHandling handling)
         {
-            if (byEntity.Api.Side == EnumAppSide.Client)
+            base.OnHeldInteractStart(slot, byEntity, blockSel, entitySel, firstEvent, ref handling);
+            if (handling != EnumHandHandling.PreventDefault)
             {
-                gui ??= new((ICoreClientAPI)byEntity.Api);
-                gui.TryOpen();
+                if (byEntity.Api.Side == EnumAppSide.Client)
+                {
+                    gui ??= new((ICoreClientAPI)byEntity.Api);
+                    gui.TryOpen();
 
-                moveVar = 0;
+                    moveVar = 0;
 
-                lastPos = byEntity.Pos.Copy();
+                    lastPos = byEntity.Pos.Copy();
 
-                Vec3d pos = byEntity.Pos.AsBlockPos.ToVec3d();
-                pos.X -= api.World.DefaultSpawnPosition.AsBlockPos.X;
-                pos.Z -= api.World.DefaultSpawnPosition.AsBlockPos.Z;
+                    Vec3d pos = byEntity.Pos.AsBlockPos.ToVec3d();
+                    pos.X -= api.World.DefaultSpawnPosition.AsBlockPos.X;
+                    pos.Z -= api.World.DefaultSpawnPosition.AsBlockPos.Z;
 
-                randomX = NatFloat.createGauss((float)pos.X, maxVar);
-                randomY = NatFloat.createGauss((float)pos.Y, maxVar);
-                randomZ = NatFloat.createGauss((float)pos.Z, maxVar);
+                    randomX = NatFloat.createGauss((float)pos.X, maxVar);
+                    randomY = NatFloat.createGauss((float)pos.Y, maxVar);
+                    randomZ = NatFloat.createGauss((float)pos.Z, maxVar);
+
+                    // Устанавливаем флаг, что взаимодействие началось
+                    isInteractionStarted = true;
+
+                    handling = EnumHandHandling.PreventDefault;
+                }
             }
-
-            handling = EnumHandHandling.PreventDefault;
         }
 
         public override bool OnHeldInteractStep(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel)
         {
+            // Если взаимодействие не начато, завершаем выполнение метода
+            if (!isInteractionStarted)
+            {
+                return false;
+            }
+
             if (byEntity.Api.Side == EnumAppSide.Client)
             {
                 // Получаем позицию игрока
@@ -57,13 +74,10 @@ namespace CraftableCartography.Items.Sextant
                 // Проверяем, находится ли игрок в тени
                 bool isInShadow = sunLightLevel < 22; // Порог тени (можно настроить)
 
-                float timeOfDay = api.World.Calendar.HourOfDay;
-                bool isDayTime = timeOfDay >= 6 && timeOfDay < 19; // День с 6 утра до 6 вечера
-
                 // Проверка на дождь
                 bool isRaining = api.World.BlockAccessor.GetClimateAt(playerPos, EnumGetClimateMode.NowValues).Rainfall > 0.1f; // Предполагаем, что дождь идет, если Rainfall больше 0.1
 
-                if (isInShadow || !isDayTime || isRaining)
+                if (isInShadow || isRaining)
                 {
                     gui.SetText("???, ???, ???");
                 }
@@ -116,7 +130,16 @@ namespace CraftableCartography.Items.Sextant
         public override void OnHeldInteractStop(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel)
         {
             if (byEntity.Api.Side == EnumAppSide.Client)
-                gui.TryClose();
+            {
+                // Проверяем, инициализирован ли gui
+                if (gui != null)
+                {
+                    gui.TryClose();
+                }
+
+                // Сбрасываем флаг, так как взаимодействие завершено
+                isInteractionStarted = false;
+            }
         }
     }
 }

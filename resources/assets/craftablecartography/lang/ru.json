@@ -16,6 +16,9 @@
 
     "item-jps": "JPS",
     "itemdesc-jps": "Гениальное навигационное устройство всё в одном.",
+    "ingameerror-jps-full": "JPS уже работает на максимальном запасе топлива",
+
+    "Has fuel for {0} days and {1:0.#} hours": "Осталось топлива на {0} дней и {1:0.#} часов",
 
     "item-compassframe-*": "Корпус компаса",
     "item-sextantparts-*": "Деталь секстанта",

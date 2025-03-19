@@ -22,7 +22,7 @@
         "blackbronze": { "base": "game:block/metal/ingot/{frameinner}" }
     },
 	"behaviors": [
-		{ "name": "GroundStorable", "ctrlKey": true, "properties": { "layout": "SingleCenter" } }
+		{ "name": "GroundStorable", "properties": { "layout": "SingleCenter" } }
 	],
 	"storageFlags": 257,
 	"heldTpIdleAnimation": "holdinglanternrighthand",

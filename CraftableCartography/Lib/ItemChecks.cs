@@ -1,4 +1,5 @@
-﻿using Vintagestory.API.Client;
+﻿using CraftableCartography.Items.JPS;
+using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Config;
 using Vintagestory.Client.NoObf;
@@ -123,40 +124,19 @@ namespace CraftableCartography.Lib
             {
                 if (((ICoreClientAPI)player.Entity.Api).World.Player == player)
                 {
-                    return ItemCheckInHelmetSlot(player, jpsCode, modDomain);
-                } else
-                {
-                    return player.Entity.WatchedAttributes.GetBool(hasJPSAttr);
-                }
-            } else if (player.Entity.Api.Side == EnumAppSide.Server)
-            {
-                return ItemCheckInHelmetSlot(player, jpsCode, modDomain);
-            }
-            return false;
-        }
-
-        // Метод для Combat Overhaul
-        private static bool ItemCheckInHelmetSlot_CO(IPlayer player, string itemCode, string domain)
-        {
-            var inventory = player.InventoryManager.GetOwnInventory(GlobalConstants.characterInvClassName); // Слот шлема
-            if (inventory == null) return false;
-            for (int slotIndex = 24; slotIndex <= 26; slotIndex++)
-            {
-                var slot = inventory[slotIndex];
-                if (IsItemMatch(slot?.Itemstack, itemCode, domain))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-        public static bool HasJPS_CO(IPlayer player)
-        {
-            if (player.Entity.Api.Side == EnumAppSide.Client)
-            {
-                if (((ICoreClientAPI)player.Entity.Api).World.Player == player)
-                {
-                    return ItemCheckInHelmetSlot_CO(player, jpsCode, modDomain);
+                    var jpsItem = ItemCheckInHelmetSlot(player, jpsCode, modDomain);
+                    if (jpsItem)
+                    {
+                        var jpsStack = GetJPSStack(player);
+                        if (jpsStack != null)
+                        {
+                            var jps = jpsStack.Item as ItemJPSDevice;
+                            if (jps != null && jps.GetFuelHours(jpsStack) > 0)
+                            {
+                                return true;
+                            }
+                        }
+                    }
                 }
                 else
                 {
@@ -165,9 +145,37 @@ namespace CraftableCartography.Lib
             }
             else if (player.Entity.Api.Side == EnumAppSide.Server)
             {
-                return ItemCheckInHelmetSlot_CO(player, jpsCode, modDomain);
+                var jpsItem = ItemCheckInHelmetSlot(player, jpsCode, modDomain);
+                if (jpsItem)
+                {
+                    var jpsStack = GetJPSStack(player);
+                    if (jpsStack != null)
+                    {
+                        var jps = jpsStack.Item as ItemJPSDevice;
+                        if (jps != null && jps.GetFuelHours(jpsStack) > 0)
+                        {
+                            return true;
+                        }
+                    }
+                }
             }
             return false;
+        }
+
+        private static ItemStack GetJPSStack(IPlayer player)
+        {
+            var inventory = player.InventoryManager.GetOwnInventory(GlobalConstants.characterInvClassName);
+            if (inventory == null) return null;
+            int[] slotIndexes = { 12, 23, 24, 31, 32 };
+            foreach (int slotIndex in slotIndexes)
+            {
+                var slot = inventory[slotIndex];
+                if (IsItemMatch(slot?.Itemstack, jpsCode, modDomain))
+                {
+                    return slot.Itemstack;
+                }
+            }
+            return null;
         }
     }
 }

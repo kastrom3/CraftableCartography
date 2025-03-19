@@ -1,13 +1,16 @@
 ﻿using CraftableCartography.MapLayers;
 using HarmonyLib;
 using Vintagestory.API.Client;
+using Vintagestory.API.Common;
 using Vintagestory.API.Datastructures;
 using Vintagestory.API.MathTools;
 using Vintagestory.GameContent;
 using static CraftableCartography.Lib.CCConstants;
+using static CraftableCartography.Lib.ItemChecks;
 
 namespace CraftableCartography.Patches
 {
+
     [HarmonyPatch]
     internal static class WorldMapManagerPatches
     {
@@ -41,6 +44,38 @@ namespace CraftableCartography.Patches
                     //capi.ShowChatMessage("Stored centre: " + pos.ToString() + " (" + pos.SubCopy(capi.World.DefaultSpawnPosition.AsBlockPos).ToString() + ")\nZoom level: " + elemMap.ZoomLevel);
                 }
             }
+        }
+    }
+    [HarmonyPatch(typeof(OwnedEntityMapLayer))]
+    [HarmonyPatch("Render")]
+    public static class OwnedEntityMapLayer_Render_Patch
+    {
+            public static bool Prefix(OwnedEntityMapLayer __instance, GuiElementMap mapElem, float dt)
+        {
+            ICoreClientAPI capi = Traverse.Create(__instance).Field("capi").GetValue<ICoreClientAPI>();
+            // Проверка HasJPS
+            if (HasJPS(capi.World.Player))
+            {
+                return true; // Продолжить выполнение оригинального метода
+            }
+
+            return false; // Пропустить оригинальный метод, если проверка не пройдена
+        }
+    }
+    [HarmonyPatch(typeof(OreMapLayer))]
+    [HarmonyPatch("Render")]
+    public static class OreMapLayer_Render_Patch
+    {
+        public static bool Prefix(OreMapLayer __instance, GuiElementMap mapElem, float dt)
+        {
+            ICoreClientAPI capi = Traverse.Create(__instance).Field("capi").GetValue<ICoreClientAPI>();
+            // Проверка HasJPS
+            if (HasJPS(capi.World.Player))
+            {
+                return true; // Продолжить выполнение оригинального метода
+            }
+
+            return false; // Пропустить оригинальный метод, если проверка не пройдена
         }
     }
 }

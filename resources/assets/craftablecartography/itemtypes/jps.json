@@ -1,5 +1,6 @@
 {
     "code": "jps",
+    "class": "ItemJPSDevice",
     "creativeinventory": {
         "general": [ "*" ],
         "items": [ "*" ],
@@ -36,28 +37,25 @@
     "shape": {
         "base": "craftablecartography:jps"
     },
+    "textures": {
+        "seraph": { "base": "game:block/transparent" }
+    },
     "heldTpIdleAnimation": "holdunderarm",
     "guiTransform": {
         "rotation": { "x": 176, "y": -45, "z": 16 },
-        "origin": { "x": 0.5, "y": 0.1, "z": 0.5 },
+        "origin": { "x": 0.5, "y": 1.8, "z": 0.46 },
         "scale": 2.5
     },
     "groundTransform": {
         "translation": { "x": 0, "y": 0.23, "z": 0 },
-        "rotation": { "x": 30, "y": 1, "z": 15 },
-        "origin": { "x": 0.5, "y": 0.5, "z": 0.5 },
+        "rotation": { "x": 16, "y": 1, "z": 15 },
+        "origin": { "x": 0.5, "y": 1.9, "z": 0.5 },
         "scale": 4
-    },
-    "fpHandTransform": {
-        "translation": { "x": 0.6, "y": -1.8, "z": -0.5 },
-        "rotation": { "x": 180, "y": -108, "z": -180 },
-        "origin": { "x": 0.5, "y": 0.5, "z": 0.5 },
-        "scale": 2.15
     },
     "tpHandTransform": {
         "translation": { "x": -0.6, "y": 0.1, "z": -0.1 },
         "rotation": { "x": 8, "y": -179, "z": 28 },
-        "origin": { "x": 0.5, "y": 0.5, "z": 0.5 },
+        "origin": { "x": 2.4, "y": -0.4, "z": -1.2 },
         "scale": 0.75
     }
 }

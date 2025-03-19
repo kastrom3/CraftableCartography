@@ -6,7 +6,7 @@
         "Professor Cupcake, fork kastrom3"
     ],
     "description": "A more immersive map & navigation experience",
-    "version": "0.1.6",
+    "version": "0.1.7",
     "dependencies": {
         "game": "1.20.4"
     }

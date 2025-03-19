@@ -1,0 +1,28 @@
+[
+	{
+		"file": "game:itemtypes/resource/gear",
+		"op": "replace",
+		"path": "/attributesByType",
+		"value": {
+			"*-rusty": {
+				"currency": {
+					"value": 1
+				},
+				"displaycaseable": true, 
+				"shelvable": true,
+				"onDisplayTransform": {
+					"translation": { "x": 0.1, "y": 0, "z": 0 },
+					"rotation": { "x": 0, "y": 0, "z": 2 },
+					"origin": { "x": 0.5, "y": 0, "z": 0.5 },
+					"scale": 0.85
+				}
+			},
+			"*-temporal": {
+				"riftwardFuel": true,
+				"corpseReturnFuel": true,
+				"nightVisionFuelHours": 24,
+				"jpsFuelHours": 288
+			}
+		}
+	}
+]

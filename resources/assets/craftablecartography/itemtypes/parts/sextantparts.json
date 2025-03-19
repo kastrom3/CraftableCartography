@@ -1,63 +1,81 @@
 {
-  "code": "sextantparts",
-  "creativeinventory": {
-    "general": [ "*" ],
-    "navigation": [ "*" ]
-  },
-  "shape": {
-    "base": "craftablecartography:sextantparts"
-  },
-  "variantgroups": [
-    {
-      "code": "metal",
-      "states": [ "copper", "tinbronze", "blackbronze", "bismuthbronze", "brass", "iron", "meteoriciron", "steel", "silver", "gold" ]
+    "code": "sextantparts",
+    "creativeinventory": {
+        "general": [ "*" ],
+        "navigation": [ "*" ]
+    },
+    "variantgroups": [
+        {
+            "code": "metal",
+            "states": [ "copper", "tinbronze", "blackbronze", "bismuthbronze", "brass", "iron", "meteoriciron", "steel", "silver", "gold" ]
+        }
+    ],
+	"behaviors": [
+		{ "name": "GroundStorable", "properties": { "layout": "Quadrants", "collisionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 0.125, "z2": 1 } } }
+	],
+    "shape": {
+        "base": "craftablecartography:sextantparts"
+    },
+    "textures": {
+        "tinbronze": { "base": "game:block/metal/ingot/{metal}" }
+    },
+    "maxstacksize": 8,
+	"attributes": {
+		"displaycaseable": true,
+		"shelvable": true,
+		"groundStorageTransform": {
+			"translation": { "x": 0.3, "y": -0.1, "z": 0.2 },
+			"rotation": { "x": 0, "y": 16, "z": 0 },
+			"scale": 0.8
+		},
+		"onshelfTransform": {
+			"translation": { "x": 0.3, "y": -0.1, "z": 0.2 },
+			"rotation": { "x": 0, "y": 16, "z": 0 },
+			"scale": 0.8
+		}
+	},
+    "guiTransform": {
+        "translation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+        },
+        "rotation": {
+            "x": 105,
+            "y": -54,
+            "z": -36
+        },
+        "origin": {
+            "x": 0.3,
+            "y": -0.05,
+            "z": 0.3
+        },
+        "scale": 2.72
+    },
+    "tpHandTransform": {
+        "translation": {
+            "x": -1.6,
+            "y": -0.7,
+            "z": -0.5
+        },
+        "rotation": {
+            "x": 90,
+            "y": 0,
+            "z": -9
+        },
+        "scale": 0.5
+    },
+    "groundTransform": {
+        "translation": {
+            "x": 0,
+            "y": 0.4,
+            "z": 0
+        },
+        "rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+        },
+        "scale": 3.25
     }
-  ],
-  "textures": {
-    "tinbronze": {"base": "game:block/metal/ingot/{metal}"}
-  },
-  "guiTransform": {
-    "translation": {
-      "x": 0,
-      "y": 0,
-      "z": 0
-    },
-    "rotation": {
-      "x": 105,
-      "y": -54,
-      "z": -36
-    },
-    "origin": {
-      "x": 0.3,
-      "y": -0.05,
-      "z": 0.3
-    },
-    "scale": 2.72
-  },
-  "tpHandTransform": {
-    "translation": {
-      "x": -1.6,
-      "y": -0.7,
-      "z": -0.5
-    },
-    "rotation": {
-      "x": 90,
-      "y": 0,
-      "z": -9
-    },
-    "scale": 0.5
-  },
-  "groundTransform": {
-    "translation": {
-      "x": 0,
-      "y": 0.4,
-      "z": 0
-    },
-    "rotation": {
-      "x": 0,
-      "y": 0,
-      "z": 0
-    },
-    "scale": 3.25
-  }
 }

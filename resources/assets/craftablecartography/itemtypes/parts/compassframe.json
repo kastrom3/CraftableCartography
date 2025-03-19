@@ -1,57 +1,75 @@
 {
-  "code": "compassframe",
-  "creativeinventory": {
-    "general": [ "*" ],
-    "navigation": [ "*" ]
-  },
-  "variantgroups": [
-    {
-      "code": "metal",
-      "states": [ "copper", "tinbronze", "blackbronze", "bismuthbronze", "brass", "iron", "meteoriciron", "steel", "silver", "gold" ]
+    "code": "compassframe",
+    "creativeinventory": {
+        "general": [ "*" ],
+        "navigation": [ "*" ]
+    },
+    "variantgroups": [
+        {
+            "code": "metal",
+            "states": [ "copper", "tinbronze", "blackbronze", "bismuthbronze", "brass", "iron", "meteoriciron", "steel", "silver", "gold" ]
+        }
+    ],
+	"behaviors": [
+		{ "name": "GroundStorable", "properties": { "layout": "Quadrants", "collisionBox": { "x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 0.125, "z2": 1 } } }
+	],
+    "shape": {
+        "base": "craftablecartography:compassframe"
+    },
+    "textures": {
+        "tinbronze": { "base": "game:block/metal/ingot/{metal}" }
+    },
+	"maxstacksize": 8,
+	"attributes": {
+		"displaycaseable": true,
+		"shelvable": true,
+		"groundStorageTransform": {
+			"translation": { "x": 0.14, "y": -0.2, "z": 0.14 },
+			"rotation": { "x": 0, "y": -9, "z": 0 },
+			"scale": 0.6
+		},
+		"onshelfTransform": {
+			"translation": { "x": 0.14, "y": -0.2, "z": 0.14 },
+			"rotation": { "x": 0, "y": -9, "z": 0 },
+			"scale": 0.6
+		}
+	},
+    "guiTransform": {
+        "translation": {
+            "x": 0,
+            "y": 0,
+            "z": 20
+        },
+        "rotation": {
+            "x": 143,
+            "y": 23,
+            "z": -34
+        },
+        "origin": {
+            "x": 0.2,
+            "y": 0.3,
+            "z": 0
+        },
+        "scale": 2.08
+    },
+    "tpHandTransform": {
+        "translation": {
+            "x": -1.6,
+            "y": -1.1,
+            "z": -1.4
+        }
+    },
+    "groundTransform": {
+        "translation": {
+            "x": 0,
+            "y": 0.2,
+            "z": 0
+        },
+        "rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+        },
+        "scale": 1.5
     }
-  ],
-  "shape": {
-    "base": "craftablecartography:compassframe"
-  },
-  "textures": {
-    "tinbronze": { "base": "game:block/metal/ingot/{metal}" }
-  },
-  "guiTransform": {
-    "translation": {
-      "x": 0,
-      "y": 0,
-      "z": 20
-    },
-    "rotation": {
-      "x": 143,
-      "y": 23,
-      "z": -34
-    },
-    "origin": {
-      "x": 0.2,
-      "y": 0.3,
-      "z": 0
-    },
-    "scale": 2.08
-  },
-  "tpHandTransform": {
-    "translation": {
-      "x": -1.6,
-      "y": -1.1,
-      "z": -1.4
-    }
-  },
-  "groundTransform": {
-    "translation": {
-      "x": 0,
-      "y": 0.2,
-      "z": 0
-    },
-    "rotation": {
-      "x": 0,
-      "y": 0,
-      "z": 0
-    },
-    "scale": 1.5
-  }
 }

@@ -1,4 +1,5 @@
-﻿using CraftableCartography.Items.Sextant;
+﻿using CraftableCartography.Items.JPS;
+using CraftableCartography.Items.Sextant;
 using CraftableCartography.Lib;
 using HarmonyLib;
 using Newtonsoft.Json;
@@ -20,6 +21,7 @@ namespace CraftableCartography
     public partial class CraftableCartographyModSystem : ModSystem
     {
         private string dataPath;
+
 
         public const string patchName = "com.profcupcake.craftablecartography";
 
@@ -45,6 +47,8 @@ namespace CraftableCartography
             base.Start(api);
 
             api.RegisterItemClass("sextant", typeof(Sextant));
+
+            api.RegisterItemClass("ItemJPSDevice", typeof(ItemJPSDevice));
 
             api.Network.RegisterChannel(NetChannel)
                 .RegisterMessageType<SetChannelPacket>();
