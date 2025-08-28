@@ -46,27 +46,12 @@ namespace CraftableCartography.Patches
             }
         }
     }
+    //Отключение отображения существ на карте
     [HarmonyPatch(typeof(OwnedEntityMapLayer))]
     [HarmonyPatch("Render")]
     public static class OwnedEntityMapLayer_Render_Patch
     {
             public static bool Prefix(OwnedEntityMapLayer __instance, GuiElementMap mapElem, float dt)
-        {
-            ICoreClientAPI capi = Traverse.Create(__instance).Field("capi").GetValue<ICoreClientAPI>();
-            // Проверка HasJPS
-            if (HasJPS(capi.World.Player))
-            {
-                return true; // Продолжить выполнение оригинального метода
-            }
-
-            return false; // Пропустить оригинальный метод, если проверка не пройдена
-        }
-    }
-    [HarmonyPatch(typeof(OreMapLayer))]
-    [HarmonyPatch("Render")]
-    public static class OreMapLayer_Render_Patch
-    {
-        public static bool Prefix(OreMapLayer __instance, GuiElementMap mapElem, float dt)
         {
             ICoreClientAPI capi = Traverse.Create(__instance).Field("capi").GetValue<ICoreClientAPI>();
             // Проверка HasJPS

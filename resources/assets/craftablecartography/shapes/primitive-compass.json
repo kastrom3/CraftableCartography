@@ -9,7 +9,7 @@
 	"textureSizes": {
 	},
 	"textures": {
-		"ore": "game:item/resource/nugget/uranium",
+		"tinbronze": "game:item/resource/nugget/uranium",
 		"ceramic": "game:block/clay/ceramic",
 		"quartz": "game:block/glass/quartz",
 		"content": "game:block/liquid/waterportion"
@@ -29,12 +29,12 @@
 					"to": [ 2.0, -4.5, 2.5 ],
 					"rotationOrigin": [ 2.0, -5.0, 2.0 ],
 					"faces": {
-						"north": { "texture": "#ore", "uv": [ 8.0, 11.5, 9.5, 12.5 ] },
-						"east": { "texture": "#ore", "uv": [ 14.0, 7.0, 15.0, 8.5 ], "rotation": 90 },
-						"south": { "texture": "#ore", "uv": [ 10.5, 2.5, 12.0, 3.5 ] },
-						"west": { "texture": "#ore", "uv": [ 6.5, 2.0, 8.0, 3.0 ] },
-						"up": { "texture": "#ore", "uv": [ 0.0, 0.0, 1.5, 1.5 ] },
-						"down": { "texture": "#ore", "uv": [ 3.0, 11.0, 4.5, 12.5 ], "rotation": 90 }
+						"north": { "texture": "#tinbronze", "uv": [ 8.0, 11.5, 9.5, 12.5 ] },
+						"east": { "texture": "#tinbronze", "uv": [ 14.0, 7.0, 15.0, 8.5 ], "rotation": 90 },
+						"south": { "texture": "#tinbronze", "uv": [ 10.5, 2.5, 12.0, 3.5 ] },
+						"west": { "texture": "#tinbronze", "uv": [ 6.5, 2.0, 8.0, 3.0 ] },
+						"up": { "texture": "#tinbronze", "uv": [ 0.0, 0.0, 1.5, 1.5 ] },
+						"down": { "texture": "#tinbronze", "uv": [ 3.0, 11.0, 4.5, 12.5 ], "rotation": 90 }
 					}
 				},
 				{
@@ -43,11 +43,11 @@
 					"to": [ 2.0, -4.5, 1.0 ],
 					"rotationOrigin": [ 2.0, -5.0, 2.0 ],
 					"faces": {
-						"north": { "texture": "#ore", "uv": [ 4.0, 5.5, 5.0, 6.5 ] },
-						"east": { "texture": "#ore", "uv": [ 5.5, 1.5, 6.0, 2.5 ] },
-						"west": { "texture": "#ore", "uv": [ 13.5, 11.5, 14.0, 12.5 ] },
-						"up": { "texture": "#ore", "uv": [ 5.0, 5.5, 6.0, 6.0 ] },
-						"down": { "texture": "#ore", "uv": [ 3.0, 14.5, 4.0, 15.0 ] }
+						"north": { "texture": "#tinbronze", "uv": [ 4.0, 5.5, 5.0, 6.5 ] },
+						"east": { "texture": "#tinbronze", "uv": [ 5.5, 1.5, 6.0, 2.5 ] },
+						"west": { "texture": "#tinbronze", "uv": [ 13.5, 11.5, 14.0, 12.5 ] },
+						"up": { "texture": "#tinbronze", "uv": [ 5.0, 5.5, 6.0, 6.0 ] },
+						"down": { "texture": "#tinbronze", "uv": [ 3.0, 14.5, 4.0, 15.0 ] }
 					}
 				},
 				{
@@ -56,10 +56,10 @@
 					"to": [ 1.5, -4.0, 1.5 ],
 					"rotationOrigin": [ 3.0, -4.0, 0.0 ],
 					"faces": {
-						"north": { "texture": "#ore", "uv": [ 15.0, 15.0, 15.5, 15.5 ] },
-						"east": { "texture": "#ore", "uv": [ 9.0, 8.0, 9.5, 8.5 ] },
-						"west": { "texture": "#ore", "uv": [ 4.0, 15.0, 4.5, 15.5 ] },
-						"up": { "texture": "#ore", "uv": [ 11.5, 11.5, 12.0, 12.0 ] }
+						"north": { "texture": "#tinbronze", "uv": [ 15.0, 15.0, 15.5, 15.5 ] },
+						"east": { "texture": "#tinbronze", "uv": [ 9.0, 8.0, 9.5, 8.5 ] },
+						"west": { "texture": "#tinbronze", "uv": [ 4.0, 15.0, 4.5, 15.5 ] },
+						"up": { "texture": "#tinbronze", "uv": [ 11.5, 11.5, 12.0, 12.0 ] }
 					}
 				},
 				{
@@ -68,11 +68,11 @@
 					"to": [ 2.0, -4.0, 2.5 ],
 					"rotationOrigin": [ 2.0, -5.0, 2.0 ],
 					"faces": {
-						"north": { "texture": "#ore", "uv": [ 14.0, 2.5, 15.0, 3.0 ] },
-						"east": { "texture": "#ore", "uv": [ 12.5, 11.5, 13.5, 12.0 ] },
-						"south": { "texture": "#ore", "uv": [ 10.0, 8.5, 11.0, 9.0 ] },
-						"west": { "texture": "#ore", "uv": [ 5.0, 3.0, 6.0, 3.5 ] },
-						"up": { "texture": "#ore", "uv": [ 14.0, 14.0, 15.0, 15.0 ] }
+						"north": { "texture": "#tinbronze", "uv": [ 14.0, 2.5, 15.0, 3.0 ] },
+						"east": { "texture": "#tinbronze", "uv": [ 12.5, 11.5, 13.5, 12.0 ] },
+						"south": { "texture": "#tinbronze", "uv": [ 10.0, 8.5, 11.0, 9.0 ] },
+						"west": { "texture": "#tinbronze", "uv": [ 5.0, 3.0, 6.0, 3.5 ] },
+						"up": { "texture": "#tinbronze", "uv": [ 14.0, 14.0, 15.0, 15.0 ] }
 					}
 				},
 				{
@@ -81,11 +81,11 @@
 					"to": [ 1.5, -4.5, 3.0 ],
 					"rotationOrigin": [ 2.0, -5.0, 2.0 ],
 					"faces": {
-						"east": { "texture": "#ore", "uv": [ 7.5, 4.0, 8.0, 5.0 ] },
-						"south": { "texture": "#ore", "uv": [ 3.5, 2.0, 4.5, 3.0 ] },
-						"west": { "texture": "#ore", "uv": [ 5.0, 3.0, 5.5, 4.0 ] },
-						"up": { "texture": "#ore", "uv": [ 10.0, 8.0, 11.0, 8.5 ] },
-						"down": { "texture": "#ore", "uv": [ 10.0, 10.0, 11.0, 10.5 ] }
+						"east": { "texture": "#tinbronze", "uv": [ 7.5, 4.0, 8.0, 5.0 ] },
+						"south": { "texture": "#tinbronze", "uv": [ 3.5, 2.0, 4.5, 3.0 ] },
+						"west": { "texture": "#tinbronze", "uv": [ 5.0, 3.0, 5.5, 4.0 ] },
+						"up": { "texture": "#tinbronze", "uv": [ 10.0, 8.0, 11.0, 8.5 ] },
+						"down": { "texture": "#tinbronze", "uv": [ 10.0, 10.0, 11.0, 10.5 ] }
 					}
 				}
 			]

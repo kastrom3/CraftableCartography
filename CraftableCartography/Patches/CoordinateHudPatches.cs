@@ -96,7 +96,7 @@ namespace CraftableCartography.Patches
             if (HasTemporalCompass(player) || HasJPS(player))
                 coords += $"{pos.X}, {ypos}, {pos.Z}\n";
 
-            bool hasCompass = HasCompass(player);
+            bool hasCompass = capi.ModLoader.GetModSystem<CraftableCartographyModSystem>().Config.modConfig.CompassTextBox & HasCompass(player);
             bool hasStableCompass = HasJPS(player) || HasTemporalCompass(player);
 
             if (hasCompass || hasStableCompass)
@@ -148,7 +148,7 @@ namespace CraftableCartography.Patches
                 yawDeg = (yawDeg % 360 + 360) % 360;
                 coords += $"{yawDeg:0}° / {facing}";
             }
-            else if (HasPrimitiveCompass(player))
+            else if (capi.ModLoader.GetModSystem<CraftableCartographyModSystem>().Config.modConfig.CompassTextBox & HasPrimitiveCompass(player))
             {
                 coords += facing;
             }

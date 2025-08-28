@@ -11,7 +11,19 @@ namespace CraftableCartography.Items.JPS
 {
     public class ItemJPSDevice : ItemWearable
     {
-        protected float fuelHoursCapacity = 576f; // Максимальное количество часов топлива
+        protected float? _fuelHoursCapacity;
+
+        protected float FuelHoursCapacity
+        {
+            get
+            {
+                if (_fuelHoursCapacity == null)
+                {
+                    _fuelHoursCapacity = 288f * api.ModLoader.GetModSystem<CraftableCartographyModSystem>().Config.modConfig.MaxCharges;
+                }
+                return _fuelHoursCapacity.Value;
+            }
+        }
 
         // Получение текущего количества топлива
         public double GetFuelHours(ItemStack stack)
@@ -54,13 +66,14 @@ namespace CraftableCartography.Items.JPS
         }
 
         // Добавление топлива (выполняет объединение двух предметов)
+        // В методе TryMergeStacks замените fuelHoursCapacity на FuelHoursCapacity
         public override void TryMergeStacks(ItemStackMergeOperation op)
         {
             if (op.CurrentPriority == EnumMergePriority.DirectMerge)
             {
                 float stackFuel = GetStackFuel(op.SourceSlot.Itemstack);
                 double fuelHours = GetFuelHours(op.SinkSlot.Itemstack);
-                if (stackFuel > 0f && fuelHours + (double)stackFuel <= (double)fuelHoursCapacity)
+                if (stackFuel > 0f && fuelHours + (double)stackFuel <= (double)FuelHoursCapacity) // Используем свойство
                 {
                     SetFuelHours(op.SinkSlot.Itemstack, (double)stackFuel + fuelHours);
                     op.MovedQuantity = 1;

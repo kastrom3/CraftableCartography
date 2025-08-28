@@ -1,5 +1,6 @@
 {
     "code": "compass-plain",
+	"class": "compass",
 	"creativeinventory": {
 		"general": [ "*" ],
 		"items": [ "*" ],

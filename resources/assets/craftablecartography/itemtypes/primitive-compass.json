@@ -1,5 +1,6 @@
 {
 	"code": "primitivecompass",
+	"class": "compass",
 	"creativeinventory": {
 		"general": [ "*" ],
 		"items": [ "*" ],
@@ -13,7 +14,7 @@
 	],
 	"shape": { "base": "craftablecartography:primitive-compass" },
 	"textures": {
-		"ore": { "base": "game:item/resource/nugget/{type}" }
+		"tinbronze": { "base": "game:item/resource/nugget/{type}" }
 	},
 	"storageFlags": 257,
 	"heldTpIdleAnimation": "holdinglanternrighthand",
@@ -23,7 +24,7 @@
 		"displaycaseable": true,
 		"shelvable": true,
 		"groundStorageTransform": {
-			"rotation": { "x": 0, "y": 5, "z": 0 },
+			"rotation": { "x": 0, "y": 5, "z": 0 }
 		}
 	},
 	"guiTransform": {

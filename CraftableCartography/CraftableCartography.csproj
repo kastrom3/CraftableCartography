@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <OutputPath>bin\$(Configuration)\Mods\mod</OutputPath>
   </PropertyGroup>
@@ -57,6 +57,7 @@
 
 <ItemGroup>
   <Content Remove="..\resources\assets\craftablecartography\itemtypes\sextanttemporal.json" />
+  <Content Remove="..\resources\assets\craftablecartography\patches\RealisticMode.json" />
   <Content Remove="..\resources\assets\craftablecartography\recipes\grid\sextanttemporal.json" />
   <Content Remove="..\resources\assets\craftablecartography\shapes\sextanttemporal.json" />
 </ItemGroup>

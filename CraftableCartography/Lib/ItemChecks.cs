@@ -15,6 +15,7 @@ namespace CraftableCartography.Lib
         public const string temporalCompassCode = "compasstemporal";
         public const string mapCode = "map";
         public const string modDomain = "craftablecartography";
+        public const string gameDomain = "game";
 
         public static bool GenericItemCheck(IPlayer player, string itemCode, string domain)
         {

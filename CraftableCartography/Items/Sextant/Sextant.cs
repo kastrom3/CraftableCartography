@@ -5,12 +5,15 @@ using Vintagestory.API.Common;
 using Vintagestory.API.Common.Entities;
 using Vintagestory.API.MathTools;
 using Vintagestory.API.Datastructures;
+using Vintagestory.API.Config;
+using System.Security.Cryptography;
 
 namespace CraftableCartography.Items.Sextant
 {
     public class Sextant : Item
     {
         HudElementNavReading gui;
+        private SkillItem[] toolModes;
 
         NatFloat randomX;
         NatFloat randomY;
@@ -24,6 +27,48 @@ namespace CraftableCartography.Items.Sextant
 
         // Флаг, указывающий, началось ли взаимодействие
         private bool isInteractionStarted = false;
+
+        public override void OnLoaded(ICoreAPI api)
+        {
+            base.OnLoaded(api);
+
+            // Инициализация режимов работы
+            toolModes = new SkillItem[]
+            {
+                new SkillItem
+                {
+                    Code = new AssetLocation("coordinates"),
+                    Name = Lang.Get("craftablecartography:CoordinatesMode")
+                },
+                new SkillItem
+                {
+                    Code = new AssetLocation("pitch"),
+                    Name = Lang.Get("craftablecartography:PitchMode")
+                }
+            };
+
+            // Загрузка иконок для клиентской части
+            if (api is ICoreClientAPI capi)
+            {
+                toolModes[0].WithIcon(capi, capi.Gui.LoadSvgWithPadding(new AssetLocation("craftablecartography:textures/icons/coords.svg"), 48, 48, 5, -1));
+                toolModes[1].WithIcon(capi, capi.Gui.LoadSvgWithPadding(new AssetLocation("craftablecartography:textures/icons/angle.svg"), 48, 48, 5, -1));
+            }
+        }
+
+        public override SkillItem[] GetToolModes(ItemSlot slot, IClientPlayer forPlayer, BlockSelection blockSel)
+        {
+            return toolModes;
+        }
+
+        public override int GetToolMode(ItemSlot slot, IPlayer byPlayer, BlockSelection blockSel)
+        {
+            return slot.Itemstack.Attributes.GetInt("toolMode", 0);
+        }
+
+        public override void SetToolMode(ItemSlot slot, IPlayer byPlayer, BlockSelection blockSel, int toolMode)
+        {
+            slot.Itemstack.Attributes.SetInt("toolMode", toolMode);
+        }
 
         public override void OnHeldInteractStart(ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, bool firstEvent, ref EnumHandHandling handling)
         {
@@ -58,69 +103,77 @@ namespace CraftableCartography.Items.Sextant
         public override bool OnHeldInteractStep(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel)
         {
             // Если взаимодействие не начато, завершаем выполнение метода
-            if (!isInteractionStarted)
-            {
-                return false;
-            }
+            if (!isInteractionStarted) return false;
 
             if (byEntity.Api.Side == EnumAppSide.Client)
             {
-                // Получаем позицию игрока
-                BlockPos playerPos = byEntity.Pos.AsBlockPos;
+                int toolMode = GetToolMode(slot, (byEntity as EntityPlayer)?.Player, blockSel);
 
-                // Получаем уровень солнечного света
-                int sunLightLevel = api.World.BlockAccessor.GetLightLevel(playerPos, EnumLightLevelType.OnlySunLight);
-
-                // Проверяем, находится ли игрок в тени
-                bool isInShadow = sunLightLevel < 22; // Порог тени (можно настроить)
-
-                // Проверка на дождь
-                bool isRaining = api.World.BlockAccessor.GetClimateAt(playerPos, EnumGetClimateMode.NowValues).Rainfall > 0.1f; // Предполагаем, что дождь идет, если Rainfall больше 0.1
-
-                if (isInShadow || isRaining)
+                if (toolMode == 1) // Режим угла просмотра
                 {
-                    gui.SetText("???, ???, ???");
+                    // Получаем угл обзора игрока
+                    float pitch = ((byEntity.Pos.Pitch * GameMath.RAD2DEG) - 180) * -1;
+
+                    gui.SetText(Lang.Get("Pitch: {0:0.#}°", pitch));
                 }
-                else
+                else // Режим координат (по умолчанию)
                 {
-                    // Проверяем движение игрока
-                    double distanceMoved = lastPos.DistanceTo(byEntity.Pos);
-                    bool isMoving = distanceMoved > 0.1; // Порог движения (можно настроить)
+                    // Получаем позицию игрока
+                    BlockPos playerPos = byEntity.Pos.AsBlockPos;
+                    // Получаем уровень солнечного света
+                    int sunLightLevel = api.World.BlockAccessor.GetLightLevel(playerPos, EnumLightLevelType.OnlySunLight);
 
-                    // Увеличиваем moveVar при движении (замедляет определение координат)
-                    if (isMoving)
+                    // Проверяем, находится ли игрок в тени
+                    bool isInShadow = sunLightLevel < 22; // Порог тени (можно настроить)
+
+                    // Проверка на дождь
+                    bool isRaining = api.World.BlockAccessor.GetClimateAt(playerPos, EnumGetClimateMode.NowValues).Rainfall > 0.1f; // Предполагаем, что дождь идет, если Rainfall больше 0.1
+
+                    if (isInShadow || isRaining)
                     {
-                        moveVar += distanceMoved * 2; // Увеличиваем moveVar пропорционально движению
+                        gui.SetText("???, ???, ???");
                     }
-
-                    // Уменьшаем moveVar со временем, если игрок неподвижен
-                    if (!isMoving)
+                    else
                     {
-                        moveVar = Math.Max(0, moveVar - 0.1); // Постепенно уменьшаем moveVar
+                        // Проверяем движение игрока
+                        double distanceMoved = lastPos.DistanceTo(byEntity.Pos);
+                        bool isMoving = distanceMoved > 0.1; // Порог движения (можно настроить)
+
+                        // Увеличиваем moveVar при движении (замедляет определение координат)
+                        if (isMoving)
+                        {
+                            moveVar += distanceMoved * 2; // Увеличиваем moveVar пропорционально движению
+                        }
+
+                        // Уменьшаем moveVar со временем, если игрок неподвижен
+                        if (!isMoving)
+                        {
+                            moveVar = Math.Max(0, moveVar - 0.1); // Постепенно уменьшаем moveVar
+                        }
+
+                        // Учитываем moveVar при расчете погрешности
+                        double varThisStep = (float)Math.Min(maxVar / Math.Pow(secondsUsed - moveVar, 5), maxVar);
+
+                        // Убедимся, что varThisStep не становится отрицательным
+                        if (varThisStep < 0) varThisStep = maxVar;
+
+                        randomX.avg = (float)(byEntity.Pos.X - api.World.DefaultSpawnPosition.X);
+                        randomY.avg = (float)byEntity.Pos.Y;
+                        randomZ.avg = (float)(byEntity.Pos.Z - api.World.DefaultSpawnPosition.Z);
+
+                        randomX.var = (float)varThisStep;
+                        randomY.var = (float)varThisStep;
+                        randomZ.var = (float)varThisStep;
+
+                        string text =
+                            Math.Round(randomX.nextFloat()).ToString() + ", " +
+                            Math.Round(randomY.nextFloat()).ToString() + ", " +
+                            Math.Round(randomZ.nextFloat());
+
+                        gui.SetText(text);
+
+                        lastPos = byEntity.Pos.Copy();
                     }
-
-                    // Учитываем moveVar при расчете погрешности
-                    double varThisStep = (float)Math.Min(maxVar / Math.Pow(secondsUsed - moveVar, 5), maxVar);
-
-                    // Убедимся, что varThisStep не становится отрицательным
-                    if (varThisStep < 0) varThisStep = maxVar;
-
-                    randomX.avg = (float)(byEntity.Pos.X - api.World.DefaultSpawnPosition.X);
-                    randomY.avg = (float)byEntity.Pos.Y;
-                    randomZ.avg = (float)(byEntity.Pos.Z - api.World.DefaultSpawnPosition.Z);
-
-                    randomX.var = (float)varThisStep;
-                    randomY.var = (float)varThisStep;
-                    randomZ.var = (float)varThisStep;
-
-                    string text =
-                        Math.Round(randomX.nextFloat()).ToString() + ", " +
-                        Math.Round(randomY.nextFloat()).ToString() + ", " +
-                        Math.Round(randomZ.nextFloat());
-
-                    gui.SetText(text);
-
-                    lastPos = byEntity.Pos.Copy();
                 }
             }
 
@@ -140,6 +193,25 @@ namespace CraftableCartography.Items.Sextant
                 // Сбрасываем флаг, так как взаимодействие завершено
                 isInteractionStarted = false;
             }
+        }
+
+        public override WorldInteraction[] GetHeldInteractionHelp(ItemSlot inSlot)
+        {
+            return new WorldInteraction[]
+            {
+                new WorldInteraction
+                {
+                    ActionLangCode = "Change tool mode",
+                    HotKeyCodes = new string[] { "toolmodeselect" },
+                    MouseButton = EnumMouseButton.None
+                },
+                new WorldInteraction
+                {
+                    ActionLangCode = "Use sextant",
+                    HotKeyCodes = new string[] { "sneak" },
+                    MouseButton = EnumMouseButton.Right
+                }
+            };
         }
     }
 }

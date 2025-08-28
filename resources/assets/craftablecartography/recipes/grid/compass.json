@@ -13,8 +13,8 @@
         "allowedVariants": [ "hematite", "limonite", "magnetite" ]
     },
     "B": {
-      "type": "block",
-      "code": "game:bowl-fired"
+        "type": "block",
+        "code": "game:bowl-*-fired"
     },
     "P": {
         "type": "item",

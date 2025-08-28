@@ -1,10 +1,11 @@
-﻿using CraftableCartography.Items.JPS;
+﻿using CraftableCartography.Config;
+using CraftableCartography.Items.Compass;
+using CraftableCartography.Items.JPS;
 using CraftableCartography.Items.Sextant;
-using CraftableCartography.Lib;
 using HarmonyLib;
 using Newtonsoft.Json;
 using ProtoBuf;
-using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Vintagestory.API.Client;
@@ -20,14 +21,17 @@ namespace CraftableCartography
 {
     public partial class CraftableCartographyModSystem : ModSystem
     {
-        private string dataPath;
+        public ConfigManager<CraftableCartographyModConfig> Config;
 
+        private string dataPath;
 
         public const string patchName = "com.profcupcake.craftablecartography";
 
         ICoreAPI api;
         ICoreClientAPI capi;
         ICoreServerAPI sapi;
+
+        Dictionary<IServerPlayer, PropickReading> LastPropickReading;
 
         Harmony harmony;
         public override void StartPre(ICoreAPI api)
@@ -46,12 +50,18 @@ namespace CraftableCartography
         {
             base.Start(api);
 
+            LastPropickReading = new();
+
+            api.RegisterItemClass("compass", typeof(Compass));
+
             api.RegisterItemClass("sextant", typeof(Sextant));
 
             api.RegisterItemClass("ItemJPSDevice", typeof(ItemJPSDevice));
 
             api.Network.RegisterChannel(NetChannel)
                 .RegisterMessageType<SetChannelPacket>();
+
+            Config = new(api, "craftablecartography");
         }
 
         public override void StartServerSide(ICoreServerAPI api)
@@ -64,6 +74,34 @@ namespace CraftableCartography
                 .SetMessageHandler<SetChannelPacket>(SetChannelCommandServer);
 
             sapi.Event.RegisterGameTickListener(ServerJPSCheck, 5000);
+
+            sapi.ChatCommands.Create("setreading")
+                .WithAlias("sr")
+                .WithDescription("Set the coordinates of your last prospecting pick reading to add it to the map")
+                .RequiresPlayer()
+                .WithArgs(sapi.ChatCommands.Parsers.Int("x"), sapi.ChatCommands.Parsers.Int("y"), sapi.ChatCommands.Parsers.Int("z"))
+                .RequiresPrivilege(Privilege.chat)
+                .HandleWith(SetReadingCommand);
+        }
+
+        private TextCommandResult SetReadingCommand(TextCommandCallingArgs args)
+        {
+            int x = (int)args[0];
+            int y = (int)args[1];
+            int z = (int)args[2];
+
+            BlockPos pos = new BlockPos(x, y, z);
+
+            pos.Add(api.World.DefaultSpawnPosition.AsBlockPos);
+
+            if (AddLastReadingToMap((IServerPlayer)args.Caller.Player, pos))
+            {
+                return TextCommandResult.Success($"Added last ProPick reading to map at {x}, {y}, {z}");
+            }
+            else
+            {
+                return TextCommandResult.Error("No reading to add!");
+            }
         }
 
         private void ServerJPSCheck(float dt)
@@ -81,12 +119,6 @@ namespace CraftableCartography
             base.StartClientSide(api);
 
             capi = api;
-
-            api.ChatCommands.Create("recentremap")
-                .WithDescription("Recentres your map on the given coordinates")
-                .RequiresPlayer()
-                .WithArgs(new ICommandArgumentParser[] { api.ChatCommands.Parsers.OptionalInt("x"), api.ChatCommands.Parsers.OptionalInt("y"), api.ChatCommands.Parsers.OptionalInt("z") })
-                .HandleWith(RecentreMapCommand);
 
             api.ChatCommands.Create("setJPSchannel")
                 .WithDescription("Sets your JPS channel (for sharing location with other players)")
@@ -118,21 +150,6 @@ namespace CraftableCartography
             fromPlayer.SendMessage(GlobalConstants.GeneralChatGroup, "JPS channel changed to '" + packet.channel + "'", EnumChatType.CommandSuccess);
         }
 
-        private TextCommandResult RecentreMapCommand(TextCommandCallingArgs args)
-        {
-            BlockPos pos = new((int)args[0], (int)args[1], (int)args[2]);
-            BlockPos absPos = new BlockPos(pos.X, pos.Y, pos.Z).Add(api.World.DefaultSpawnPosition.AsBlockPos);
-            GuiElementMap mapElem = api.ModLoader.GetModSystem<WorldMapManager>().worldMapDlg.SingleComposer.GetElement("mapElem") as GuiElementMap;
-
-            mapElem.CenterMapTo(absPos);
-
-            SavedPositions saved = LoadMapPos();
-            saved.pos = absPos;
-            StoreMapPos(saved);
-
-            return TextCommandResult.Success("Map centred on " + pos.X + " " + pos.Y + " " + pos.Z);
-        }
-
         public override void Dispose()
         {
             base.Dispose();
@@ -161,6 +178,31 @@ namespace CraftableCartography
         {
             if (File.Exists(dataPath)) return JsonConvert.DeserializeObject<SavedPositions>(File.ReadAllText(dataPath));
             return new SavedPositions(api);
+        }
+
+        public void StoreLastReading(IServerPlayer player, PropickReading reading)
+        {
+            LastPropickReading[player] = reading;
+        }
+
+        public bool AddLastReadingToMap(IServerPlayer player, BlockPos pos)
+        {
+            PropickReading reading = LastPropickReading[player];
+
+            if (reading == null) return false;
+
+            reading.Position = pos.ToVec3d();
+
+            ModSystemOreMap modSystem = api.ModLoader.GetModSystem<ModSystemOreMap>(true);
+            if (modSystem == null)
+            {
+                return false;
+            }
+            modSystem.DidProbe(reading, player);
+
+            LastPropickReading[player] = null;
+
+            return true;
         }
     }
 }

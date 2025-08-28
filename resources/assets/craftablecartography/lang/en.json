@@ -7,6 +7,9 @@
 
     "item-sextant-*": "Sextant",
     "itemdesc-sextant-*": "Use to see your coordinates. Takes a few seconds to home in.",
+    "CoordinatesMode": "Determine coordinates",
+    "PitchMode": "Determine elevation angle",
+    "Pitch: {0:0.#}°": "Elevation: {0:0.#}°",
 
     "item-map": "Map",
     "itemdesc-map": "Allows you to use the map.",
