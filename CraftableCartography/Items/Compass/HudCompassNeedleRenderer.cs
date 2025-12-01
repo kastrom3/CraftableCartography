@@ -271,14 +271,47 @@ namespace CraftableCartography.Items.Compass
 
         public void Dispose()
         {
+            if (labelTextures != null)
+            {
+                foreach (LoadedTexture text in labelTextures)
+                {
+                    if (text != null)
+                    {
+                        text.Dispose();
+                    }
+                }
+            }
+            labelTextures = null;
             if (meshRefs is not null)
             {
                 foreach (MeshRef meshRef in meshRefs)
                 {
                     api.Render.DeleteMesh(meshRef);
                 }
-                meshRefs = null;
             }
+            if (meshDatas is not null)
+            {
+                foreach (MeshData meshDat in meshDatas)
+                {
+                    meshDat?.Dispose();
+                }
+            }
+            if (labelMeshDatas is not null)
+            {
+                foreach (MeshData meshDat2 in labelMeshDatas)
+                {
+                    meshDat2?.Dispose();
+                }
+            }
+            if (labelMeshRefs is not null)
+            {
+                foreach (MeshRef meshRef2 in labelMeshRefs)
+                {
+                    api.Render.DeleteMesh(meshRef2);
+                }
+            }
+            meshRefs = null;
+            labelMeshRefs = null;
 
             api.Event.UnregisterRenderer(this, EnumRenderStage.Ortho);
         }
