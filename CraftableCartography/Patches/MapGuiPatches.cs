@@ -2,11 +2,8 @@
 using System;
 using System.Text;
 using Vintagestory.API.Client;
-using Vintagestory.API.Common;
-using Vintagestory.API.Datastructures;
 using Vintagestory.API.MathTools;
 using Vintagestory.GameContent;
-using static CraftableCartography.Lib.CCConstants;
 using static CraftableCartography.Lib.ItemChecks;
 
 namespace CraftableCartography.Patches

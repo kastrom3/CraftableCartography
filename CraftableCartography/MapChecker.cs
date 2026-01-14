@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Vintagestory.API.Client;
+﻿using Vintagestory.API.Client;
 using Vintagestory.API.Common;
-using Vintagestory.Client.NoObf;
 using Vintagestory.GameContent;
 using static CraftableCartography.Lib.ItemChecks;
 
@@ -52,7 +46,7 @@ namespace CraftableCartography
 
         public bool IsMapAllowed()
         {
-            return (HasMap(capi.World.Player) || HasJPS(capi.World.Player));
+            return (!capi.ModLoader.GetModSystem<CraftableCartographyModSystem>().Config.modConfig.DrawnMap & HasMap(capi.World.Player) || HasJPS(capi.World.Player));
         }
     }
 }

@@ -4,6 +4,8 @@
     {
         public bool CompassTextBox = false;
 
+        public bool DrawnMap = false;
+
         //public bool RealisticMode = false;
 
         public float MaxCharges = 2; //how many temporal gears are needed for maximum charge

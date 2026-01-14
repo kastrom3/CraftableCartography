@@ -1,6 +1,5 @@
 ﻿using HarmonyLib;
 using System;
-using System.Collections.Generic;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Config;
@@ -30,11 +29,6 @@ namespace CraftableCartography.Patches
         [HarmonyPatch(typeof(HudElementCoordinates), "OnBlockTexturesLoaded")]
         private static class HudElementCoordinates_OnBlockTexturesLoaded_Patch
         {
-            private static bool Prefix(HudElementCoordinates __instance)
-            {
-                // Пропускаем оригинальный метод
-                return false;
-            }
 
             private static void Postfix(HudElementCoordinates __instance)
             {

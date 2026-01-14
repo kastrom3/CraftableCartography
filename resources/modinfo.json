@@ -1,13 +1,13 @@
 {
-    "type": "code",
-    "modid": "craftablecartographyfork",
-    "name": "CraftableCartography",
-    "authors": [
-        "Professor Cupcake, fork kastrom3"
-    ],
-    "description": "A more immersive map & navigation experience",
-    "version": "0.1.8",
-    "dependencies": {
-        "game": "1.21.0"
-    }
+	"type": "code",
+	"modid": "craftablecartographyfork",
+	"name": "CraftableCartography",
+	"authors": [
+		"Professor Cupcake, fork kastrom3"
+	],
+	"description": "A more immersive map & navigation experience",
+	"version": "0.1.10",
+	"dependencies": {
+		"game": "1.21.5"
+	}
 }
