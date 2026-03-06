@@ -11,7 +11,7 @@ namespace CraftableCartography.Items.Compass
     public class Compass : Item
     {
         ICoreClientAPI capi;
-        
+
         HudElementNavReading gui;
         HudCompassNeedleRenderer needleRenderer;
 
@@ -23,51 +23,71 @@ namespace CraftableCartography.Items.Compass
 
         long lastUpdate;
 
-        public override void OnHeldInteractStart(ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, bool firstEvent, ref EnumHandHandling handling)
+        public override void OnHeldInteractStart(
+            ItemSlot slot,
+            EntityAgent byEntity,
+            BlockSelection blockSel,
+            EntitySelection entitySel,
+            bool firstEvent,
+            ref EnumHandHandling handling
+        )
         {
             if (byEntity.Api.Side == EnumAppSide.Client)
             {
                 capi ??= byEntity.Api as ICoreClientAPI;
 
-                needleRenderer = new(capi, this);
+                needleRenderer = new(
+                    capi,
+                    this
+                );
                 needleRenderer.heading = heading;
 
                 capi.Event.KeyDown += Event_KeyDown;
 
                 HudToolbarPatches.OnMouseWheel += HudToolbarPatches_OnMouseWheel;
             }
-            
+
             handling = EnumHandHandling.PreventDefault;
         }
 
-        private void HudToolbarPatches_OnMouseWheel(ref MouseWheelEventArgs args)
+        private void HudToolbarPatches_OnMouseWheel(
+            ref MouseWheelEventArgs args
+        )
         {
             needleRenderer.compassZoom += (needleRenderer.compassZoom * 0.02f * args.deltaPrecise);
             args.SetHandled(true);
         }
 
-        private void Event_KeyDown(KeyEvent e)
+        private void Event_KeyDown(
+            KeyEvent e
+        )
         {
             if (e.KeyCode == (int)GlKeys.Up)
             {
                 needleRenderer.compassZoom *= 1.02f;
                 e.Handled = true;
-            } else if (e.KeyCode == (int)GlKeys.Down)
+            }
+            else if (e.KeyCode == (int)GlKeys.Down)
             {
                 needleRenderer.compassZoom *= 0.98f;
                 e.Handled = true;
             }
         }
 
-        private void DoMoveStep(Entity byEntity)
+        private void DoMoveStep(
+            Entity byEntity
+        )
         {
             if (lastUpdate == 0) lastUpdate = byEntity.World.ElapsedMilliseconds;
 
             float dt = (byEntity.World.ElapsedMilliseconds - lastUpdate) / 1000f;
-            
+
             float yawDeg = 180 - byEntity.SidedPos.Yaw * (180 / GameMath.PI);
 
-            float angleDiff = GameMath.AngleDegDistance(heading, yawDeg);
+            float angleDiff = GameMath.AngleDegDistance(
+                heading,
+                yawDeg
+            );
 
             headingDelta += (angleDiff * accelerationMult) * dt;
             headingDelta *= damping;
@@ -109,7 +129,13 @@ namespace CraftableCartography.Items.Compass
             return text;
         }
 
-        public override bool OnHeldInteractStep(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel)
+        public override bool OnHeldInteractStep(
+            float secondsUsed,
+            ItemSlot slot,
+            EntityAgent byEntity,
+            BlockSelection blockSel,
+            EntitySelection entitySel
+        )
         {
             if (byEntity.Api.Side == EnumAppSide.Client)
             {
@@ -123,7 +149,13 @@ namespace CraftableCartography.Items.Compass
             return true;
         }
 
-        public override void OnHeldInteractStop(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel)
+        public override void OnHeldInteractStop(
+            float secondsUsed,
+            ItemSlot slot,
+            EntityAgent byEntity,
+            BlockSelection blockSel,
+            EntitySelection entitySel
+        )
         {
             if (byEntity.Api.Side == EnumAppSide.Client)
             {
@@ -138,18 +170,28 @@ namespace CraftableCartography.Items.Compass
             }
         }
 
-        public override void OnHeldIdle(ItemSlot slot, EntityAgent byEntity)
+        public override void OnHeldIdle(
+            ItemSlot slot,
+            EntityAgent byEntity
+        )
         {
-            DoMoveStep(byEntity);
+            if (byEntity?.Api.Side == EnumAppSide.Client)
+            {
+                DoMoveStep(byEntity);
+            }
         }
 
-        public override bool ConsumeCraftingIngredients(ItemSlot[] slots, ItemSlot outputSlot, GridRecipe matchingRecipe)
+        public override bool ConsumeCraftingIngredients(
+            ItemSlot[] slots,
+            ItemSlot outputSlot,
+            GridRecipe matchingRecipe
+        )
         {
             foreach (ItemSlot slot in slots)
             {
                 slot.TakeOut(1);
             }
-            
+
             return true;
         }
 
