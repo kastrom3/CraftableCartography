@@ -28,7 +28,7 @@ namespace CraftableCartography.Patches
             string textResults = results.ToHumanReadable(splr.LanguageCode, traverse.Field("ppws").GetValue<ProPickWorkSpace>().pageCodes);
             splr.SendMessage(GlobalConstants.InfoLogChatGroup, textResults, EnumChatType.Notification, null);
 
-            splr.SendMessage(GlobalConstants.InfoLogChatGroup, "Enter coordinates with /setreading to save to map", EnumChatType.Notification);
+            splr.SendMessage(GlobalConstants.InfoLogChatGroup, Lang.Get("craftablecartography:enter-setreading"), EnumChatType.Notification);
 
             world.Api.ModLoader.GetModSystem<CraftableCartographyModSystem>().StoreLastReading(splr, results);
 

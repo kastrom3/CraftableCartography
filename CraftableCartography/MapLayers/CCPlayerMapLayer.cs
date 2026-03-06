@@ -6,6 +6,7 @@ using Vintagestory.API.Common;
 using Vintagestory.GameContent;
 using static CraftableCartography.Lib.CCConstants;
 using static CraftableCartography.Lib.ItemChecks;
+using Vintagestory.API.Config;
 using System;
 using System.Threading.Tasks;
 
@@ -131,7 +132,7 @@ namespace CraftableCartography.MapLayers
         {
             if (player.Entity == null)
             {
-                capi.World.Logger.Warning("Can't add player {0} to world map, missing entity :<", player.PlayerUID);
+                capi.World.Logger.Warning(Lang.Get("craftablecartography:show-player-error"), player.PlayerUID);
                 return false;
             }
 

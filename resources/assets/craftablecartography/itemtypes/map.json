@@ -1,6 +1,6 @@
 {
     "code": "map",
-	"class": "ItemBook",
+	"class": "DrawableMap",
     "creativeinventory": {
         "general": [ "*" ],
         "items": [ "*" ],

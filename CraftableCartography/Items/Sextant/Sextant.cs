@@ -201,13 +201,13 @@ namespace CraftableCartography.Items.Sextant
             {
                 new WorldInteraction
                 {
-                    ActionLangCode = "Change tool mode",
+                    ActionLangCode = "game:Change tool mode",
                     HotKeyCodes = new string[] { "toolmodeselect" },
                     MouseButton = EnumMouseButton.None
                 },
                 new WorldInteraction
                 {
-                    ActionLangCode = "Use sextant",
+                    ActionLangCode = Lang.Get("craftablecartography:use-sextant"),
                     HotKeyCodes = new string[] { "sneak" },
                     MouseButton = EnumMouseButton.Right
                 }

@@ -19,12 +19,22 @@ namespace CraftableCartography.Lib
 
         public static bool GenericItemCheck(IPlayer player, string itemCode, string domain)
         {
-            foreach (ItemSlot slot in player.InventoryManager.GetHotbarInventory())
-                if (slot.Itemstack != null)
-                    if (slot.Itemstack.Item != null)
-                        if (slot.Itemstack.Item.Code.FirstCodePart() == itemCode && slot.Itemstack.Item.Code.Domain == domain)
-                            return true;
-            return false;
+            try
+            {
+                if (player?.InventoryManager?.GetHotbarInventory() == null)
+                    return false;
+
+                foreach (ItemSlot slot in player.InventoryManager.GetHotbarInventory())
+                {
+                    if (IsItemMatch(slot?.Itemstack, itemCode, domain))
+                        return true;
+                }
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
         }
         public static bool GenericItemsCheck(IPlayer player, string[] itemCodes, string domain)
         {
@@ -42,29 +52,39 @@ namespace CraftableCartography.Lib
         // Измененный метод для проверки предмета в руке
         private static bool ItemCheckInHand(IPlayer player, string itemCode, string domain)
         {
-            // Проверяем правую руку
-            var activeSlot = player.InventoryManager.ActiveHotbarSlot;
-            if (IsItemMatch(activeSlot?.Itemstack, itemCode, domain))
+            try
             {
-                return true;
-            }
+                // Проверяем правую руку
+                var activeSlot = player?.InventoryManager?.ActiveHotbarSlot;
+                if (IsItemMatch(activeSlot?.Itemstack, itemCode, domain))
+                    return true;
 
-            // Проверяем левую руку
-            var leftHandSlot = player.Entity.LeftHandItemSlot;
-            if (IsItemMatch(leftHandSlot?.Itemstack, itemCode, domain))
+                // Проверяем левую руку (с проверкой Entity)
+                var leftHandSlot = player?.Entity?.LeftHandItemSlot;
+                if (IsItemMatch(leftHandSlot?.Itemstack, itemCode, domain))
+                    return true;
+
+                return false;
+            }
+            catch
             {
-                return true;
+                return false;
             }
-
-            return false;
         }
 
         // Универсальный метод для проверки соответствия предмета
         private static bool IsItemMatch(ItemStack itemstack, string itemCode, string domain)
         {
-            if (itemstack?.Item == null) return false;
+            try
+            {
+                if (itemstack?.Item == null) return false;
 
-            return itemstack.Item.Code.FirstCodePart() == itemCode && itemstack.Item.Code.Domain == domain;
+                return itemstack.Item.Code.FirstCodePart() == itemCode && itemstack.Item.Code.Domain == domain;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         // Метод для проверки наличия предмета в слоте шлема
@@ -90,78 +110,146 @@ namespace CraftableCartography.Lib
 
         public static bool HasPrimitiveCompass(IPlayer player)
         {
-            if (player.Entity.Api.Side == EnumAppSide.Client)
-                if (((ICoreClientAPI)player.Entity.Api).World.Player == player)
-                    return ItemCheckInHand(player, primitiveCompassCode, modDomain);
-            return false;
+            try
+            {
+                if (player?.Entity?.Api == null)
+                    return false;
+
+                if (player.Entity.Api.Side == EnumAppSide.Client)
+                {
+                    var clientApi = player.Entity.Api as ICoreClientAPI;
+                    if (clientApi?.World?.Player == player)
+                    {
+                        return ItemCheckInHand(player, primitiveCompassCode, modDomain);
+                    }
+                }
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public static bool HasCompass(IPlayer player)
         {
-            if (player.Entity.Api.Side == EnumAppSide.Client)
-                if (((ICoreClientAPI)player.Entity.Api).World.Player == player)
-                    return ItemCheckInHand(player, CompassCode, modDomain);
-            return false;
+            try
+            {
+                if (player?.Entity?.Api == null)
+                    return false;
+
+                if (player.Entity.Api.Side == EnumAppSide.Client)
+                {
+                    var clientApi = player.Entity.Api as ICoreClientAPI;
+                    if (clientApi?.World?.Player == player)
+                    {
+                        return ItemCheckInHand(player, CompassCode, modDomain);
+                    }
+                }
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public static bool HasTemporalCompass(IPlayer player)
         {
-            if (player.Entity.Api.Side == EnumAppSide.Client)
-                if (((ICoreClientAPI)player.Entity.Api).World.Player == player)
-                    return ItemCheckInHand(player, temporalCompassCode, modDomain);
-            return false;
+            try
+            {
+                if (player?.Entity?.Api == null)
+                    return false;
+
+                if (player.Entity.Api.Side == EnumAppSide.Client)
+                {
+                    var clientApi = player.Entity.Api as ICoreClientAPI;
+                    if (clientApi?.World?.Player == player)
+                    {
+                        return ItemCheckInHand(player, temporalCompassCode, modDomain);
+                    }
+                }
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public static bool HasMap(IPlayer player)
         {
-            if (player.Entity.Api.Side == EnumAppSide.Client)
-                if (((ICoreClientAPI)player.Entity.Api).World.Player == player)
-                    return GenericItemCheck(player, mapCode, modDomain);
-            return false;
+            try
+            {
+                if (player?.Entity?.Api == null)
+                    return false;
+
+                if (player.Entity.Api.Side == EnumAppSide.Client)
+                {
+                    var clientApi = player.Entity.Api as ICoreClientAPI;
+                    if (clientApi?.World?.Player == player)
+                    {
+                        return ItemCheckInHand(player, mapCode, modDomain);
+                    }
+                }
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
         }
         public static bool HasJPS(IPlayer player)
         {
-            if (player.Entity.Api.Side == EnumAppSide.Client)
+            try
             {
-                if (((ICoreClientAPI)player.Entity.Api).World.Player == player)
+                if (player?.Entity?.Api == null)
+                    return false;
+
+                if (player.Entity.Api.Side == EnumAppSide.Client)
                 {
-                    var jpsItem = ItemCheckInHelmetSlot(player, jpsCode, modDomain);
-                    if (jpsItem)
+                    var clientApi = player.Entity.Api as ICoreClientAPI;
+                    if (clientApi?.World?.Player == player)
                     {
-                        var jpsStack = GetJPSStack(player);
-                        if (jpsStack != null)
-                        {
-                            var jps = jpsStack.Item as ItemJPSDevice;
-                            if (jps != null && jps.GetFuelHours(jpsStack) > 0)
-                            {
-                                return true;
-                            }
-                        }
+                        return CheckJPSWithFuel(player);
+                    }
+                    else
+                    {
+                        return player.Entity.WatchedAttributes.GetBool(hasJPSAttr, false);
                     }
                 }
-                else
+                else if (player.Entity.Api.Side == EnumAppSide.Server)
                 {
-                    return player.Entity.WatchedAttributes.GetBool(hasJPSAttr);
+                    return CheckJPSWithFuel(player);
                 }
+                return false;
             }
-            else if (player.Entity.Api.Side == EnumAppSide.Server)
+            catch
+            {
+                return false;
+            }
+        }
+
+        private static bool CheckJPSWithFuel(IPlayer player)
+        {
+            try
             {
                 var jpsItem = ItemCheckInHelmetSlot(player, jpsCode, modDomain);
-                if (jpsItem)
+                if (!jpsItem) return false;
+
+                var jpsStack = GetJPSStack(player);
+                if (jpsStack?.Item is ItemJPSDevice jps)
                 {
-                    var jpsStack = GetJPSStack(player);
-                    if (jpsStack != null)
-                    {
-                        var jps = jpsStack.Item as ItemJPSDevice;
-                        if (jps != null && jps.GetFuelHours(jpsStack) > 0)
-                        {
-                            return true;
-                        }
-                    }
+                    return jps.GetFuelHours(jpsStack) > 0;
                 }
+                return false;
             }
-            return false;
+            catch
+            {
+                return false;
+            }
         }
+
 
         private static ItemStack GetJPSStack(IPlayer player)
         {

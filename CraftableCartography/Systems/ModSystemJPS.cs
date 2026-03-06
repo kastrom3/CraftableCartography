@@ -1,9 +1,10 @@
-﻿using System;
+﻿using CraftableCartography.Items.JPS;
+using System;
 using Vintagestory.API.Common;
 using Vintagestory.API.Server;
 using Vintagestory.GameContent;
 
-namespace CraftableCartography.Items.JPS
+namespace CraftableCartography.Systems
 {
     class ModSystemJPS : ModSystem
     {

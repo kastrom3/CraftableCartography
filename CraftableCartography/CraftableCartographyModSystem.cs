@@ -1,7 +1,9 @@
 ﻿using CraftableCartography.Config;
 using CraftableCartography.Items.Compass;
 using CraftableCartography.Items.JPS;
+using CraftableCartography.Items.Map;
 using CraftableCartography.Items.Sextant;
+using CraftableCartography.Systems;
 using HarmonyLib;
 using Newtonsoft.Json;
 using ProtoBuf;
@@ -56,10 +58,13 @@ namespace CraftableCartography
 
             api.RegisterItemClass("sextant", typeof(Sextant));
 
+            api.RegisterItemClass("DrawableMap", typeof(ItemDrawableMap));
+
             api.RegisterItemClass("ItemJPSDevice", typeof(ItemJPSDevice));
 
             api.Network.RegisterChannel(NetChannel)
-                .RegisterMessageType<SetChannelPacket>();
+                .RegisterMessageType<SetChannelPacket>()
+                .RegisterMessageType<MapDataPacket>(); // Эта строка критически важна
 
             Config = new(api, "craftablecartography");
         }
@@ -77,7 +82,7 @@ namespace CraftableCartography
 
             sapi.ChatCommands.Create("setreading")
                 .WithAlias("sr")
-                .WithDescription("Set the coordinates of your last prospecting pick reading to add it to the map")
+                .WithDescription(Lang.Get("craftablecartography:command-setreading"))
                 .RequiresPlayer()
                 .WithArgs(sapi.ChatCommands.Parsers.Int("x"), sapi.ChatCommands.Parsers.Int("y"), sapi.ChatCommands.Parsers.Int("z"))
                 .RequiresPrivilege(Privilege.chat)
@@ -96,11 +101,11 @@ namespace CraftableCartography
 
             if (AddLastReadingToMap((IServerPlayer)args.Caller.Player, pos))
             {
-                return TextCommandResult.Success($"Added last ProPick reading to map at {x}, {y}, {z}");
+                return TextCommandResult.Success(Lang.Get($"craftablecartography:command-setreading-success"));
             }
             else
             {
-                return TextCommandResult.Error("No reading to add!");
+                return TextCommandResult.Error(Lang.Get("craftablecartography:command-setreading-error"));
             }
         }
 
@@ -121,7 +126,7 @@ namespace CraftableCartography
             capi = api;
 
             api.ChatCommands.Create("setJPSchannel")
-                .WithDescription("Sets your JPS channel (for sharing location with other players)")
+                .WithDescription(Lang.Get("craftablecartography:command-setJPSchannel"))
                 .RequiresPlayer()
                 .WithArgs(new ICommandArgumentParser[] { api.ChatCommands.Parsers.OptionalWord("channel") })
                 .HandleWith(SetChannelCommand);
@@ -147,7 +152,7 @@ namespace CraftableCartography
         private void SetChannelCommandServer(IServerPlayer fromPlayer, SetChannelPacket packet)
         {
             fromPlayer.Entity.WatchedAttributes.SetString(JPSChannelAttr, packet.channel);
-            fromPlayer.SendMessage(GlobalConstants.GeneralChatGroup, "JPS channel changed to '" + packet.channel + "'", EnumChatType.CommandSuccess);
+            fromPlayer.SendMessage(GlobalConstants.GeneralChatGroup, Lang.Get("craftablecartography:command-setJPSchannel-result") + packet.channel + "'", EnumChatType.CommandSuccess);
         }
 
         public override void Dispose()

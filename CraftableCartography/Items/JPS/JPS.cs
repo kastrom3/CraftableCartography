@@ -94,10 +94,10 @@ namespace CraftableCartography.Items.JPS
             double fuelHours = GetFuelHours(inSlot.Itemstack);
             int days = (int)(fuelHours / 24);
             double remainingHours = fuelHours % 24;
-            dsc.AppendLine(Lang.Get("Has fuel for {0} days and {1:0.#} hours", days, remainingHours));
+            dsc.AppendLine(Lang.Get("craftablecartography:fuel-time", days, remainingHours));
             if (fuelHours <= 0.0)
             {
-                dsc.AppendLine(Lang.Get("Add temporal gear to refuel"));
+                dsc.AppendLine(Lang.Get("craftablecartography:refuel"));
             }
         }
     }
