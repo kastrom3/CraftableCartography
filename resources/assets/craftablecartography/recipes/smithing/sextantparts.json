@@ -5,10 +5,6 @@
     "allowedVariants": [ "copper", "tinbronze", "blackbronze", "bismuthbronze", "brass", "iron", "meteoriciron", "steel", "silver", "gold" ],
     "name": "metal"
   },
-  "output": {
-    "type": "item",
-    "code": "sextantparts-{metal}"
-  },
   "pattern": [
     [
       "#_#_##_#__",
@@ -19,5 +15,11 @@
       "#_#_##__#_",
       "#_#_##_#__"
     ]
-  ]
+  ],
+  "name": "SextantParts",
+  "code": "sextantparts-{metal}",
+  "output": {
+    "type": "item",
+    "code": "sextantparts-{metal}"
+  }
 }

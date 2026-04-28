@@ -11,11 +11,11 @@
 	"textures": {
 		"rusty": "game:block/machine/statictranslocator/rusty",
 		"rustyglow": "game:block/machine/statictranslocator/rustyglow",
-		"blackbronze": "game:item/tool/material/blackbronze",
+		"blackbronze": "game:block/metal/ingot/blackbronze",
 		"glass": "game:block/glass/smoky",
 		"gold": "game:block/metal/ingot/gold",
 		"vintage": "game:block/glass/vintage",
-		"tinbronze": "game:item/tool/material/tinbronze",
+		"tinbronze": "game:block/metal/ingot/tinbronze",
 		"cupronickel1": "game:block/metal/sheet/cupronickel1"
 	},
 	"elements": [

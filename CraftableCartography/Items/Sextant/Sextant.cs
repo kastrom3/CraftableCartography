@@ -120,6 +120,15 @@ namespace CraftableCartography.Items.Sextant
                 {
                     // Получаем позицию игрока
                     BlockPos playerPos = byEntity.Pos.AsBlockPos;
+                    // Получаем позицию солнца как вектор
+                    Vec3f sunDirection = byEntity.World.Calendar.GetSunPosition(
+                        byEntity.Pos.XYZ,  // позиция игрока (Vec3d)
+                        byEntity.World.Calendar.TotalDays  // текущее время в днях
+                    );
+
+                    // Получаем высоту солнца
+                    float sunHeight = sunDirection.Y;  // от -1 до 1
+
                     // Получаем уровень солнечного света
                     int sunLightLevel = api.World.BlockAccessor.GetLightLevel(playerPos, EnumLightLevelType.OnlySunLight);
 
@@ -129,7 +138,7 @@ namespace CraftableCartography.Items.Sextant
                     // Проверка на дождь
                     bool isRaining = api.World.BlockAccessor.GetClimateAt(playerPos, EnumGetClimateMode.NowValues).Rainfall > 0.1f; // Предполагаем, что дождь идет, если Rainfall больше 0.1
 
-                    if (isInShadow || isRaining)
+                    if (isInShadow || isRaining || sunHeight < 0.15f)
                     {
                         gui.SetText("???, ???, ???");
                     }

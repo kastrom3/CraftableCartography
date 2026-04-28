@@ -82,7 +82,7 @@ namespace CraftableCartography.Items.Compass
 
             float dt = (byEntity.World.ElapsedMilliseconds - lastUpdate) / 1000f;
 
-            float yawDeg = 180 - byEntity.SidedPos.Yaw * (180 / GameMath.PI);
+            float yawDeg = 180 - byEntity.Pos.Yaw * (180 / GameMath.PI);
 
             float angleDiff = GameMath.AngleDegDistance(
                 heading,
@@ -181,10 +181,11 @@ namespace CraftableCartography.Items.Compass
             }
         }
 
+        /*
         public override bool ConsumeCraftingIngredients(
             ItemSlot[] slots,
             ItemSlot outputSlot,
-            GridRecipe matchingRecipe
+            GridRecipe byRecipe
         )
         {
             foreach (ItemSlot slot in slots)
@@ -195,7 +196,6 @@ namespace CraftableCartography.Items.Compass
             return true;
         }
 
-        /*
         public override void OnBeforeRender(ICoreClientAPI capi, ItemStack itemstack, EnumItemRenderTarget target, ref ItemRenderInfo renderinfo)
         {
             base.OnBeforeRender(capi, itemstack, target, ref renderinfo);

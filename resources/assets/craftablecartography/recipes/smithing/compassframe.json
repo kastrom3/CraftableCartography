@@ -5,10 +5,6 @@
     "allowedVariants": [ "copper", "tinbronze", "blackbronze", "bismuthbronze", "brass", "iron", "meteoriciron", "steel", "silver", "gold" ],
     "name": "metal"
   },
-  "output": {
-    "type": "item",
-    "code": "compassframe-{metal}"
-  },
   "pattern": [
     [
       "#####",
@@ -24,5 +20,11 @@
       "#___#",
       "#####"
     ]
-  ]
+  ],
+  "name": "CompassFrame",
+  "code": "compassframe-{metal}",
+  "output": {
+    "type": "item",
+    "code": "compassframe-{metal}"
+  }
 }

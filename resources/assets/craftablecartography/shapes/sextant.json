@@ -10,8 +10,8 @@
 	},
 	"textures": {
 		"vintage": "game:block/glass/vintage",
-		"silver": "game:item/tool/material/silver",
-		"tinbronze": "game:item/tool/material/tinbronze"
+		"silver": "game:item/resource/plate/chromium",
+		"tinbronze": "game:block/metal/ingot/tinbronze"
 	},
 	"elements": [
 		{

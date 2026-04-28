@@ -9,7 +9,7 @@ using Vintagestory.GameContent;
 
 namespace CraftableCartography.Items.JPS
 {
-    public class ItemJPSDevice : ItemWearable
+    public class ItemJPSDevice : Item
     {
         protected float? _fuelHoursCapacity;
 
