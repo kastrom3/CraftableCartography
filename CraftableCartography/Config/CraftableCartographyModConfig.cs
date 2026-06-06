@@ -6,6 +6,10 @@
 
         public bool DrawnMap = false;
 
+        public bool OpenMiniMap = false;
+
+        public bool MapTracking = false;
+
         //public bool RealisticMode = false;
 
         public float MaxCharges = 2; //how many temporal gears are needed for maximum charge

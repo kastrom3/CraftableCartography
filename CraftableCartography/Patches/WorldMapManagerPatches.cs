@@ -45,7 +45,31 @@ namespace CraftableCartography.Patches
                 }
             }
         }
+
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(WorldMapManager), nameof(WorldMapManager.ToggleMap))]
+        public static bool PreventMapOpeningIfNotAllowed(WorldMapManager __instance, EnumDialogType asType)
+        {
+            ICoreClientAPI capi = Traverse.Create(__instance).Field("capi").GetValue<ICoreClientAPI>();
+            if (capi == null) return true;
+
+            MapChecker mapChecker = capi?.ModLoader.GetModSystem<MapChecker>();
+
+            if (mapChecker != null)
+            {
+                if (asType == EnumDialogType.HUD && !mapChecker.IsMinimapAllowed())
+                {
+                    return false; // Запрещаем открытие миникарты
+                }
+                if (asType == EnumDialogType.Dialog && !mapChecker.IsMapAllowed())
+                {
+                    return false; // Запрещаем открытие большой карты
+                }
+            }
+            return true; // Разрешаем нормальное открытие
+        }
     }
+
     //Отключение отображения существ на карте
     [HarmonyPatch(typeof(OwnedEntityMapLayer))]
     [HarmonyPatch("Render")]
@@ -63,4 +87,5 @@ namespace CraftableCartography.Patches
             return false; // Пропустить оригинальный метод, если проверка не пройдена
         }
     }
+
 }

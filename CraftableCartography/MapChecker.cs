@@ -41,7 +41,7 @@ namespace CraftableCartography
 
         public bool IsMinimapAllowed()
         {
-            return HasJPS(capi.World.Player);
+            return ((capi.ModLoader.GetModSystem<CraftableCartographyModSystem>().Config.modConfig.OpenMiniMap & IsMapAllowed()) || HasJPS(capi.World.Player));
         }
 
         public bool IsMapAllowed()
