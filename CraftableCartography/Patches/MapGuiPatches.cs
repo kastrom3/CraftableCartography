@@ -2,6 +2,7 @@
 using System;
 using System.Text;
 using Vintagestory.API.Client;
+using Vintagestory.API.Common;
 using Vintagestory.API.Common.Entities;
 using Vintagestory.API.MathTools;
 using Vintagestory.GameContent;
@@ -89,6 +90,52 @@ namespace CraftableCartography.Patches
                 double num2 = mouseY - instance.SingleComposer.Bounds.absY - ((instance.DialogType == EnumDialogType.Dialog) ? GuiElement.scaled(30.0) : 0.0);
                 (instance.SingleComposer.GetElement("mapElem") as GuiElementMap).TranslateViewPosToWorldPos(new Vec2f((float)num, (float)num2), ref worldPos);
                 worldPos.Y += 1.0;
+            }
+        }
+
+        // 1. Патчим TryClose для перехвата закрытия через крестик/ESC
+        [HarmonyPrefix] // или Postfix
+        [HarmonyPatch(typeof(GuiDialogWorldMap), nameof(GuiDialogWorldMap.TryClose))]
+        public static void OnTryClose(GuiDialogWorldMap __instance)
+        {
+            SaveMapPosition(__instance);
+        }
+
+        // 2. Патчим OnGuiClosed для полного закрытия
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(GuiDialogWorldMap), nameof(GuiDialogWorldMap.OnGuiClosed))]
+        public static void OnGuiClosed(GuiDialogWorldMap __instance)
+        {
+            SaveMapPosition(__instance);
+        }
+
+        // Общий метод сохранения
+        private static void SaveMapPosition(GuiDialogWorldMap instance)
+        {
+            try
+            {
+                var traverse = Traverse.Create(instance);
+                var capi = traverse.Field("capi").GetValue<ICoreClientAPI>();
+
+                if (capi == null) return;
+
+                // Сохраняем ТОЛЬКО если это полноэкранный режим (не HUD)
+                var dialogType = traverse.Field("dialogType").GetValue<EnumDialogType>();
+                if (dialogType != EnumDialogType.Dialog) return;
+
+                var elemMap = instance.SingleComposer?.GetElement("mapElem") as GuiElementMap;
+                if (elemMap != null)
+                {
+                    var modSystem = capi.ModLoader.GetModSystem<CraftableCartographyModSystem>();
+                    if (modSystem != null)
+                    {
+                        modSystem.StoreMapPos(elemMap);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"CraftableCartography: {ex.Message}");
             }
         }
 
